@@ -19,7 +19,7 @@ import android.widget.ImageView;
 public class GroupActivity extends Activity {
 
 	 protected boolean _active = true;
-	    protected int _splashTime = 4000;
+	    protected int _splashTime = 6000;
 	    protected boolean _disply = true;
 	    Thread splashTread;
 
@@ -113,10 +113,10 @@ public class GroupActivity extends Activity {
 	                    int waited = 0;
 	                    while( _active && ( waited < _splashTime ) )
 	                    {
-	                        sleep( 100 );
+	                        sleep( 20 );
 	                        if( _active )
 	                        {
-	                            waited += 100;
+	                            waited += 20;
 	                        }
 	                    }
 	                }
@@ -163,7 +163,7 @@ public class GroupActivity extends Activity {
 	            try
 	            {
 
-	                splashTread.sleep( 700 );
+	                splashTread.sleep( 400 );
 
 	                synchronized( splashTread )
 	                {
