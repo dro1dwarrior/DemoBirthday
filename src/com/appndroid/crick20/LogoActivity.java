@@ -1,93 +1,89 @@
 package com.appndroid.crick20;
 
 import java.util.Timer;
-import java.util.TimerTask;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
-public class LogoActivity extends Activity {
+public class LogoActivity extends Activity
+{
 
-	private final Handler mHandler = new Handler();
-	private Drawable mCurrentDrawable;
-	private Timer myTimer;
-	int count;
-	private SeekBar seekBar;
+    private final Handler mHandler = new Handler();
+    private Drawable mCurrentDrawable;
+    private Timer myTimer;
+    int count = 0;
+    private SeekBar seekBar;
+    Thread displayImage;
 
-	/** Called when the activity is first created. */
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
-		mCurrentDrawable = getResources().getDrawable(R.drawable.clip);
-		findViewById(R.id.testView).setBackgroundDrawable(mCurrentDrawable);
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate( Bundle savedInstanceState )
+    {
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.main );
+        mCurrentDrawable = getResources().getDrawable( R.drawable.clip );
+        findViewById( R.id.testView ).setBackgroundDrawable( mCurrentDrawable );
 
-		seekBar = (SeekBar) findViewById(R.id.seekBar);
-		seekBar.setMax(10000);
-		seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+        seekBar = (SeekBar) findViewById( R.id.seekBar );
+        seekBar.setMax( 100000 );
+        seekBar.setOnSeekBarChangeListener( new OnSeekBarChangeListener()
+        {
 
-			public void onStopTrackingTouch(SeekBar seekBar) {
-			}
+            public void onStopTrackingTouch( SeekBar seekBar )
+            {
+            }
 
-			public void onStartTrackingTouch(SeekBar seekBar) {
-			}
+            public void onStartTrackingTouch( SeekBar seekBar )
+            {
+            }
 
-			public void onProgressChanged(SeekBar seekBar, int progress,
-					boolean fromUser) {
-				mCurrentDrawable.setLevel(progress);
-			}
+            public void onProgressChanged( SeekBar seekBar, int progress, boolean fromUser )
+            {
+                mCurrentDrawable.setLevel( progress );
+            }
 
-		});
+        } );
 
-		myTimer = new Timer();
-		myTimer.schedule(new TimerTask() {
-			@Override
-			public void run() {
-				TimerMethod();
-			}
+        displayImage = new Thread()
+        {
+            public void run()
+            {
+                do
+                {
+                    count += 3;
+                    seekBar.setProgress( count );
+                }
+                while( count < 100000 );
 
-		}, 0, 100);
-	}
+                if( count >= 100000 )
+                {
+                    count = 0;
+                    try
+                    {
+                        displayImage.sleep( 100 );
+                    }
+                    catch( Exception e )
+                    {
+                        // TODO: handle exception
+                        e.printStackTrace();
+                    }
+                    Intent intent;
+                    intent = new Intent( getApplicationContext(), com.appndroid.crick20.FlagsActivity.class );
+                    intent.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
+                    intent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
+                    LogoActivity.this.finish();
+                    startActivity( intent );
+                }
 
-	private void TimerMethod() {
-		// This method is called directly by the timer
-		// and runs in the same thread as the timer.
+            }
+        };
+        displayImage.start();
+    }
 
-		// We call the method that will work with the UI
-		// through the runOnUiThread method.
-		this.runOnUiThread(Timer_Tick);
-	}
-
-	private Runnable Timer_Tick = new Runnable() {
-		public void run() {
-
-			// This method runs in the same thread as the UI.
-
-			// Do something to the UI thread here
-			count += 400;
-			seekBar.setProgress(count);
-
-			if (count > 10000) {
-				try {
-					Thread.sleep(100);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				Intent intent;
-				intent = new Intent(getApplicationContext(),
-						com.appndroid.crick20.GroupActivity.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-				finish();
-				startActivity(intent);
-			}
-
-		}
-	};
 }

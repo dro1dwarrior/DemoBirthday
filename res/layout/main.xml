@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:background="@drawable/splash_screen">
-           
-   <SeekBar
+    android:background="@drawable/splash_screen"
+    android:orientation="vertical" >
+
+    <SeekBar
         android:id="@+id/seekBar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:visibility="invisible" />
 
-   <View
-       android:id="@+id/testView"
-       android:layout_width="fill_parent"
-       android:layout_height="123dp"
-       android:layout_centerHorizontal="true"
-       android:layout_centerVertical="true"
-       android:clickable="true"
-       android:focusable="true" />
-    
+    <View
+        android:id="@+id/testView"
+        android:layout_width="fill_parent"
+        android:layout_height="123dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:focusable="true" />
+
 </RelativeLayout>

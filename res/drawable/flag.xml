@@ -5,38 +5,38 @@
 
     <item
         android:drawable="@drawable/afghanistan"
-        android:duration="50"/>
+        android:duration="500"/>
     <item
         android:drawable="@drawable/australia"
-        android:duration="50"/>
+        android:duration="500"/>
     <item
         android:drawable="@drawable/bangladesh"
-        android:duration="50"/>
+        android:duration="500"/>
     <item
         android:drawable="@drawable/england"
-        android:duration="50"/>
+        android:duration="500"/>
     <item
         android:drawable="@drawable/india"
-        android:duration="50"/>
+        android:duration="500"/>
     <item
         android:drawable="@drawable/ireland"
-        android:duration="50"/>
+        android:duration="500"/>
     <item
         android:drawable="@drawable/newzealand"
-        android:duration="50"/>
+        android:duration="500"/>
     <item
         android:drawable="@drawable/pakistan"
-        android:duration="50"/>
+        android:duration="500"/>
     <item
         android:drawable="@drawable/southafrica"
-        android:duration="50"/>
+        android:duration="500"/>
      <item
         android:drawable="@drawable/srilanka"
-        android:duration="50"/>
+        android:duration="500"/>
 	 <item
         android:drawable="@drawable/westindies"
-        android:duration="50"/>
+        android:duration="500"/>
 	 <item
         android:drawable="@drawable/zimbabwe"
-        android:duration="50"/>
+        android:duration="500"/>
 </animation-list>
