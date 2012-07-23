@@ -13,7 +13,6 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 public class LogoActivity extends Activity {
 
 	private Drawable mCurrentDrawable;
-	int count = 0;
 	private SeekBar seekBar;
 	Thread displayImage;
 
@@ -75,39 +74,6 @@ public class LogoActivity extends Activity {
 			}
 		};
 		displayImage.start();
-
-		// displayImage = new Thread() {
-		// @Override
-		// public void run() {
-		// try {
-		// synchronized (displayImage) {
-		// // Wait given period of time or exit on touch
-		//
-		// do {
-		// count += 2;
-		// seekBar.setProgress(count);
-		// } while (count < 60000);
-		// displayImage.wait(100);
-		// }
-		//
-		// if (count >= 60000) {
-		// count = 0;
-		// Intent intent;
-		// intent = new Intent(getApplicationContext(),
-		// com.appndroid.crick20.FlagsActivity.class);
-		// intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		// LogoActivity.this.finish();
-		// startActivity(intent);
-		// }
-		// } catch (Exception ex) {
-		// ex.printStackTrace();
-		// }
-		//
-		// finish();
-		// }
-		// };
-		//
-		// displayImage.start();
 	}
 
 	private void startFlagActivity() {
