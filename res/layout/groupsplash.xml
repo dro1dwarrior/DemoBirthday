@@ -12,22 +12,24 @@
         android:layout_gravity="center"
         android:layout_marginTop="160dp" >
     </ImageView>
+
+    <!-- <ProgressBar -->
+    <!-- android:id="@+id/progressBar1" -->
+    <!-- android:layout_width="wrap_content" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:layout_gravity="center_horizontal"/> -->
 
-    <ProgressBar
-        android:id="@+id/progressBar1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
-        android:layout_gravity="center_horizontal"/>
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10.0dip"
-        android:textColor="#000000"
-        android:text="Loading..."
-        android:textAppearance="?android:textAppearanceLarge" 
-        android:layout_gravity="center_horizontal"/>
+    <!-- <TextView -->
+    <!-- android:id="@+id/textView1" -->
+    <!-- android:layout_width="wrap_content" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:layout_marginLeft="10.0dip" -->
+    <!-- android:textColor="#000000" -->
+    <!-- android:text="Loading..." -->
+    <!-- android:textAppearance="?android:textAppearanceLarge" -->
+    <!-- android:layout_gravity="center_horizontal"/> -->
+
 
     <!-- <ImageView -->
     <!-- android:id="@+id/ImageView_about_mundusms" -->
