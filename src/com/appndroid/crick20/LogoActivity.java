@@ -1,20 +1,24 @@
 package com.appndroid.crick20;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.view.Window;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
 public class LogoActivity extends Activity {
 
+	private final Handler mHandler = new Handler();
 	private Drawable mCurrentDrawable;
+	private Timer myTimer;
+	int count;
 	private SeekBar seekBar;
-	Thread displayImage;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -42,47 +46,50 @@ public class LogoActivity extends Activity {
 
 		});
 
-		showSplash();
-
-	}
-
-	private Handler threadHandler = new Handler() {
-		public void handleMessage(Message msg) {
-			seekBar.setProgress(msg.what);
-		}
-	};
-
-	private void showSplash() {
-		// The thread to wait for splash screen events
-
-		displayImage = new Thread() {
+		myTimer = new Timer();
+		myTimer.schedule(new TimerTask() {
 			@Override
 			public void run() {
-				try {
-					sleep(1000);
-					for (int i = 0; i <= 20000; i++) {
-						Message msg = new Message();
-						msg.what = i / 2;
-						threadHandler.sendMessage(msg);
-						if (i == 20000) {
-							startFlagActivity();
-						}
-					}
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-		};
-		displayImage.start();
+				TimerMethod();
 	}
 
-	private void startFlagActivity() {
-		// TODO Auto-generated method stub
+		}, 0, 100);
+		}
+
+	private void TimerMethod() {
+		// This method is called directly by the timer
+		// and runs in the same thread as the timer.
+
+		// We call the method that will work with the UI
+		// through the runOnUiThread method.
+		this.runOnUiThread(Timer_Tick);
+	}
+
+	private Runnable Timer_Tick = new Runnable() {
+			public void run() {
+
+			// This method runs in the same thread as the UI.
+
+			// Do something to the UI thread here
+			count += 400;
+			seekBar.setProgress(count);
+
+			if (count > 10000) {
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		Intent intent;
 		intent = new Intent(getApplicationContext(),
 				com.appndroid.crick20.FlagsActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		LogoActivity.this.finish();
+		myTimer.cancel();
 		startActivity(intent);
 	}
+
+		}
+	};
 }
