@@ -49,7 +49,7 @@ public class LiveLayout extends Activity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.score);
-		con = this;
+		con = getApplicationContext();
 		initWheel(R.id.runs_1, 3);
 		initWheel(R.id.runs_2, 3);
 		initWheel(R.id.runs_3, 3);
@@ -83,15 +83,16 @@ public class LiveLayout extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				XMLfunctions.mContext = LiveLayout.this;
 				xml = XMLfunctions.getXML(matchUrl);
-				// Log.d(
-				// "LiveLayout.onCreate(...).new OnClickListener() {...}-onClick()"
-				// , xml );
+//				 Log.d(
+//				 "LiveLayout.onCreate(...).new OnClickListener() {...}-onClick()"
+//				 , "aaaa"+xml );
 
 				if (xml != null && !xml.equals("") && first) {
 					country.scroll(-25 + (int) (Math.random() * 50), 4000);
 					// displayInUI(xml);
-				} else if (xml != null && !xml.equals("") && !first)
+				} else if (xml!= null && !xml.equals("") && !first)
 					displayInUI(xml);
 
 			}
@@ -189,11 +190,7 @@ public class LiveLayout extends Activity {
 	 * @param id
 	 *            the wheel id
 	 */
-	private void mixWheel(int id) {
-		WheelView wheel = getWheel(id);
-		wheel.scroll(-25 + (int) (Math.random() * 50), 2000);
-	}
-
+	
 	private void displayInUI(String xml) {
 
 		Document doc = XMLfunctions.XMLfromString(xml);
@@ -215,6 +212,7 @@ public class LiveLayout extends Activity {
 		TextView batsmenTwo = (TextView) findViewById(R.id.batsmanTwo);
 		TextView bowlerOne = (TextView) findViewById(R.id.bowlerOne);
 		TextView bowlerTwo = (TextView) findViewById(R.id.bowlerTwo);
+		TextView manOfTheMatch = (TextView) findViewById(R.id.manOfTheMatch);
 		TextView matchDetails = (TextView) findViewById(R.id.scorematchDetails);
 		
 		batsmanTxt.setVisibility(View.GONE);
@@ -223,6 +221,7 @@ public class LiveLayout extends Activity {
 		batsmenTwo.setVisibility(View.GONE);
 		bowlerOne.setVisibility(View.GONE);
 		bowlerTwo.setVisibility(View.GONE);
+		manOfTheMatch.setVisibility(View.GONE);
 		matchDetails.setVisibility(View.GONE);
 		
 		TextView venueTxtView = (TextView) findViewById(R.id.matchVenue);
@@ -442,12 +441,13 @@ public class LiveLayout extends Activity {
 					String winByWkts = XMLfunctions.getValue(resultElement,
 							"wonbywickets");
 
+					matchDetails.setVisibility(View.VISIBLE);
 					if (winByRuns.equals("") && !winByWkts.equals(""))
-						Toast.makeText(this, winningTeam + " won by "
-								+ winByWkts + " wickets.", Toast.LENGTH_LONG);
+						matchDetails.setText(winningTeam + " won by "
+								+ winByWkts + " wickets.");
 					else if (winByWkts.equals("") && !winByRuns.equals(""))
-						Toast.makeText(this, winningTeam + " won by "
-								+ winByRuns + " runs.", Toast.LENGTH_LONG);
+						matchDetails.setText(winningTeam + " won by "
+								+ winByRuns + " runs.");
 					// else
 					// matchDetails.setText("match drawn");
 
@@ -458,6 +458,9 @@ public class LiveLayout extends Activity {
 							"manofmatch");
 					strMOM = strMOM.replace("\n", "");
 					strMOM = strMOM.replace("\t", "");
+					
+					manOfTheMatch.setVisibility(View.VISIBLE);
+					manOfTheMatch.setText("Man of the match : " + strMOM);
 
 				}
 			} else if (matchState.toLowerCase().equals("inprogress")) {
@@ -579,6 +582,10 @@ public class LiveLayout extends Activity {
 				matchDetails.setVisibility(View.VISIBLE);
 				matchDetails.setText("Match delayed due to rain.");
 			}
+			else if (matchState.toLowerCase().equals("dinner")) {
+				matchDetails.setVisibility(View.VISIBLE);
+				matchDetails.setText("Dinner.");
+			}
 
 		}
 	}
@@ -611,8 +618,8 @@ public class LiveLayout extends Activity {
 				first = false;
 
 			}
-		} else
-			displayInUI(xml);
+		} else if (xml!=null && !xml.equals(""))
+				displayInUI(xml);
 
 	}
 

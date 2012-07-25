@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -24,11 +25,13 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import android.util.Log;
+import android.content.Context;
+import android.widget.Toast;
 
 public class XMLfunctions {
 
 	private static ArrayList<HashMap<String, String>> matchNodeList = new ArrayList<HashMap<String, String>>();
+	public static Context mContext;
 
 	public final static Document XMLfromString(String xml) {
 
@@ -58,7 +61,6 @@ public class XMLfunctions {
 
 	}
 
-
 	public final static String getElementValue(Node elem) {
 		Node kid;
 		if (elem != null) {
@@ -82,17 +84,14 @@ public class XMLfunctions {
 			HttpGet httpget = new HttpGet(path);
 			BufferedReader in = null;
 			HttpResponse response = null;
-			
+
 			try {
 				response = httpclient.execute(httpget);
-			} catch (ClientProtocolException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			HttpEntity entity = null;
 			if (response != null)
 				entity = response.getEntity();
@@ -105,7 +104,7 @@ public class XMLfunctions {
 					sb.append(line + NL);
 				}
 				in.close();
-				//Log.d("cricket", sb.toString());
+				// Log.d("cricket", sb.toString());
 
 				return sb.toString();
 
@@ -127,6 +126,10 @@ public class XMLfunctions {
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
+			Toast.makeText(mContext,
+					"Unable to fetch live score at this moment.",
+					Toast.LENGTH_LONG).show();
+
 		}
 
 		return line;
@@ -138,11 +141,14 @@ public class XMLfunctions {
 			HashMap<String, String> map = new HashMap<String, String>();
 
 			Element e = (Element) nodes.item(i);
-			map.put("seriesName","Series Name : " + XMLfunctions.getValue(e, "seriesName"));
+			map.put("seriesName",
+					"Series Name : " + XMLfunctions.getValue(e, "seriesName"));
 			map.put("team1", "Team 1 : " + XMLfunctions.getValue(e, "team2"));
 			map.put("team2", "Team 2 : " + XMLfunctions.getValue(e, "team1"));
-			map.put("startDate","Start Date : " + XMLfunctions.getValue(e, "startdate"));
-			map.put("endDate","End Date : " + XMLfunctions.getValue(e, "enddate"));
+			map.put("startDate",
+					"Start Date : " + XMLfunctions.getValue(e, "startdate"));
+			map.put("endDate",
+					"End Date : " + XMLfunctions.getValue(e, "enddate"));
 			map.put("type", "Type : " + XMLfunctions.getValue(e, "type"));
 			map.put("scoreUrl", XMLfunctions.getValue(e, "scores-url"));
 			matchNodeList.add(map);
@@ -155,22 +161,22 @@ public class XMLfunctions {
 		String res = "-1";
 
 		try {
-			res = results.getAttributes().getNamedItem("itemName").getNodeValue();
+			res = results.getAttributes().getNamedItem("itemName")
+					.getNodeValue();
 		} catch (Exception e) {
 			res = "-1";
 		}
 
 		return res;
 	}
-	
-//	public static String getAttValue(N item, String str) {
-//		NodeList n = item.getElementsByTagName(str);
-//		return XMLfunctions.getElementValue(n.item(0));
-//	}
+
+	// public static String getAttValue(N item, String str) {
+	// NodeList n = item.getElementsByTagName(str);
+	// return XMLfunctions.getElementValue(n.item(0));
+	// }
 
 	public static String getValue(Element item, String str) {
 		NodeList n = item.getElementsByTagName(str);
 		return XMLfunctions.getElementValue(n.item(0));
 	}
 }
-
