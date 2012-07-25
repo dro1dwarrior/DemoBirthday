@@ -2,6 +2,7 @@ package com.appndroid.crick20;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 
 public class Schedule extends Activity
 {
@@ -13,5 +14,11 @@ public class Schedule extends Activity
         super.onCreate( savedInstanceState );
         setContentView( R.layout.schedule );
 
+        MyPagerAdapter adapter = new MyPagerAdapter();
+        ViewPager myPager = (ViewPager) findViewById( R.id.myfivepanelpager );
+        myPager.setAdapter( adapter );
+        myPager.setCurrentItem( 0 );
+
     }
+
 }
