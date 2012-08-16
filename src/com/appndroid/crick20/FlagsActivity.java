@@ -1,17 +1,14 @@
 package com.appndroid.crick20;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
+import android.database.SQLException;
 import android.graphics.drawable.AnimationDrawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.widget.ImageView;
@@ -31,6 +28,7 @@ public class FlagsActivity extends Activity
         super.onCreate( savedInstanceState );
         setContentView( R.layout.groupsplash );
 
+        new CopyDBTask().execute();
         final ImageView splashImageView = (ImageView) findViewById( R.id.SplashImageView );
         splashImageView.setBackgroundResource( R.drawable.flag );
         final AnimationDrawable frameAnimation = (AnimationDrawable) splashImageView.getBackground();
@@ -120,6 +118,57 @@ public class FlagsActivity extends Activity
             return true;
         }
         return super.onKeyUp( keyCode, event );
+    }
+
+    private class CopyDBTask extends AsyncTask< Void, Void, Void >
+    {
+        @Override
+        protected Void doInBackground( Void... arg0 )
+        {
+            copyFromAssetsDatabase();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute( Void result )
+        {
+            super.onPostExecute( result );
+        }
+    }
+
+    public void copyFromAssetsDatabase()
+    {
+        // TODO Auto-generated method stub
+
+        DataBaseHelper myDbHelper = new DataBaseHelper( this );
+
+        try
+        {
+
+            myDbHelper.createDataBase();
+            Log.d( "MyTest", "Databse Created" );
+
+        }
+        catch( IOException ioe )
+        {
+
+            throw new Error( "Unable to create database" );
+
+        }
+
+        try
+        {
+
+            myDbHelper.openDataBase();
+
+        }
+        catch( SQLException sqle )
+        {
+
+            throw sqle;
+
+        }
+
     }
 
 }

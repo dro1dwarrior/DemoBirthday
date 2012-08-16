@@ -17,15 +17,15 @@ public class getDrawable {
 			return R.drawable.india ;
 		else if(teamName.toLowerCase().equals("ire")||teamName.toLowerCase().equals("ireland"))
 			return  R.drawable.ireland ;
-		else if(teamName.toLowerCase().equals("nz")||teamName.toLowerCase().equals("new zealand"))
+		else if(teamName.toLowerCase().equals("nz")||teamName.toLowerCase().equals("new zealand")||teamName.toLowerCase().equals("newzealand"))
 			return R.drawable.newzealand ;
 		else if(teamName.toLowerCase().equals("pak")||teamName.toLowerCase().equals("pakistan"))
 			return  R.drawable.pakistan ;
-		else if(teamName.toLowerCase().equals("sl")||teamName.toLowerCase().equals("sri lanka"))
+		else if(teamName.toLowerCase().equals("sl")||teamName.toLowerCase().equals("sri lanka")||teamName.toLowerCase().equals("srilanka"))
 			return R.drawable.srilanka ;
-		else if(teamName.toLowerCase().equals("rsa")||teamName.toLowerCase().equals("south africa"))
+		else if(teamName.toLowerCase().equals("rsa")||teamName.toLowerCase().equals("south africa")||teamName.toLowerCase().equals("southafrica"))
 			return R.drawable.southafrica ;
-		else if(teamName.toLowerCase().equals("wi")||teamName.toLowerCase().equals("west indies"))
+		else if(teamName.toLowerCase().equals("wi")||teamName.toLowerCase().equals("west indies")||teamName.toLowerCase().equals("westindies"))
 			return R.drawable.westindies ;
 		else if(teamName.toLowerCase().equals("zim")||teamName.toLowerCase().equals("zimbabwe"))
 			return R.drawable.zimbabwe ;
@@ -49,15 +49,15 @@ public class getDrawable {
 			return "IND" ;
 		else if(teamName.equalsIgnoreCase("Ireland"))
 			return  "IRE" ;
-		else if(teamName.equalsIgnoreCase("New zealand"))
+		else if(teamName.equalsIgnoreCase("New zealand")||teamName.equalsIgnoreCase("Newzealand"))
 			return "NZ" ;
 		else if(teamName.equalsIgnoreCase("Pakistan"))
 			return  "PAK" ;
-		else if(teamName.equalsIgnoreCase("South africa"))
+		else if(teamName.equalsIgnoreCase("South africa")||teamName.equalsIgnoreCase("Southafrica"))
 			return "RSA";
-		else if(teamName.equalsIgnoreCase("Sri lanka"))
+		else if(teamName.equalsIgnoreCase("Sri lanka")||teamName.equalsIgnoreCase("Srilanka"))
 			return "SL";
-		else if(teamName.equalsIgnoreCase("West indies"))
+		else if(teamName.equalsIgnoreCase("West indies")||teamName.equalsIgnoreCase("westindies"))
 			return "WI";
 		else if(teamName.equalsIgnoreCase("Zimbabwe"))
 			return "ZIM";
