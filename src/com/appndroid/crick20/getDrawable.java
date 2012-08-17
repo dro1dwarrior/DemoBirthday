@@ -62,7 +62,7 @@ public class getDrawable {
 		else if(teamName.equalsIgnoreCase("Zimbabwe"))
 			return "ZIM";
 		else
-			return "" ;
+			return teamName ;
 
 	}
 

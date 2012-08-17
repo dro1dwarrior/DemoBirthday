@@ -65,7 +65,7 @@ public class Schedule extends ListActivity
             String szTeamB = cursor.getString( cursor.getColumnIndex( "TeamB" ) );
             imgTeamB.setImageResource( drawable.getIcon( szTeamB ) );
             txtmatch.setText( drawable.getTeamShortCode( szTeamA ) + " vs " + drawable.getTeamShortCode( szTeamB ) );
-            txtstadium.setText( cursor.getString( cursor.getColumnIndex( "Stadium" ) ) );
+            txtstadium.setText( cursor.getString( cursor.getColumnIndex( "Venue" ) ) );
             txtdate.setText( cursor.getString( cursor.getColumnIndex( "Date" ) ) );
         }
 
