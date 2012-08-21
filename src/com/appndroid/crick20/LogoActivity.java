@@ -1,13 +1,19 @@
 package com.appndroid.crick20;
 
+import java.util.Calendar;
+import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Window;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -28,6 +34,14 @@ public class LogoActivity extends Activity {
 		setContentView(R.layout.main);
 		mCurrentDrawable = getResources().getDrawable(R.drawable.clip);
 		findViewById(R.id.testView).setBackgroundDrawable(mCurrentDrawable);
+
+		Calendar c = Calendar.getInstance();
+		int milli = c.getTimeZone().getOffset(TimeZone.LONG);
+		SharedPreferences sp = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		Editor edit = sp.edit();
+		edit.putInt("offset", milli);
+		edit.commit();
 
 		seekBar = (SeekBar) findViewById(R.id.seekBar);
 		seekBar.setMax(10000);
@@ -51,10 +65,10 @@ public class LogoActivity extends Activity {
 			@Override
 			public void run() {
 				TimerMethod();
-	}
+			}
 
 		}, 0, 100);
-		}
+	}
 
 	private void TimerMethod() {
 		// This method is called directly by the timer
@@ -66,7 +80,7 @@ public class LogoActivity extends Activity {
 	}
 
 	private Runnable Timer_Tick = new Runnable() {
-			public void run() {
+		public void run() {
 
 			// This method runs in the same thread as the UI.
 
@@ -81,14 +95,14 @@ public class LogoActivity extends Activity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		Intent intent;
-		intent = new Intent(getApplicationContext(),
-				com.appndroid.crick20.FlagsActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		LogoActivity.this.finish();
-		myTimer.cancel();
-		startActivity(intent);
-	}
+				Intent intent;
+				intent = new Intent(getApplicationContext(),
+						com.appndroid.crick20.FlagsActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				LogoActivity.this.finish();
+				myTimer.cancel();
+				startActivity(intent);
+			}
 
 		}
 	};

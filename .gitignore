@@ -1,0 +1,10 @@
+*.keystore
+.classpath
+.project
+bin/
+gen/
+lint.xml
+R.java
+project.properties
+default.properties
+target/
