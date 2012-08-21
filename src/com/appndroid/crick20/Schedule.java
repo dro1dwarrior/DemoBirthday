@@ -11,7 +11,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +18,19 @@ import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.appndroid.crick20.NetworkManager.HttpAsyncConnector;
 
 public class Schedule extends ListActivity {
 	Cursor m_cursor;
 	getDrawable drawable;
 	int milli_offset = 0;
+	private NetworkManager networkmanager;
+	
+	public static SQLiteDatabase db;
+	
+	private String[] winnerTeamCounter = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +41,19 @@ public class Schedule extends ListActivity {
 		SharedPreferences sp = PreferenceManager
 				.getDefaultSharedPreferences(this);
 		milli_offset = sp.getInt("offset", 0);
+		
+		networkmanager = new NetworkManager( Schedule.this );
+
+        if( !NetworkManager.isDataFetched )
+        {
+
+            HttpAsyncConnector httpConnect = networkmanager.new HttpAsyncConnector();
+            httpConnect.setTaskParams( ApplicationDefines.CommandType.COMMAND_SCHEDULE );
+            httpConnect.execute();
+        }
 
 		drawable = new getDrawable();
-		SQLiteDatabase db;
+		//SQLiteDatabase db;
 		db = openOrCreateDatabase("worldcupt20.db",
 				SQLiteDatabase.CREATE_IF_NECESSARY, null);
 		m_cursor = db.rawQuery("select * from schedule", null);
@@ -49,6 +66,13 @@ public class Schedule extends ListActivity {
 		// myPager.setAdapter( adapter );
 		// myPager.setCurrentItem( 0 );
 
+	}
+	
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		NetworkManager.isDataFetched = false;
 	}
 
 	public class scheduleAdapter extends CursorAdapter {
@@ -118,7 +142,39 @@ public class Schedule extends ListActivity {
 	protected void onListItemClick(android.widget.ListView l, View v,
 			int nPosition, long id) {
 		
-	
+		
+        Cursor cur = db.query( "schedule", null, null, null, null, null, null );
+
+        int counter = cur.getCount();
+        winnerTeamCounter = new String[counter];
+        cur.moveToFirst();
+        while( cur.isAfterLast() == false )
+        {
+            int currentposotion = cur.getPosition();
+            String winnerTeam = cur.getString( 9 ).trim();
+            winnerTeamCounter[currentposotion] = winnerTeam;
+            cur.moveToNext();
+
+        }
+
+        cur.close();
+
+        if( winnerTeamCounter[nPosition].equals( "" ) )
+        {
+            Toast.makeText( Schedule.this, "Result not declared yet.", Toast.LENGTH_SHORT ).show();
+
+        }
+        else
+        {
+
+        	Toast.makeText( Schedule.this, "Result has been declared.", Toast.LENGTH_SHORT ).show();
+//        	Intent scoreIntent = new Intent( Crick20Activity.this, scores.class );
+//            scoreIntent.putExtra( "schId", position + 1 );
+//            startActivity( scoreIntent );
+
+        }
+
+    
 
 	}
 
