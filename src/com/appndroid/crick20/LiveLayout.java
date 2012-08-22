@@ -454,8 +454,7 @@ public class LiveLayout extends Activity {
 					NodeList momNode = matchElement
 							.getElementsByTagName("manofmatch");
 					Element momElement = (Element) momNode.item(0);
-					String strMOM = XMLfunctions.getValue(momElement,
-							"manofmatch");
+					String strMOM = XMLfunctions.getElementValue(momElement);
 					strMOM = strMOM.replace("\n", "");
 					strMOM = strMOM.replace("\t", "");
 					
