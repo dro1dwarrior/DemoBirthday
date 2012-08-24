@@ -124,6 +124,9 @@ public class NetworkManager {
 				int pointTableID = 1;
 				String Team = "", Played = "", Won = "", Lost = "", NoResult = "", Points = "", NetRunRate = "";
 
+				String A1 = "", A2 = "", B1 = "", B2 = "", C1 = "", C2 = "", D1 = "", D2 = "";
+				String TeamA = "", TeamB = "" , matchType="";
+				
 				int orangeCapId = 1;
 				String Player = "", Runs = "", HS = "", Sixes = "", Fours = "";
 
@@ -187,40 +190,79 @@ public class NetworkManager {
 											.toString());
 								}
 							}
-						} 
-//						else if (currentTag.equalsIgnoreCase("pointTable")) {
-//							// Do nothing
-//						} else if (currentTag.equalsIgnoreCase("teamStanding")) {
-//
-//							Log.d("MY APP BATSMEN", "WE R IN");
-//
-//							for (int attrCnt = 0; attrCnt < xpp
-//									.getAttributeCount(); attrCnt++) {
-//								String key = xpp.getAttributeName(attrCnt);
-//								if (key.equals("Team")) {
-//									Team = (xpp.getAttributeValue(attrCnt));
-//								} else if (key.equals("Played")) {
-//									Played = (xpp.getAttributeValue(attrCnt));
-//								} else if (key.equals("Won")) {
-//									Won = (xpp.getAttributeValue(attrCnt)
-//											.toString());
-//								} else if (key.equals("Lost")) {
-//									Lost = (xpp.getAttributeValue(attrCnt)
-//											.toString());
-//								} else if (key.equals("NoResult")) {
-//									NoResult = (xpp.getAttributeValue(attrCnt)
-//											.toString());
-//								} else if (key.equals("Points")) {
-//									Points = (xpp.getAttributeValue(attrCnt)
-//											.toString());
-//								} else if (key.equals("NetRunRate")) {
-//									NetRunRate = (xpp
-//											.getAttributeValue(attrCnt)
-//											.toString());
-//								}
-//
-//							}
-//						}
+						} else if (currentTag.equalsIgnoreCase("superEights")) {
+							for (int attrCnt = 0; attrCnt < xpp
+									.getAttributeCount(); attrCnt++) {
+								String key = xpp.getAttributeName(attrCnt);
+								if (key.equals("A1")) {
+									A1 = (xpp.getAttributeValue(attrCnt));
+								} else if (key.equals("A2")) {
+									A2 = (xpp.getAttributeValue(attrCnt));
+								} else if (key.equals("B1")) {
+									B1 = (xpp.getAttributeValue(attrCnt));
+								} else if (key.equals("B2")) {
+									B2 = (xpp.getAttributeValue(attrCnt));
+								} else if (key.equals("C1")) {
+									C1 = (xpp.getAttributeValue(attrCnt));
+								} else if (key.equals("C2")) {
+									C2 = (xpp.getAttributeValue(attrCnt));
+								} else if (key.equals("D1")) {
+									D1 = (xpp.getAttributeValue(attrCnt));
+								} else if (key.equals("D2")) {
+									D2 = (xpp.getAttributeValue(attrCnt));
+								}
+							}
+
+						} else if (currentTag.equals("eliminators")) {
+							// Do nothing
+						} else if (currentTag.equalsIgnoreCase("eliminator")) {
+							
+							for (int attrCnt = 0; attrCnt < xpp
+									.getAttributeCount(); attrCnt++) {
+								String key = xpp.getAttributeName(attrCnt);
+								if (key.equals("TeamA")) {
+									TeamA = (xpp.getAttributeValue(attrCnt));
+								} else if (key.equals("TeamB")) {
+									TeamB = (xpp.getAttributeValue(attrCnt));
+								} else if (key.equals("match")) {
+									matchType = (xpp.getAttributeValue(attrCnt));
+								}
+							}
+						}
+						// else if (currentTag.equalsIgnoreCase("pointTable")) {
+						// // Do nothing
+						// } else if
+						// (currentTag.equalsIgnoreCase("teamStanding")) {
+						//
+						// Log.d("MY APP BATSMEN", "WE R IN");
+						//
+						// for (int attrCnt = 0; attrCnt < xpp
+						// .getAttributeCount(); attrCnt++) {
+						// String key = xpp.getAttributeName(attrCnt);
+						// if (key.equals("Team")) {
+						// Team = (xpp.getAttributeValue(attrCnt));
+						// } else if (key.equals("Played")) {
+						// Played = (xpp.getAttributeValue(attrCnt));
+						// } else if (key.equals("Won")) {
+						// Won = (xpp.getAttributeValue(attrCnt)
+						// .toString());
+						// } else if (key.equals("Lost")) {
+						// Lost = (xpp.getAttributeValue(attrCnt)
+						// .toString());
+						// } else if (key.equals("NoResult")) {
+						// NoResult = (xpp.getAttributeValue(attrCnt)
+						// .toString());
+						// } else if (key.equals("Points")) {
+						// Points = (xpp.getAttributeValue(attrCnt)
+						// .toString());
+						// } else if (key.equals("NetRunRate")) {
+						// NetRunRate = (xpp
+						// .getAttributeValue(attrCnt)
+						// .toString());
+						// }
+						//
+						// }
+						// }
 						else if (currentTag
 								.equalsIgnoreCase("notificationServer")) {
 							// Do nothing
@@ -237,17 +279,19 @@ public class NetworkManager {
 											.getAttributeValue(attrCnt));
 								}
 
-//								if (!serverName.equalsIgnoreCase("")) {
-//									// Crick20Activity.setIsPushNotificationAvailable(
-//									// this, true );
-//									Crick20Activity.setPushNotificationServer(
-//											mContext, serverName);
-//								} else {
-//									// Crick20Activity.setIsPushNotificationAvailable(
-//									// this, false );
-//									Crick20Activity.setPushNotificationServer(
-//											mContext, serverName);
-//								}
+								// if (!serverName.equalsIgnoreCase("")) {
+								// //
+								// Crick20Activity.setIsPushNotificationAvailable(
+								// // this, true );
+								// Crick20Activity.setPushNotificationServer(
+								// mContext, serverName);
+								// } else {
+								// //
+								// Crick20Activity.setIsPushNotificationAvailable(
+								// // this, false );
+								// Crick20Activity.setPushNotificationServer(
+								// mContext, serverName);
+								// }
 
 							}
 
@@ -287,13 +331,14 @@ public class NetworkManager {
 							values.put("Points", Points);
 							values.put("NetRunRate", NetRunRate);
 
-//							int i = Crick20Activity.db
-//									.update("pointTable", values, "_id=?",
-//											new String[] { Long
-//													.toString(pointTableID) });
-//
-//							Log.d("POINT TABLE DBUPDATE", " Records update : "
-//									+ String.valueOf(i));
+							// int i = Crick20Activity.db
+							// .update("pointTable", values, "_id=?",
+							// new String[] { Long
+							// .toString(pointTableID) });
+							//
+							// Log.d("POINT TABLE DBUPDATE",
+							// " Records update : "
+							// + String.valueOf(i));
 
 							pointTableID++;
 
@@ -310,16 +355,16 @@ public class NetworkManager {
 							values.put("Fours", Fours);
 							values.put("Team", Team);
 
-//							int i = Crick20Activity.db.update("orangeCap",
-//									values, "_id='" + orangeCapId + "'", null);
+							// int i = Crick20Activity.db.update("orangeCap",
+							// values, "_id='" + orangeCapId + "'", null);
 
 							// int i = Crick20Activity.db
 							// .update("orangeCap", values, "_id=?",
 							// new String[] { Long
 							// .toString(ornageCapId) });
 
-//							Log.d("Ornage CAP TABLE DBUPDATE",
-//									" Records update : " + String.valueOf(i));
+							// Log.d("Ornage CAP TABLE DBUPDATE",
+							// " Records update : " + String.valueOf(i));
 
 							orangeCapId++;
 
@@ -335,15 +380,155 @@ public class NetworkManager {
 							values.put("SR", SR);
 							values.put("Team", Team);
 
-//							int i = Crick20Activity.db.update("purpleCap",
-//									values, "_id='" + purpleCapId + "'", null);
-//
-//							Log.d("purple CAP TABLE DBUPDATE",
-//									" Records update : " + String.valueOf(i));
+							// int i = Crick20Activity.db.update("purpleCap",
+							// values, "_id='" + purpleCapId + "'", null);
+							//
+							// Log.d("purple CAP TABLE DBUPDATE",
+							// " Records update : " + String.valueOf(i));
 
 							purpleCapId++;
 
+						} else if (currentTag.equalsIgnoreCase("superEights")) {
+
+							ContentValues values = new ContentValues();
+							if (A1 != "") {
+								values.clear();
+								values.put("TeamA", A1);
+
+								int i = Schedule.db.update("schedule", values,
+										"TeamA=?", new String[] { "A1" });
+
+								values.clear();
+								values.put("TeamB", A1);
+
+								i = Schedule.db.update("schedule", values,
+										"TeamB=?", new String[] { "A1" });
+
+								values.clear();
+							}
+							if (B1 != "") {
+								values.clear();
+								values.put("TeamA", B1);
+
+								int i = Schedule.db.update("schedule", values,
+										"TeamA=?", new String[] { "B1" });
+
+								values.clear();
+								values.put("TeamB", B1);
+
+								i = Schedule.db.update("schedule", values,
+										"TeamB=?", new String[] { "B1" });
+
+								values.clear();
+							}
+
+							if (C1 != "") {
+								values.clear();
+								values.put("TeamA", C1);
+
+								int i = Schedule.db.update("schedule", values,
+										"TeamA=?", new String[] { "C1" });
+
+								values.clear();
+								values.put("TeamB", C1);
+
+								i = Schedule.db.update("schedule", values,
+										"TeamB=?", new String[] { "C1" });
+
+								values.clear();
+							}
+							if (D1 != "") {
+								values.clear();
+								values.put("TeamA", D1);
+
+								int i = Schedule.db.update("schedule", values,
+										"TeamA=?", new String[] { "D1" });
+
+								values.clear();
+								values.put("TeamB", D1);
+
+								i = Schedule.db.update("schedule", values,
+										"TeamB=?", new String[] { "D1" });
+
+								values.clear();
+							}
+							if (A2 != "") {
+								values.clear();
+								values.put("TeamA", A2);
+
+								int i = Schedule.db.update("schedule", values,
+										"TeamA=?", new String[] { "A2" });
+
+								values.clear();
+								values.put("TeamB", A2);
+
+								i = Schedule.db.update("schedule", values,
+										"TeamB=?", new String[] { "A2" });
+
+								values.clear();
+							}
+							if (B2 != "") {
+								values.clear();
+								values.put("TeamA", B2);
+
+								int i = Schedule.db.update("schedule", values,
+										"TeamA=?", new String[] { "B2" });
+
+								values.clear();
+								values.put("TeamB", B2);
+
+								i = Schedule.db.update("schedule", values,
+										"TeamB=?", new String[] { "B2" });
+
+								values.clear();
+							}
+							if (C2 != "") {
+								values.clear();
+								values.put("TeamA", C2);
+
+								int i = Schedule.db.update("schedule", values,
+										"TeamA=?", new String[] { "C2" });
+
+								values.clear();
+								values.put("TeamB", C2);
+
+								i = Schedule.db.update("schedule", values,
+										"TeamB=?", new String[] { "C2" });
+
+								values.clear();
+							}
+							if (D2 != "") {
+								values.clear();
+								values.put("TeamA", D2);
+
+								int i = Schedule.db.update("schedule", values,
+										"TeamA=?", new String[] { "D2" });
+
+								values.clear();
+								values.put("TeamB", D2);
+
+								i = Schedule.db.update("schedule", values,
+										"TeamB=?", new String[] { "D2" });
+
+								values.clear();
+							}
+
+							// Log.d("super eights", "" + i);
+						} else if (currentTag.equalsIgnoreCase("eliminator")) {
+							
+							if (!TeamA.equals("") && !TeamB.equals("")) {
+								ContentValues values = new ContentValues();
+
+								values.put("TeamA", TeamA);
+								values.put("TeamB", TeamB);
+
+								int i = Schedule.db.update("schedule", values,
+										"Match=?",
+										new String[] { matchType });
+								
+							}
 						}
+
 					}
 					eventType = xpp.next();
 				}
@@ -356,6 +541,7 @@ public class NetworkManager {
 						"EXCEPTION IS :: " + e.getMessage());
 				e.printStackTrace();
 			}
+			Schedule.reloadView(mContext);
 		}
 
 		public void setTaskParams(int nCommandType) {

@@ -13,7 +13,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:singleLine="true"
-        android:textColor="#ff4242"
+        android:textColor="#228b22"
         android:textSize="14dp" />
 
     <RelativeLayout
@@ -42,7 +42,7 @@
             android:layout_marginBottom="5dp"
             android:gravity="center_horizontal"
             android:text=" group info"
-            android:textColor="#ff4242"
+            android:textColor="#228b22"
             android:textSize="14dp" />
 
         <TextView
@@ -56,7 +56,7 @@
             android:layout_toLeftOf="@+id/img2"
             android:layout_toRightOf="@+id/img1"
             android:gravity="center_horizontal"
-            android:textColor="#ff4242"
+            android:textColor="#228b22"
             android:textSize="20dp" />
 
         <TextView
@@ -69,7 +69,7 @@
             android:layout_marginRight="2dp"
             android:layout_marginTop="15dp"
             android:gravity="center_horizontal"
-            android:textColor="#ff4242"
+            android:textColor="#228b22"
             android:textSize="14dp" />
 
         <ImageView
@@ -89,6 +89,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="2dp"
         android:layout_marginTop="10dp"
-        android:textColor="#ff4242" />
+        android:textColor="#228b22" />
 
 </RelativeLayout>
