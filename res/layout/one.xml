@@ -12,10 +12,9 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="Eden Gardens, Kolkata"
         android:singleLine="true"
-        android:textColor="#ff4242"
-        android:textSize="16dp" />
+        android:textColor="#228b22"
+        android:textSize="14dp" />
 
     <RelativeLayout
         android:id="@+id/relative1"
@@ -33,6 +32,20 @@
             android:src="@drawable/afghanistan" />
 
         <TextView
+            android:id="@+id/textview_group"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textview_match"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
+            android:text=" group info"
+            android:textColor="#228b22"
+            android:textSize="14dp" />
+
+        <TextView
             android:id="@+id/textview_match"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -43,9 +56,21 @@
             android:layout_toLeftOf="@+id/img2"
             android:layout_toRightOf="@+id/img1"
             android:gravity="center_horizontal"
-            android:text=" ENG v SA "
-            android:textColor="#ff4242"
+            android:textColor="#228b22"
             android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textview_time"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textview_match"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal"
+            android:textColor="#228b22"
+            android:textSize="14dp" />
 
         <ImageView
             android:id="@+id/img2"
@@ -63,8 +88,7 @@
         android:layout_below="@+id/relative1"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="2dp"
-        android:layout_marginTop="15dp"
-        android:text="Group B - 02 Nov 12"
-        android:textColor="#ff4242" />
+        android:layout_marginTop="10dp"
+        android:textColor="#228b22" />
 
 </RelativeLayout>
