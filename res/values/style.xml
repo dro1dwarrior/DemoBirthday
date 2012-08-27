@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.FullScreen" parent="android:Theme">
+
+        <!-- <item name="android:windowFullscreen">true</item> -->
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme" parent="@android:style/Theme" />
+
+    <style name="Theme.Light" parent="@style/Theme">
+        <item name="android:colorForeground">#ff000000</item>
+        <item name="android:colorBackground">#ffffffff</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="heading">
+        <item name="android:textSize">20.0sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/header_bg</item>
+        <item name="android:padding">3.0dip</item>
+    </style>
+
+    <style name="form_field_label">
+        <item name="android:textSize">14.0sp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">left|center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxWidth">120.0dip</item>
+        <item name="android:minWidth">120.0dip</item>
+    </style>
+
+    <style name="form_field_amount">
+        <item name="android:textSize">22.0sp</item>
+        <item name="android:gravity">right|center</item>
+        <item name="android:minWidth">100.0dip</item>
+        <item name="android:selectAllOnFocus">true</item>
+        <item name="android:maxLength">10</item>
+        <item name="android:numeric">decimal</item>
+    </style>
+
+</resources>

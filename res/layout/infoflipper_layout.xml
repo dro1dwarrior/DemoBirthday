@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/LinearLayout01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1" >
+
+        <Button
+            android:id="@+id/Button0001"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="@drawable/header_bar"
+            android:ellipsize="marquee"
+            android:text="Super-8 Group A"
+            android:textColor="#ffffffff"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/Button0002"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="@drawable/titleback"
+            android:ellipsize="marquee"
+            android:text="Super-8 Group B"
+            android:textColor="#ffffffff"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/nav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/navigationunselected" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frameflipper"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <ViewFlipper
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@id/flipper"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <android.gesture.GestureOverlayView
+                android:id="@+id/gestures"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:eventsInterceptionEnabled="true"
+                android:gestureColor="@android:color/transparent"
+                android:gestureStrokeType="multiple"
+                android:orientation="vertical"
+                android:uncertainGestureColor="@android:color/transparent" >
+
+                <ViewFlipper
+                    android:id="@+id/flip"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" >
+
+                    <include
+                        android:id="@+id/first"
+                        layout="@layout/info_layout" />
+
+                    <include
+                        android:id="@+id/second"
+                        layout="@layout/contact_layout" />
+                </ViewFlipper>
+            </android.gesture.GestureOverlayView>
+        </ViewFlipper>
+
+        <include
+            android:id="@+id/menu"
+            layout="@layout/menu" />
+    </FrameLayout>
+
+</LinearLayout>

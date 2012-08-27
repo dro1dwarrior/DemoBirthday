@@ -20,6 +20,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import android.app.ListActivity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -27,6 +28,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
@@ -46,6 +49,8 @@ public class Schedule extends ListActivity {
 	int milli_offset = 0;
 	static ListView lv;
 	private NetworkManager networkmanager;
+	
+	private static final int GROUP_TABLE = Menu.FIRST;
 
 	public static SQLiteDatabase db;
 
@@ -87,6 +92,38 @@ public class Schedule extends ListActivity {
 		// myPager.setCurrentItem( 0 );
 		// fetchliveurls();
 
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		try {
+			menu.add(0, GROUP_TABLE, 0,"GROUP TABLE" ).setShortcut('2', 'a')
+					.setIcon(android.R.drawable.ic_menu_my_calendar);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+
+		try {
+			switch (item.getItemId()) {
+
+			case GROUP_TABLE:
+				Intent intent3 = new Intent(this, GroupTab.class);
+				startActivity(intent3);
+				return true;
+			}
+		} catch (Exception e) {
+			
+			System.out.println(e.toString() + item.getItemId());
+			return false;
+		}
+
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override
