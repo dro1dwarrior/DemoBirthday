@@ -19,6 +19,7 @@ public class DataBaseHelper extends SQLiteOpenHelper
     // The Android's default system path of your application database.
     private static String DB_PATH = "/data/data/com.appndroid.crick20/databases/";
     private static String DB_NAME = "worldcupt20.db";
+    static int n_DATABASE_VERSION = 1;
 
     private static SQLiteDatabase myDataBase;
 
@@ -32,7 +33,7 @@ public class DataBaseHelper extends SQLiteOpenHelper
     public DataBaseHelper( Context context )
     {
 
-        super( context, DB_NAME, null, 1 );
+        super( context, DB_NAME, null, n_DATABASE_VERSION );
         this.myContext = context;
     }
 
