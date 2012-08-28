@@ -35,6 +35,39 @@ public class getDrawable {
 			return R.drawable.icon;
 	}
 	
+	public String getMonthName(String month)
+    {
+    	if(month.equals("01"))
+    		return "January";
+
+    	else if (month.equals("01"))
+    		return "Jan";
+    	else if (month.equals("02"))
+    		return "Feb";
+    	else if (month.equals("03"))
+    		return "Mar";
+    	else if (month.equals("04"))
+    		return "Apr";
+    	else if (month.equals("05"))
+    		return "May";
+    	else if (month.equals("06"))
+    		return "Jun";
+    	else if (month.equals("07"))
+    		return "Jul";
+    	else if (month.equals("08"))
+    		return "Aug";
+    	else if (month.equals("09"))
+    		return "Sep";
+    	else if (month.equals("10"))
+    		return "Oct";
+    	else if (month.equals("11"))
+    		return "Nov";
+    	else if (month.equals("12"))
+    		return "Dec";
+    	else 
+    		return month;
+    }
+	
 	public String getTeamShortCode(String teamName)
 	{
 		if(teamName.equalsIgnoreCase("Afghanistan"))
