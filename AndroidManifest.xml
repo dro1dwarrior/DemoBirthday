@@ -35,6 +35,8 @@
         <activity
             android:name=".Schedule"
             android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="nosensor"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:label="@string/app_name" >
         </activity>
         <activity
