@@ -40,7 +40,7 @@ public class GroupDetail extends Activity implements AnimationListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.airport);
 
-		String names = getIntent().getExtras().getString("teamnmaes");
+		String names = getIntent().getExtras().getString("teamnames");
 		TextView t1 = (TextView) findViewById(R.id.title);
 		t1.setText(names);
 
@@ -74,13 +74,15 @@ public class GroupDetail extends Activity implements AnimationListener {
 		});
 
 		Context context = getApplicationContext();
-//		LayoutInflater inflater = getLayoutInflater();
-//		View toastRoot = inflater.inflate(R.layout.my_toast, null);
-//		Toast toast = new Toast(context);
-//		toast.setView(toastRoot);
-//		toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL,
-//				0, 0);
-//		toast.show();
+		LayoutInflater inflater = getLayoutInflater();
+		View toastRoot = inflater.inflate(R.layout.my_toast, null);
+		TextView t11 = (TextView) toastRoot.findViewById(R.id.toasttext);
+		t11.setText(getIntent().getExtras().getString("group"));
+		Toast toast = new Toast(context);
+		toast.setView(toastRoot);
+		toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL,
+				0, 0);
+		toast.show();
 
 	}
 

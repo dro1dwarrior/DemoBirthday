@@ -37,8 +37,9 @@ public class GroupTab extends TabActivity {
 					.setImageResource(R.drawable.ic_tab_travel);
 			Intent localIntent1 = new Intent().setClass(this, GroupDetail.class);
 
-			localIntent1.putExtra("teamnmaes",
+			localIntent1.putExtra("teamnames",
 					"Group A - saldasdlk halksd lsahdlksadl kasdlk sad");
+			localIntent1.putExtra("group","Group A");
 			spec1 = tabHost.newTabSpec("Group A").setIndicator(localView1)
 					.setContent(localIntent1);
 			tabHost.addTab(spec1);
@@ -49,8 +50,9 @@ public class GroupTab extends TabActivity {
 			((ImageView) localView2.findViewById(R.id.icon))
 					.setImageResource(R.drawable.ic_tab_travel);
 			Intent localIntent2 = new Intent().setClass(this, GroupDetail.class);
-			localIntent2.putExtra("teamnmaes",
+			localIntent2.putExtra("teamnames",
 					"Group B - saldasdlk halksd lsahdlksadl kasdlk sad");
+			localIntent2.putExtra("group","Group B");
 			spec2 = tabHost.newTabSpec("Group B").setIndicator(localView2)
 					.setContent(localIntent2);
 			tabHost.addTab(spec2);
@@ -61,8 +63,9 @@ public class GroupTab extends TabActivity {
 			((ImageView) localView3.findViewById(R.id.icon))
 					.setImageResource(R.drawable.ic_tab_travel);
 			Intent localIntent3 = new Intent().setClass(this, GroupDetail.class);
-			localIntent3.putExtra("teamnmaes",
+			localIntent3.putExtra("teamnames",
 					"Group C - saldasdlk halksd lsahdlksadl kasdlk sad");
+			localIntent3.putExtra("group","Group C");
 			spec3 = tabHost.newTabSpec("Group C").setIndicator(localView3)
 					.setContent(localIntent3);
 			tabHost.addTab(spec3);
@@ -73,8 +76,9 @@ public class GroupTab extends TabActivity {
 			((ImageView) localView4.findViewById(R.id.icon))
 					.setImageResource(R.drawable.ic_tab_travel);
 			Intent localIntent4 = new Intent().setClass(this, GroupDetail.class);
-			localIntent4.putExtra("teamnmaes",
+			localIntent4.putExtra("teamnames",
 					"Group D - saldasdlk halksd lsahdlksadl kasdlk sad");
+			localIntent4.putExtra("group","Group D");
 			spec4 = tabHost.newTabSpec("Group D").setIndicator(localView4)
 					.setContent(localIntent4);
 			tabHost.addTab(spec4);
@@ -85,8 +89,9 @@ public class GroupTab extends TabActivity {
 			((ImageView) localView5.findViewById(R.id.icon))
 					.setImageResource(R.drawable.ic_tab_travel);
 			Intent localIntent5 = new Intent().setClass(this, tabtest.class);
-			localIntent5.putExtra("teamnmaes",
+			localIntent5.putExtra("teamnames",
 					"Super 8 - saldasdlk halksd lsahdlksadl kasdlk sad");
+			localIntent5.putExtra("group","Super 8");
 			spec5 = tabHost.newTabSpec("Super 8").setIndicator(localView5)
 					.setContent(localIntent5);
 			tabHost.addTab(spec5);
