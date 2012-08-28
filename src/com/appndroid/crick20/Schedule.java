@@ -174,7 +174,9 @@ public class Schedule extends ListActivity {
 					.findViewById(R.id.textview_match);
 			TextView txtdate = (TextView) view.findViewById(R.id.date);
 			TextView txttime = (TextView) view.findViewById(R.id.textview_time);
+			TextView txtgroup = (TextView) view.findViewById( R.id.textview_group );
 
+			txtgroup.setText( "" );
 			String time = cursor.getString(cursor.getColumnIndex("GMT"));
 
 			SimpleDateFormat df1 = new SimpleDateFormat("HH:mm:ss");
