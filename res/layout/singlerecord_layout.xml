@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:stretchColumns="1" >
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/row_item1"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text=""
+            android:textColor="#FFFFFF"
+            android:width="90dip" />
+
+        <TextView
+            android:id="@+id/row_item2"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text=""
+            android:textColor="#FFFFFF"
+            android:width="35dip" />
+
+        <TextView
+            android:id="@+id/row_item3"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text=""
+            android:textColor="#FFFFFF"
+            android:width="35dip" />
+
+        <TextView
+            android:id="@+id/row_item4"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text=""
+            android:textColor="#FFFFFF"
+            android:width="40dip" />
+
+        <TextView
+            android:id="@+id/row_item5"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text=""
+            android:textColor="#FFFFFF"
+            android:width="45dip" />
+
+        <TextView
+            android:id="@+id/row_item6"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text=""
+            android:textColor="#FFFFFF"
+            android:width="60dip" />
+    </TableRow>
+
+</TableLayout>

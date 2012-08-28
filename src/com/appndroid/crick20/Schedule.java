@@ -196,7 +196,10 @@ public class Schedule extends ListActivity
             TextView txttime = (TextView) view.findViewById( R.id.textview_time );
             TextView txtgroup = (TextView) view.findViewById( R.id.textview_group );
 
-            txtgroup.setText( "" );
+            if(cursor.getString( cursor.getColumnIndex( "gang" )).contains("SE"))
+            	txtgroup.setText("Super Eight's");
+            else	
+            	txtgroup.setText(cursor.getString( cursor.getColumnIndex( "gang" )) );
             String time = cursor.getString( cursor.getColumnIndex( "GMT" ) );
 
             SimpleDateFormat df1 = new SimpleDateFormat( "HH:mm:ss" );
@@ -482,7 +485,7 @@ public class Schedule extends ListActivity
                             ContentValues cvalues = new ContentValues();
                             cvalues.put( "MatchUrl", scoreUrl );
 
-                            int i = db.update( "schedule", cvalues, "TeamA=? AND TeamB = ? AND Date=?", new String[] { "India", "Afghanistan", "9/19/12" } );
+                            int i = db.update( "schedule", cvalues, "TeamA=? AND TeamB = ? AND Date=?", new String[] { "India", "Afghanistan", "19 09 2012" } );
                             // Log.d("aaaaaaaaa","number of updated columns"+i);
                             teamA = null;
                             teamB = null;

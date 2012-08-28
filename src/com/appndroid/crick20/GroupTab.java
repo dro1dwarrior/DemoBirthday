@@ -39,7 +39,7 @@ public class GroupTab extends TabActivity {
 
 			localIntent1.putExtra("teamnames",
 					"Group A - saldasdlk halksd lsahdlksadl kasdlk sad");
-			localIntent1.putExtra("group","Group A");
+			localIntent1.putExtra("group","GroupA");
 			spec1 = tabHost.newTabSpec("Group A").setIndicator(localView1)
 					.setContent(localIntent1);
 			tabHost.addTab(spec1);
@@ -52,7 +52,7 @@ public class GroupTab extends TabActivity {
 			Intent localIntent2 = new Intent().setClass(this, GroupDetail.class);
 			localIntent2.putExtra("teamnames",
 					"Group B - saldasdlk halksd lsahdlksadl kasdlk sad");
-			localIntent2.putExtra("group","Group B");
+			localIntent2.putExtra("group","GroupB");
 			spec2 = tabHost.newTabSpec("Group B").setIndicator(localView2)
 					.setContent(localIntent2);
 			tabHost.addTab(spec2);
@@ -65,7 +65,7 @@ public class GroupTab extends TabActivity {
 			Intent localIntent3 = new Intent().setClass(this, GroupDetail.class);
 			localIntent3.putExtra("teamnames",
 					"Group C - saldasdlk halksd lsahdlksadl kasdlk sad");
-			localIntent3.putExtra("group","Group C");
+			localIntent3.putExtra("group","GroupC");
 			spec3 = tabHost.newTabSpec("Group C").setIndicator(localView3)
 					.setContent(localIntent3);
 			tabHost.addTab(spec3);
@@ -78,7 +78,7 @@ public class GroupTab extends TabActivity {
 			Intent localIntent4 = new Intent().setClass(this, GroupDetail.class);
 			localIntent4.putExtra("teamnames",
 					"Group D - saldasdlk halksd lsahdlksadl kasdlk sad");
-			localIntent4.putExtra("group","Group D");
+			localIntent4.putExtra("group","GroupD");
 			spec4 = tabHost.newTabSpec("Group D").setIndicator(localView4)
 					.setContent(localIntent4);
 			tabHost.addTab(spec4);
