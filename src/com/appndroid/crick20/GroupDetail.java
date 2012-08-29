@@ -139,7 +139,7 @@ public class GroupDetail extends Activity implements AnimationListener {
 		from = new String[] { "Team", "P", "W", "L", "NR", "Pts", "NRR" };
 
 		ptList = new fillList(from);
-		Cursor cur = db.query("GroupA", null, null, null, null, null, null);
+		Cursor cur = db.query(getIntent().getExtras().getString("group"), null, null, null, null, null, null);
 		ptList.fillRecordList(cur, ptList,"currentStats");
 		
 		return cur.getCount();

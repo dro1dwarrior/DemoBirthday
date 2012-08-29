@@ -245,17 +245,17 @@ public class Schedule extends ListActivity {
 		cur.moveToFirst();
 		while (cur.isAfterLast() == false) {
 			int currentposotion = cur.getPosition();
-			String winnerTeam = cur.getString(9).trim();
-			Log.d("on item click", "match number" + cur.getString(3).trim()
-					+ "match url" + cur.getString(4).trim());
+			String winnerTeam = cur.getString(cur.getColumnIndex("WinnerTeam")).trim();
+//			Log.d("on item click", "match number" + cur.getString(cur.getColumnIndex("Match")).trim()
+//					+ "match url" + cur.getString(cur.getColumnIndex("MatchUrl")).trim());
 			winnerTeamCounter[currentposotion] = winnerTeam;
-			matchUrl[currentposotion] = cur.getString(4).trim();
+			matchUrl[currentposotion] = cur.getString(cur.getColumnIndex("MatchUrl")).trim();
 			cur.moveToNext();
 
 		}
 
 		cur.close();
-
+		
 		if (winnerTeamCounter[nPosition].equals("")
 				&& matchUrl[nPosition].equals("")) {
 			Toast.makeText(Schedule.this, "Match not started yet",

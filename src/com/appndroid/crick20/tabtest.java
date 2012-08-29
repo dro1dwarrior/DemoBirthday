@@ -196,7 +196,7 @@ public class tabtest extends Activity implements SimpleGestureListener , Animati
 
 	public void onSwipe(int direction) {
 		// TODO Auto-generated method stub
-
+        
 		switch (direction) {
 
 		case SimpleGestureFilter.SWIPE_LEFT:
@@ -210,6 +210,15 @@ public class tabtest extends Activity implements SimpleGestureListener , Animati
 
 				isSwipeToGroupApossible = true;
 				isSwipeToGroupBpossible = false;
+				final Button superEightA = (Button) findViewById(R.id.Button0001);
+				final Button superEightB = (Button) findViewById(R.id.Button0002);
+
+			
+				superEightA.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.titleback));
+				superEightB.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.titlebackselected));
+				
 			}
 
 			// tabtest.this.flipper.
@@ -227,6 +236,17 @@ public class tabtest extends Activity implements SimpleGestureListener , Animati
 
 				isSwipeToGroupApossible = false;
 				isSwipeToGroupBpossible = true;
+				
+				final Button superEightA = (Button) findViewById(R.id.Button0001);
+				final Button superEightB = (Button) findViewById(R.id.Button0002);
+
+			
+				superEightA.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.titlebackselected));
+				superEightB.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.titleback));
+				
+				
 			}
 
 			break;

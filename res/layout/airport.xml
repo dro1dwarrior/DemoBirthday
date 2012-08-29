@@ -37,7 +37,7 @@
             android:textSize="12.0sp"
             android:textStyle="bold" />
     </RelativeLayout>
-    
+
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="fill_parent"
@@ -50,8 +50,8 @@
             <RelativeLayout
                 android:id="@+id/currentStastlayout1"
                 android:layout_width="fill_parent"
-                android:layout_marginTop="5dp"
                 android:layout_height="165dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/transparent_background" >
 
                 <LinearLayout
@@ -106,18 +106,17 @@
                     </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>
+
+            <FrameLayout
+                android:id="@+id/flipper"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <include
+                    android:id="@+id/menu"
+                    layout="@layout/menu" />
+            </FrameLayout>
         </RelativeLayout>
     </ScrollView>
-    
-
-    <FrameLayout
-        android:id="@+id/flipper"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
-
-        <include
-            android:id="@+id/menu"
-            layout="@layout/menu" />
-    </FrameLayout>
 
 </LinearLayout>

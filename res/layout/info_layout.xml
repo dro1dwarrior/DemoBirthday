@@ -5,24 +5,94 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="256dp"
-        android:background="#ffc5cf00"
-        android:gravity="right"
-        android:orientation="horizontal" >
+<!--     <LinearLayout -->
+<!--         android:layout_width="fill_parent" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_marginTop="256dp" -->
+<!--         android:background="#ffc5cf00" -->
+<!--         android:gravity="right" -->
+<!--         android:orientation="horizontal" > -->
 
-        <Button
-            android:id="@+id/Button01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="100dp"
-            android:background="@drawable/grad7_2"
-            android:padding="10.0dip"
-            android:text="GROUP A"
-            android:textColor="#ffffffff"
-            android:textStyle="bold" />
-    </LinearLayout>
+<!--         <Button -->
+<!--             android:id="@+id/Button01" -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="wrap_content" -->
+<!--             android:layout_marginRight="100dp" -->
+<!--             android:background="@drawable/grad7_2" -->
+<!--             android:padding="10.0dip" -->
+<!--             android:text="GROUP A" -->
+<!--             android:textColor="#ffffffff" -->
+<!--             android:textStyle="bold" /> -->
+<!--     </LinearLayout> -->
+		<ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <RelativeLayout
+                android:id="@+id/currentStastlayout1"
+                android:layout_width="fill_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="165dp"
+                android:background="@drawable/transparent_background" >
+
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/main"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:clickable="false"
+                    android:orientation="vertical" >
+
+                    <!-- Table Header -->
+
+                    <LinearLayout
+                        android:id="@+id/header"
+                        android:layout_width="fill_parent"
+                        android:layout_height="30dip"
+                        android:gravity="center" >
+
+                        <TextView
+                            android:id="@+id/record1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginRight="5dp"
+                            android:text=""
+                            android:textColor="#69D2E7"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- List Divider -->
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dip"
+                        android:background="@layout/data_seperator" />
+
+                    <!-- ListView (grid_items) -->
+
+                    <LinearLayout
+                        android:id="@+id/layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_marginTop="10dp"
+                        android:isScrollContainer="false" >
+
+                        <ListView
+                            android:id="@+id/currentstatslistview"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:cacheColorHint="@android:color/transparent"
+                            android:listSelector="@android:color/transparent" >
+                        </ListView>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
 
 </LinearLayout>
