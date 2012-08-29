@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:paddingBottom="10dp" >
+
+    <ImageView
+        android:id="@+id/TeamAicon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="30dp"
+        android:background="@drawable/afghanistan" />
+
+    <TextView
+        android:id="@+id/TeamAName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TeamAicon"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="5dp"
+        android:text="aaaaaaaa"
+        android:textSize="14dp" />
+
+    <ImageView
+        android:id="@+id/TeamBicon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/afghanistan" />
+
+    <TextView
+        android:id="@+id/TeamBName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/TeamBicon"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:text="aaaaaaaa"
+        android:textSize="14dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/upcoming_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="date"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/upcoming_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/upcoming_venue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Venue"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,32 +1,40 @@
 package com.appndroid.crick20;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
+import android.widget.CursorAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class GroupDetail extends Activity implements AnimationListener {
+public class GroupDetail extends ListActivity implements AnimationListener {
 
 	SQLiteDatabase db;
+	static Cursor m_cursor;
+	static ListAdapter m_adapter;
 	TextView textHeader1;
 	ListView lv;
+	ListView upcominglv;
 	String[] from, from1, from2;
 	int[] to;
 	fillList ptList;
@@ -42,6 +50,32 @@ public class GroupDetail extends Activity implements AnimationListener {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		ProgressDialog dialog = ProgressDialog.show(GroupDetail.this, "",
+				"Please wait...", true);
+		fillRecordTask task = new fillRecordTask();
+		task.dialog = dialog;
+		task.execute();
+
+		if (!NetworkManager.isNetworkConnection) {
+			Toast.makeText(getApplicationContext(),
+					"Please connect your device to network and try again for latest update",
+					Toast.LENGTH_LONG).show();
+
+		}
+		db = openOrCreateDatabase("worldcupt20.db",
+				SQLiteDatabase.CREATE_IF_NECESSARY, null);
+		m_cursor = db.rawQuery("select * from schedule where gang ='"+getIntent().getExtras().getString("group")+"' AND WinnerTeam =''", null);
+		Log.d("cursor count",""+m_cursor.getCount());
+//		RelativeLayout tv=(RelativeLayout)findViewById(R.id.upcominglayout);
+//		RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+//		        RelativeLayout.LayoutParams.WRAP_CONTENT, m_cursor.getCount()*95);
+//		lp.setMargins(0, 10, 0, 0);
+//		lp.addRule(RelativeLayout.BELOW, R.id.currentStastlayout1);
+//		tv.setLayoutParams(lp);
+
+		m_cursor.moveToFirst();
+		m_adapter = new upcomingAdapter(this, m_cursor, true);
+		setListAdapter(m_adapter);
 		if (menuOut) {
 			menu.setVisibility(View.INVISIBLE);
 			menuOut = false;
@@ -56,6 +90,8 @@ public class GroupDetail extends Activity implements AnimationListener {
 		
 		lv = (ListView) findViewById(R.id.currentstatslistview);
 		lv.setEnabled(false);
+		
+		upcominglv=getListView();
 		
 		textHeader1 = (TextView) findViewById(R.id.record1);
 
@@ -73,18 +109,7 @@ public class GroupDetail extends Activity implements AnimationListener {
 			httpConnect.execute();
 		}
 
-		ProgressDialog dialog = ProgressDialog.show(GroupDetail.this, "",
-				"Please wait...", true);
-		fillRecordTask task = new fillRecordTask();
-		task.dialog = dialog;
-		task.execute();
-
-		if (!NetworkManager.isNetworkConnection) {
-			Toast.makeText(getApplicationContext(),
-					"Please connect your device to network and try again for latest update",
-					Toast.LENGTH_LONG).show();
-
-		}
+		
 
 		String names = getIntent().getExtras().getString("teamnames");
 		TextView t1 = (TextView) findViewById(R.id.title);
@@ -119,16 +144,16 @@ public class GroupDetail extends Activity implements AnimationListener {
 			}
 		});
 
-		Context context = getApplicationContext();
-		LayoutInflater inflater = getLayoutInflater();
-		View toastRoot = inflater.inflate(R.layout.my_toast, null);
-		TextView t11 = (TextView) toastRoot.findViewById(R.id.toasttext);
-		t11.setText(getIntent().getExtras().getString("group"));
-		Toast toast = new Toast(context);
-		toast.setView(toastRoot);
-		toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL,
-				0, 0);
-		toast.show();
+//		Context context = getApplicationContext();
+//		LayoutInflater inflater = getLayoutInflater();
+//		View toastRoot = inflater.inflate(R.layout.my_toast, null);
+//		TextView t11 = (TextView) toastRoot.findViewById(R.id.toasttext);
+//		t11.setText(getIntent().getExtras().getString("group"));
+//		Toast toast = new Toast(context);
+//		toast.setView(toastRoot);
+//		toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL,
+//				0, 0);
+//		toast.show();
 
 	}
 	
@@ -208,5 +233,29 @@ public class GroupDetail extends Activity implements AnimationListener {
 
 		}
 
+	}
+	
+	public class upcomingAdapter extends CursorAdapter{
+		private LayoutInflater inflater;
+		
+		public upcomingAdapter(Context context, Cursor c, boolean autoRequery) {
+			super(context, c, autoRequery);
+			// TODO Auto-generated constructor stub
+			inflater = LayoutInflater.from(context);
+		}
+
+		@Override
+		public void bindView(View view, Context context, Cursor cursor) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public View newView(Context context, Cursor cursor, ViewGroup parent) {
+			// TODO Auto-generated method stub
+			View view = inflater.inflate(R.layout.upcoming_row, parent, false);
+			return view;
+		}
+		
 	}
 }
