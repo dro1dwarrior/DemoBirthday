@@ -38,148 +38,152 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
-<!--     <ScrollView -->
-<!--         xmlns:android="http://schemas.android.com/apk/res/android" -->
-<!--         android:id="@+id/scroll" -->
-<!--         android:layout_width="fill_parent" -->
-<!--         android:layout_height="fill_parent" > -->
+    <!-- <ScrollView -->
+    <!-- xmlns:android="http://schemas.android.com/apk/res/android" -->
+    <!-- android:id="@+id/scroll" -->
+    <!-- android:layout_width="fill_parent" -->
+    <!-- android:layout_height="fill_parent" > -->
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
 
         <RelativeLayout
+            android:id="@+id/currentStastlayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="165dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/transparent_background" >
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/main"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:clickable="false"
+                android:orientation="vertical" >
+
+                <!-- Table Header -->
+
+                <LinearLayout
+                    android:id="@+id/header"
+                    android:layout_width="fill_parent"
+                    android:layout_height="30dip"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:id="@+id/record1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="5dp"
+                        android:text=""
+                        android:textColor="#69D2E7"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- List Divider -->
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:background="@layout/data_seperator" />
+
+                <!-- ListView (grid_items) -->
+
+                <LinearLayout
+                    android:id="@+id/layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginTop="10dp"
+                    android:isScrollContainer="false" >
+
+                    <ListView
+                        android:id="@+id/currentstatslistview"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:cacheColorHint="@android:color/transparent"
+                        android:listSelector="@android:color/transparent" >
+                    </ListView>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+        <!-- upcoming macthes -->
+
+        <RelativeLayout
+            android:id="@+id/upcominglayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/currentStastlayout1"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/transparent_background" >
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/mainupcoming"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:clickable="false"
+                android:orientation="vertical" >
+
+                <!-- Table Header -->
+
+                <LinearLayout
+                    android:id="@+id/headerupcoming"
+                    android:layout_width="fill_parent"
+                    android:layout_height="30dip"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:id="@+id/recordupcoming1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="5dp"
+                        android:text="Upcoming Matches"
+                        android:textColor="#69D2E7"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- List Divider -->
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:background="@layout/data_seperator" />
+
+                <!-- ListView (grid_items) -->
+
+                <LinearLayout
+                    android:id="@+id/layoutupcoming"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginTop="10dp"
+                    android:isScrollContainer="false" >
+
+                    <ListView
+                        android:id="@android:id/list"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:cacheColorHint="@android:color/transparent"
+                        android:divider="@android:color/transparent"
+                        android:listSelector="@android:color/transparent" >
+                    </ListView>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/flipper"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
 
-            <RelativeLayout
-                android:id="@+id/currentStastlayout1"
-                android:layout_width="fill_parent"
-                android:layout_height="165dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/transparent_background" >
-
-                <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/main"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:clickable="false"
-                    android:orientation="vertical" >
-
-                    <!-- Table Header -->
-
-                    <LinearLayout
-                        android:id="@+id/header"
-                        android:layout_width="fill_parent"
-                        android:layout_height="30dip"
-                        android:gravity="center" >
-
-                        <TextView
-                            android:id="@+id/record1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
-                            android:layout_marginRight="5dp"
-                            android:text=""
-                            android:textColor="#69D2E7"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <!-- List Divider -->
-
-                    <View
-                        android:layout_width="fill_parent"
-                        android:layout_height="1dip"
-                        android:background="@layout/data_seperator" />
-
-                    <!-- ListView (grid_items) -->
-
-                    <LinearLayout
-                        android:id="@+id/layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:layout_marginTop="10dp"
-                        android:isScrollContainer="false" >
-
-                        <ListView
-                            android:id="@+id/currentstatslistview"
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:cacheColorHint="@android:color/transparent"
-                            android:listSelector="@android:color/transparent" >
-                        </ListView>
-                    </LinearLayout>
-                </LinearLayout>
-            </RelativeLayout>
-            <!--  upcoming macthes -->
-            <RelativeLayout
-                android:id="@+id/upcominglayout"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_below="@+id/currentStastlayout1"
-                android:background="@drawable/transparent_background" >
-
-                <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/mainupcoming"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:clickable="false"
-                    android:orientation="vertical" >
-
-                    <!-- Table Header -->
-
-                    <LinearLayout
-                        android:id="@+id/headerupcoming"
-                        android:layout_width="fill_parent"
-                        android:layout_height="30dip"
-                        android:gravity="center" >
-
-                        <TextView
-                            android:id="@+id/recordupcoming1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
-                            android:layout_marginRight="5dp"
-                            android:text="Upcoming Matches"
-                            android:textColor="#69D2E7"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <!-- List Divider -->
-
-                    <View
-                        android:layout_width="fill_parent"
-                        android:layout_height="1dip"
-                        android:background="@layout/data_seperator" />
-
-                    <!-- ListView (grid_items) -->
-
-                    <LinearLayout
-                        android:id="@+id/layoutupcoming"
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:layout_marginTop="10dp"
-                        android:isScrollContainer="false" >
-
-                        <ListView
-                            android:id="@android:id/list"
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:cacheColorHint="@android:color/transparent"
-                            android:divider="@android:color/transparent"
-                            android:listSelector="@android:color/transparent" >
-                        </ListView>
-                    </LinearLayout>
-                </LinearLayout>
-            </RelativeLayout>
-
-            <FrameLayout
-                android:id="@+id/flipper"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent" >
-
-                <include
-                    android:id="@+id/menu"
-                    layout="@layout/menu" />
-            </FrameLayout>
-        </RelativeLayout>
-<!--     </ScrollView> -->
+            <include
+                android:id="@+id/menu"
+                layout="@layout/menu" />
+        </FrameLayout>
+    </RelativeLayout>
+    <!-- </ScrollView> -->
 
 </LinearLayout>
