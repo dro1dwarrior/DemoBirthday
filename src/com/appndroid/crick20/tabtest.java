@@ -80,9 +80,9 @@ public class tabtest extends Activity implements SimpleGestureListener , Animati
 
 	
 		superEightA.setBackgroundDrawable(getResources().getDrawable(
-				R.drawable.titlebackselected));
-		superEightB.setBackgroundDrawable(getResources().getDrawable(
 				R.drawable.titleback));
+		superEightB.setBackgroundDrawable(getResources().getDrawable(
+				R.drawable.titlebackselected));
 		
 		mFrameLayout = (FrameLayout) this.findViewById(R.id.frameflipper);
 		menu = mFrameLayout.findViewById(R.id.menu);
@@ -104,9 +104,9 @@ public class tabtest extends Activity implements SimpleGestureListener , Animati
 				if (isSwipeToGroupApossible == true
 						&& isSwipeToGroupBpossible == false) {
 					superEightA.setBackgroundDrawable(getResources()
-							.getDrawable(R.drawable.titlebackselected));
-					superEightB.setBackgroundDrawable(getResources()
 							.getDrawable(R.drawable.titleback));
+					superEightB.setBackgroundDrawable(getResources()
+							.getDrawable(R.drawable.titlebackselected));
 
 					try {
 
@@ -134,9 +134,9 @@ public class tabtest extends Activity implements SimpleGestureListener , Animati
 						&& isSwipeToGroupBpossible == true) {
 
 					superEightB.setBackgroundDrawable(getResources()
-							.getDrawable(R.drawable.titlebackselected));
-					superEightA.setBackgroundDrawable(getResources()
 							.getDrawable(R.drawable.titleback));
+					superEightA.setBackgroundDrawable(getResources()
+							.getDrawable(R.drawable.titlebackselected));
 
 					isCalBtnClicked = true;
 					flipper.setInAnimation(tabtest.this.inFromRightAnimation());
@@ -215,9 +215,9 @@ public class tabtest extends Activity implements SimpleGestureListener , Animati
 
 			
 				superEightA.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.titleback));
-				superEightB.setBackgroundDrawable(getResources().getDrawable(
 						R.drawable.titlebackselected));
+				superEightB.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.titleback));
 				
 			}
 
@@ -242,9 +242,9 @@ public class tabtest extends Activity implements SimpleGestureListener , Animati
 
 			
 				superEightA.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.titlebackselected));
-				superEightB.setBackgroundDrawable(getResources().getDrawable(
 						R.drawable.titleback));
+				superEightB.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.titlebackselected));
 				
 				
 			}
