@@ -218,7 +218,7 @@ public class Schedule extends ListActivity {
 			String strDt = cursor.getString(cursor.getColumnIndex("Date"));
 			String[] strarr = strDt.split(" ");
 			txtdate.setText(strarr[0] + " " + drawable.getMonthName(strarr[1])
-					+ " " + strarr[2]);
+					+ " (" +cursor.getString(cursor.getColumnIndex("Other1"))+")" );
 
 			txtstadium.setText(time + " GMT / " + d2.getHours() + ":" + min
 					+ " Local");

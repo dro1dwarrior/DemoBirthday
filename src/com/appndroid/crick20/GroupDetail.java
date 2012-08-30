@@ -38,8 +38,7 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 	String[] from, from1, from2;
 	int[] to;
 	fillList ptList;
-	
-	
+
 	TabHost m_tabHost;
 	FrameLayout mFrameLayout;
 	View menu;
@@ -57,21 +56,24 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 		task.execute();
 
 		if (!NetworkManager.isNetworkConnection) {
-			Toast.makeText(getApplicationContext(),
+			Toast.makeText(
+					getApplicationContext(),
 					"Please connect your device to network and try again for latest update",
 					Toast.LENGTH_LONG).show();
 
 		}
 		db = openOrCreateDatabase("worldcupt20.db",
 				SQLiteDatabase.CREATE_IF_NECESSARY, null);
-		m_cursor = db.rawQuery("select * from schedule where gang ='"+getIntent().getExtras().getString("group")+"' AND WinnerTeam =''", null);
-		Log.d("cursor count",""+m_cursor.getCount());
-//		RelativeLayout tv=(RelativeLayout)findViewById(R.id.upcominglayout);
-//		RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-//		        RelativeLayout.LayoutParams.WRAP_CONTENT, m_cursor.getCount()*95);
-//		lp.setMargins(0, 10, 0, 0);
-//		lp.addRule(RelativeLayout.BELOW, R.id.currentStastlayout1);
-//		tv.setLayoutParams(lp);
+		m_cursor = db.rawQuery("select * from schedule where gang ='"
+				+ getIntent().getExtras().getString("group")
+				+ "' AND WinnerTeam =''", null);
+		Log.d("cursor count", "" + m_cursor.getCount());
+		// RelativeLayout tv=(RelativeLayout)findViewById(R.id.upcominglayout);
+		// RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+		// RelativeLayout.LayoutParams.WRAP_CONTENT, m_cursor.getCount()*95);
+		// lp.setMargins(0, 10, 0, 0);
+		// lp.addRule(RelativeLayout.BELOW, R.id.currentStastlayout1);
+		// tv.setLayoutParams(lp);
 
 		m_cursor.moveToFirst();
 		m_adapter = new upcomingAdapter(this, m_cursor, true);
@@ -87,18 +89,18 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.airport);
-		
+
 		lv = (ListView) findViewById(R.id.currentstatslistview);
 		lv.setEnabled(false);
-		
-		upcominglv=getListView();
-		
+
+		upcominglv = getListView();
+
 		textHeader1 = (TextView) findViewById(R.id.record1);
 
 		to = new int[] { R.id.stat_item1, R.id.stat_item2, R.id.stat_item3,
 				R.id.stat_item4, R.id.stat_item5, R.id.stat_item6,
 				R.id.stat_item7 };
-		
+
 		if (!NetworkManager.isNetworkConnection) {
 
 			NetworkManager networkmanager = new NetworkManager(GroupDetail.this);
@@ -108,8 +110,6 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 					.setTaskParams(ApplicationDefines.CommandType.COMMAND_SCHEDULE);
 			httpConnect.execute();
 		}
-
-		
 
 		String names = getIntent().getExtras().getString("teamnames");
 		TextView t1 = (TextView) findViewById(R.id.title);
@@ -127,13 +127,15 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 
 				Animation anim;
 				if (!menuOut) {
-					navigationImage.setBackgroundResource(R.drawable.navigationselected);
+					navigationImage
+							.setBackgroundResource(R.drawable.navigationselected);
 					menu.setVisibility(View.VISIBLE);
 					ViewUtils.printView("menu", menu);
 					anim = AnimationUtils.loadAnimation(GroupDetail.this,
 							R.anim.push_right_in);
 				} else {
-					navigationImage.setBackgroundResource(R.drawable.navigationunselected);
+					navigationImage
+							.setBackgroundResource(R.drawable.navigationunselected);
 					anim = AnimationUtils.loadAnimation(GroupDetail.this,
 							R.anim.push_left_out);
 				}
@@ -144,29 +146,31 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 			}
 		});
 
-//		Context context = getApplicationContext();
-//		LayoutInflater inflater = getLayoutInflater();
-//		View toastRoot = inflater.inflate(R.layout.my_toast, null);
-//		TextView t11 = (TextView) toastRoot.findViewById(R.id.toasttext);
-//		t11.setText(getIntent().getExtras().getString("group"));
-//		Toast toast = new Toast(context);
-//		toast.setView(toastRoot);
-//		toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL,
-//				0, 0);
-//		toast.show();
+		// Context context = getApplicationContext();
+		// LayoutInflater inflater = getLayoutInflater();
+		// View toastRoot = inflater.inflate(R.layout.my_toast, null);
+		// TextView t11 = (TextView) toastRoot.findViewById(R.id.toasttext);
+		// t11.setText(getIntent().getExtras().getString("group"));
+		// Toast toast = new Toast(context);
+		// toast.setView(toastRoot);
+		// toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL,
+		// 0, 0);
+		// toast.show();
 
 	}
-	
+
 	public int getDataFromDB() {
 
-		db = openOrCreateDatabase( "worldcupt20.db", SQLiteDatabase.CREATE_IF_NECESSARY, null );
+		db = openOrCreateDatabase("worldcupt20.db",
+				SQLiteDatabase.CREATE_IF_NECESSARY, null);
 
 		from = new String[] { "Team", "P", "W", "L", "NR", "Pts", "NRR" };
 
 		ptList = new fillList(from);
-		Cursor cur = db.query(getIntent().getExtras().getString("group"), null, null, null, null, null, null);
-		ptList.fillRecordList(cur, ptList,"currentStats");
-		
+		Cursor cur = db.query(getIntent().getExtras().getString("group"), null,
+				null, null, null, null, null);
+		ptList.fillRecordList(cur, ptList, "currentStats");
+
 		return cur.getCount();
 
 	}
@@ -177,6 +181,13 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 		super.onPause();
 
 	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (db != null)
+			db.close();
+	};
 
 	@Override
 	public void onAnimationEnd(Animation animation) {
@@ -194,7 +205,7 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 	@Override
 	public void onAnimationStart(Animation animation) {
 	}
-	
+
 	public void fillData() {
 
 		textHeader1.setText("Point Table");
@@ -205,7 +216,7 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 		lv.setAdapter(adapter);
 
 	}
-	
+
 	private class fillRecordTask extends AsyncTask<String, Void, String> {
 
 		ProgressDialog dialog = null;
@@ -234,10 +245,10 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 		}
 
 	}
-	
-	public class upcomingAdapter extends CursorAdapter{
+
+	public class upcomingAdapter extends CursorAdapter {
 		private LayoutInflater inflater;
-		
+
 		public upcomingAdapter(Context context, Cursor c, boolean autoRequery) {
 			super(context, c, autoRequery);
 			// TODO Auto-generated constructor stub
@@ -247,7 +258,7 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 		@Override
 		public void bindView(View view, Context context, Cursor cursor) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
@@ -256,6 +267,6 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 			View view = inflater.inflate(R.layout.upcoming_row, parent, false);
 			return view;
 		}
-		
+
 	}
 }
