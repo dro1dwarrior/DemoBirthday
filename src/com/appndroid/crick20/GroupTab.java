@@ -34,7 +34,7 @@ public class GroupTab extends TabActivity {
 					R.layout.tab_indicator, getTabWidget(), false);
 			((TextView) localView1.findViewById(R.id.title)).setText("Group A");
 			((ImageView) localView1.findViewById(R.id.icon))
-					.setImageResource(R.drawable.ic_tab_travel);
+					.setImageResource(R.drawable.ic_tab_a);
 			Intent localIntent1 = new Intent().setClass(this, GroupDetail.class);
 
 			localIntent1.putExtra("teamnames",
@@ -48,7 +48,7 @@ public class GroupTab extends TabActivity {
 					R.layout.tab_indicator, getTabWidget(), false);
 			((TextView) localView2.findViewById(R.id.title)).setText("Group B");
 			((ImageView) localView2.findViewById(R.id.icon))
-					.setImageResource(R.drawable.ic_tab_travel);
+					.setImageResource(R.drawable.ic_tab_b);
 			Intent localIntent2 = new Intent().setClass(this, GroupDetail.class);
 			localIntent2.putExtra("teamnames",
 					"Group B - saldasdlk halksd lsahdlksadl kasdlk sad");
@@ -61,7 +61,7 @@ public class GroupTab extends TabActivity {
 					R.layout.tab_indicator, getTabWidget(), false);
 			((TextView) localView3.findViewById(R.id.title)).setText("Group C");
 			((ImageView) localView3.findViewById(R.id.icon))
-					.setImageResource(R.drawable.ic_tab_travel);
+					.setImageResource(R.drawable.ic_tab_c);
 			Intent localIntent3 = new Intent().setClass(this, GroupDetail.class);
 			localIntent3.putExtra("teamnames",
 					"Group C - saldasdlk halksd lsahdlksadl kasdlk sad");
@@ -74,7 +74,7 @@ public class GroupTab extends TabActivity {
 					R.layout.tab_indicator, getTabWidget(), false);
 			((TextView) localView4.findViewById(R.id.title)).setText("Group D");
 			((ImageView) localView4.findViewById(R.id.icon))
-					.setImageResource(R.drawable.ic_tab_travel);
+					.setImageResource(R.drawable.ic_tab_d);
 			Intent localIntent4 = new Intent().setClass(this, GroupDetail.class);
 			localIntent4.putExtra("teamnames",
 					"Group D - saldasdlk halksd lsahdlksadl kasdlk sad");
