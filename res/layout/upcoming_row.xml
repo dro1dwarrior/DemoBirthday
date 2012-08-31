@@ -4,43 +4,53 @@
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:paddingBottom="10dp" >
+    
+    <RelativeLayout 
+        android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:gravity="center"
+         android:layout_marginLeft="25dp">
 
     <ImageView
-        android:id="@+id/TeamAicon"
+        android:id="@+id/upcoming_TeamAicon"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="30dp"
-        android:background="@drawable/afghanistan" />
+        android:layout_centerHorizontal="true"
+        />
 
     <TextView
-        android:id="@+id/TeamAName"
+        android:id="@+id/upcoming_TeamAName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/TeamAicon"
-        android:layout_marginLeft="25dp"
+        android:layout_below="@+id/upcoming_TeamAicon"
         android:layout_marginTop="5dp"
         android:text="aaaaaaaa"
         android:textSize="14dp" />
+    </RelativeLayout>
 
+    <RelativeLayout 
+        android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentRight="true"
+         android:layout_marginRight="15dp">
     <ImageView
-        android:id="@+id/TeamBicon"
+        android:id="@+id/upcoming_TeamBicon"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/afghanistan" />
+        android:layout_centerHorizontal="true"
+        android:layout_alignLeft="@+id/upcoming_TeamBName"
+        />
 
     <TextView
-        android:id="@+id/TeamBName"
+        android:id="@+id/upcoming_TeamBName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/TeamBicon"
-        android:layout_marginRight="10dp"
+        android:layout_below="@+id/upcoming_TeamBicon"
         android:layout_marginTop="5dp"
         android:text="aaaaaaaa"
         android:textSize="14dp" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"

@@ -1,12 +1,18 @@
 package com.appndroid.crick20;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -33,10 +39,12 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 	static Cursor m_cursor;
 	static ListAdapter m_adapter;
 	TextView textHeader1;
+	getDrawable drawable;
 	ListView lv;
 	ListView upcominglv;
 	String[] from, from1, from2;
 	int[] to;
+	int milli_offset = 0;
 	fillList ptList;
 
 	TabHost m_tabHost;
@@ -89,6 +97,11 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.airport);
+		
+		drawable = new getDrawable();
+		SharedPreferences sp = PreferenceManager
+			.getDefaultSharedPreferences(this);
+		milli_offset = sp.getInt("offset", 0);
 
 		lv = (ListView) findViewById(R.id.currentstatslistview);
 		lv.setEnabled(false);
@@ -257,7 +270,34 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 
 		@Override
 		public void bindView(View view, Context context, Cursor cursor) {
-			// TODO Auto-generated method stub
+			ImageView imgTeamA = (ImageView) view.findViewById(R.id.upcoming_TeamAicon);
+			ImageView imgTeamB = (ImageView) view.findViewById(R.id.upcoming_TeamBicon);
+			
+			TextView TeamAName = (TextView) view.findViewById(R.id.upcoming_TeamAName);
+			TextView TeamBName = (TextView) view.findViewById(R.id.upcoming_TeamBName);
+			
+			TextView txtdate = (TextView) view.findViewById(R.id.upcoming_date);
+			TextView txttime = (TextView) view.findViewById(R.id.upcoming_time);
+			TextView txtvenue = (TextView) view.findViewById(R.id.upcoming_venue);
+			
+			String szTeamA = cursor.getString(cursor.getColumnIndex("TeamA"));
+			imgTeamA.setImageResource(drawable.getIcon(szTeamA));
+			
+			String szTeamB = cursor.getString(cursor.getColumnIndex("TeamB"));
+			imgTeamB.setImageResource(drawable.getIcon(szTeamB));
+			
+			TeamAName.setText(szTeamA);
+			TeamBName.setText(szTeamB);
+			
+			String strDt = cursor.getString(cursor.getColumnIndex("Date"));
+			String[] strarr = strDt.split(" ");
+			txtdate.setText(strarr[0] + " " + drawable.getMonthName(strarr[1])
+					+ " (" +cursor.getString(cursor.getColumnIndex("Other1"))+")" );
+			String time = cursor.getString(cursor.getColumnIndex("GMT"));
+			
+			txttime.setText(time + " GMT");
+			txtvenue.setText(cursor.getString(cursor.getColumnIndex("Venue")));
+			
 
 		}
 

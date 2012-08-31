@@ -122,11 +122,11 @@ public class NetworkManager {
 				String winnerTeam = "", matchResult = "", teamAscore = "", teamBscore = "", manofthematch = "", other1 = "", other2 = "", other3 = "";
 
 				int pointTableID = 1;
-				String Team = "", Played = "", Won = "", Lost = "", NoResult = "", Points = "", NetRunRate = "";
+				String Team = "", Played = "", Won = "", Lost = "", NoResult = "", Points = "", NetRunRate = "",Position="";
 
 				String A1 = "", A2 = "", B1 = "", B2 = "", C1 = "", C2 = "", D1 = "", D2 = "";
-				String TeamA = "", TeamB = "" , matchType="";
-				
+				String TeamA = "", TeamB = "", matchType = "";
+
 				int orangeCapId = 1;
 				String Player = "", Runs = "", HS = "", Sixes = "", Fours = "";
 
@@ -216,7 +216,7 @@ public class NetworkManager {
 						} else if (currentTag.equals("eliminators")) {
 							// Do nothing
 						} else if (currentTag.equalsIgnoreCase("eliminator")) {
-							
+
 							for (int attrCnt = 0; attrCnt < xpp
 									.getAttributeCount(); attrCnt++) {
 								String key = xpp.getAttributeName(attrCnt);
@@ -263,7 +263,48 @@ public class NetworkManager {
 						//
 						// }
 						// }
-						else if (currentTag
+						// =======================
+						else if (currentTag.equalsIgnoreCase("GroupStandings")) {
+							// Do nothing
+						} else if (currentTag.equalsIgnoreCase("GroupA")
+								|| currentTag.equalsIgnoreCase("GroupB")
+								|| currentTag.equalsIgnoreCase("GroupC")
+								|| currentTag.equalsIgnoreCase("GroupD")
+								|| currentTag.equalsIgnoreCase("Group1")
+								|| currentTag.equalsIgnoreCase("Group2")) {
+
+							for (int attrCnt = 0; attrCnt < xpp
+									.getAttributeCount(); attrCnt++) {
+								String key = xpp.getAttributeName(attrCnt);
+								if (key.equals("Team")) {
+									Team = (xpp.getAttributeValue(attrCnt));
+								} else if (key.equals("Played")) {
+									Played = (xpp.getAttributeValue(attrCnt));
+								} else if (key.equals("Won")) {
+									Won = (xpp.getAttributeValue(attrCnt)
+											.toString());
+								} else if (key.equals("Lost")) {
+									Lost = (xpp.getAttributeValue(attrCnt)
+											.toString());
+								} else if (key.equals("NoResult")) {
+									NoResult = (xpp.getAttributeValue(attrCnt)
+											.toString());
+								} else if (key.equals("Points")) {
+									Points = (xpp.getAttributeValue(attrCnt)
+											.toString());
+								} else if (key.equals("NetRunRate")) {
+									NetRunRate = (xpp
+											.getAttributeValue(attrCnt)
+											.toString());
+								}
+								else if (key.equals("Standing")) {
+									Position = (xpp
+											.getAttributeValue(attrCnt)
+											.toString());
+								}
+
+							}
+						} else if (currentTag
 								.equalsIgnoreCase("notificationServer")) {
 							// Do nothing
 						} else if (currentTag.equalsIgnoreCase("serverdetails")) {
@@ -341,6 +382,33 @@ public class NetworkManager {
 							// + String.valueOf(i));
 
 							pointTableID++;
+
+						} else if (currentTag.equalsIgnoreCase("GroupA")
+								|| currentTag.equalsIgnoreCase("GroupB")
+								|| currentTag.equalsIgnoreCase("GroupC")
+								|| currentTag.equalsIgnoreCase("GroupD")
+								|| currentTag.equalsIgnoreCase("Group1")
+								|| currentTag.equalsIgnoreCase("Group2")) {
+
+							ContentValues values = new ContentValues();
+
+							values.put("Team", Team);
+							values.put("Played", Played);
+							values.put("Won", Won);
+							values.put("Lost", Lost);
+							values.put("NoResult", NoResult);
+							values.put("Points", Points);
+							values.put("NetRunRate", NetRunRate);
+
+							 int i = Schedule.db
+							 .update(currentTag, values, "_id=?",
+							 new String[] { Position });
+							
+							 Log.d("POINT TABLE DBUPDATE",
+							 " Records update : "
+							 + String.valueOf(i));
+
+							//pointTableID++;
 
 						} else if (currentTag
 								.equalsIgnoreCase("orangeCapHolder")) {
@@ -515,7 +583,7 @@ public class NetworkManager {
 
 							// Log.d("super eights", "" + i);
 						} else if (currentTag.equalsIgnoreCase("eliminator")) {
-							
+
 							if (!TeamA.equals("") && !TeamB.equals("")) {
 								ContentValues values = new ContentValues();
 
@@ -523,9 +591,8 @@ public class NetworkManager {
 								values.put("TeamB", TeamB);
 
 								int i = Schedule.db.update("schedule", values,
-										"Match=?",
-										new String[] { matchType });
-								
+										"Match=?", new String[] { matchType });
+
 							}
 						}
 
