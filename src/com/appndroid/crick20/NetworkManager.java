@@ -457,9 +457,8 @@ public class NetworkManager {
 							purpleCapId++;
 
 						} else if (currentTag.equalsIgnoreCase("superEights")) {
-
 							ContentValues values = new ContentValues();
-							if (A1 != "") {
+							if (!A1.equals("")) {
 								values.clear();
 								values.put("TeamA", A1);
 
@@ -474,7 +473,7 @@ public class NetworkManager {
 
 								values.clear();
 							}
-							if (B1 != "") {
+							if (!B1.equals("")) {
 								values.clear();
 								values.put("TeamA", B1);
 
@@ -490,7 +489,7 @@ public class NetworkManager {
 								values.clear();
 							}
 
-							if (C1 != "") {
+							if (!C1.equals("")) {
 								values.clear();
 								values.put("TeamA", C1);
 
@@ -505,7 +504,7 @@ public class NetworkManager {
 
 								values.clear();
 							}
-							if (D1 != "") {
+							if (!D1.equals("")) {
 								values.clear();
 								values.put("TeamA", D1);
 
@@ -520,7 +519,7 @@ public class NetworkManager {
 
 								values.clear();
 							}
-							if (A2 != "") {
+							if (!A2.equals("")) {
 								values.clear();
 								values.put("TeamA", A2);
 
@@ -535,7 +534,7 @@ public class NetworkManager {
 
 								values.clear();
 							}
-							if (B2 != "") {
+							if (!B2.equals("")) {
 								values.clear();
 								values.put("TeamA", B2);
 
@@ -550,7 +549,7 @@ public class NetworkManager {
 
 								values.clear();
 							}
-							if (C2 != "") {
+							if (!C2.equals("")) {
 								values.clear();
 								values.put("TeamA", C2);
 
@@ -565,7 +564,7 @@ public class NetworkManager {
 
 								values.clear();
 							}
-							if (D2 != "") {
+							if (!D2.equals("")) {
 								values.clear();
 								values.put("TeamA", D2);
 

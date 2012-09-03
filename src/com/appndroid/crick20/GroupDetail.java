@@ -57,11 +57,13 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		ProgressDialog dialog = ProgressDialog.show(GroupDetail.this, "",
-				"Please wait...", true);
-		fillRecordTask task = new fillRecordTask();
-		task.dialog = dialog;
-		task.execute();
+//		ProgressDialog dialog = ProgressDialog.show(GroupDetail.this, "",
+//				"Please wait...", true);
+//		fillRecordTask task = new fillRecordTask();
+//		task.dialog = dialog;
+//		task.execute();
+		int recordCount = getDataFromDB();
+		fillData();
 
 		if (!NetworkManager.isNetworkConnection) {
 			Toast.makeText(
