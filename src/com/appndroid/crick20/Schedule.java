@@ -289,11 +289,10 @@ public class Schedule extends ListActivity
         else
         {
 
-            Toast.makeText( Schedule.this, "Result has been declared.", Toast.LENGTH_SHORT ).show();
-            // Intent scoreIntent = new Intent( Crick20Activity.this,
-            // scores.class );
-            // scoreIntent.putExtra( "schId", position + 1 );
-            // startActivity( scoreIntent );
+            Toast.makeText( Schedule.this, "Result has been declared."+nPosition, Toast.LENGTH_SHORT ).show();
+             Intent scoreIntent = new Intent( Schedule.this,PastMatches.class );
+             scoreIntent.putExtra( "schId", nPosition + 1 );
+             startActivity( scoreIntent );
 
         }
 
