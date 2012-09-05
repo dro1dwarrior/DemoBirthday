@@ -83,18 +83,18 @@ public class GroupTab extends TabActivity {
 					.setContent(localIntent4);
 			tabHost.addTab(spec4);
 
-			View localView5 = LayoutInflater.from(this).inflate(
-					R.layout.tab_indicator, getTabWidget(), false);
-			((TextView) localView5.findViewById(R.id.title)).setText("Super 8");
-			((ImageView) localView5.findViewById(R.id.icon))
-					.setImageResource(R.drawable.ic_tab_travel);
-			Intent localIntent5 = new Intent().setClass(this, tabtest.class);
-			localIntent5.putExtra("teamnames",
-					"Super 8 - saldasdlk halksd lsahdlksadl kasdlk sad");
-			localIntent5.putExtra("group","Super 8");
-			spec5 = tabHost.newTabSpec("Super 8").setIndicator(localView5)
-					.setContent(localIntent5);
-			tabHost.addTab(spec5);
+//			View localView5 = LayoutInflater.from(this).inflate(
+//					R.layout.tab_indicator, getTabWidget(), false);
+//			((TextView) localView5.findViewById(R.id.title)).setText("Super 8");
+//			((ImageView) localView5.findViewById(R.id.icon))
+//					.setImageResource(R.drawable.ic_tab_travel);
+//			Intent localIntent5 = new Intent().setClass(this, tabtest.class);
+//			localIntent5.putExtra("teamnames",
+//					"Super 8 - saldasdlk halksd lsahdlksadl kasdlk sad");
+//			localIntent5.putExtra("group","Super 8");
+//			spec5 = tabHost.newTabSpec("Super 8").setIndicator(localView5)
+//					.setContent(localIntent5);
+//			tabHost.addTab(spec5);
 			
 			
 

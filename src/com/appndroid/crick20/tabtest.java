@@ -2,6 +2,8 @@ package com.appndroid.crick20;
 
 import android.app.Activity;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,6 +18,8 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -34,6 +38,13 @@ public class tabtest extends Activity implements SimpleGestureListener , Animati
 	View menu;
 	boolean menuOut = false;
 	Animation anim;
+	
+	SQLiteDatabase db;
+	ListView lv;
+	int[] to;
+	TextView textHeader1;
+	fillList ptList;
+	String[] from, from1, from2;
 
 	private Animation inFromLeftAnimation() {
 		TranslateAnimation localTranslateAnimation = new TranslateAnimation(2,
@@ -77,6 +88,15 @@ public class tabtest extends Activity implements SimpleGestureListener , Animati
 
 		final Button superEightA = (Button) findViewById(R.id.Button0001);
 		final Button superEightB = (Button) findViewById(R.id.Button0002);
+		
+		lv = (ListView) findViewById(R.id.currentstatslistview1);
+		lv.setEnabled(false);
+		
+		textHeader1 = (TextView) findViewById(R.id.record11);
+
+		to = new int[] { R.id.stat_item1, R.id.stat_item2, R.id.stat_item3,
+				R.id.stat_item4, R.id.stat_item5, R.id.stat_item6,
+				R.id.stat_item7 };
 
 	
 		superEightA.setBackgroundDrawable(getResources().getDrawable(
@@ -177,11 +197,41 @@ public class tabtest extends Activity implements SimpleGestureListener , Animati
 		});
 
 	}
+	public int getDataFromDB() {
+
+		db = openOrCreateDatabase("worldcupt20.db",
+				SQLiteDatabase.CREATE_IF_NECESSARY, null);
+
+		from = new String[] { "Team", "P", "W", "L", "NR", "Pts", "NRR" };
+
+		ptList = new fillList(from);
+		Cursor cur = db.query("Group1", null,
+				null, null, null, null, null);
+		ptList.fillRecordList(cur, ptList, "currentStats");
+
+		return cur.getCount();
+
+	}
+	
+	public void fillData() {
+
+		textHeader1.setText("Point Table");
+		@SuppressWarnings("unchecked")
+		SimpleAdapter adapter = new overrideAdapter(this,
+				ptList.getFilledList(), R.layout.singlecurrntstat_layout, from,
+				to, "currentStats");
+		lv.setAdapter(adapter);
+
+	}
 	
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
+		int recordCount = getDataFromDB();
+		fillData();
 		super.onResume();
+		db = openOrCreateDatabase("worldcupt20.db",
+				SQLiteDatabase.CREATE_IF_NECESSARY, null);
 		if (menuOut) {
 			menu.setVisibility(View.INVISIBLE);
 			menuOut = false;

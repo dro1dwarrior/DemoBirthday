@@ -52,7 +52,8 @@ public class Schedule extends ListActivity
     private NetworkManager networkmanager;
 
     private static final int GROUP_TABLE = Menu.FIRST;
-    private static final int ABOUT = 2;
+    private static final int SUPER8 = 2;
+    private static final int ABOUT = 3;
 
     public static SQLiteDatabase db;
 
@@ -103,6 +104,7 @@ public class Schedule extends ListActivity
         try
         {
             menu.add( 0, GROUP_TABLE, 0, "Group Table" ).setShortcut( '2', 'a' ).setIcon( android.R.drawable.ic_menu_my_calendar );
+            menu.add( 0, SUPER8, 0, "Super 8" ).setIcon( android.R.drawable.ic_menu_my_calendar );
             menu.add( 0, ABOUT, 0, "About" ).setIcon( android.R.drawable.ic_menu_info_details );
         }
         catch( Exception e )
@@ -125,6 +127,11 @@ public class Schedule extends ListActivity
                 Intent intent3 = new Intent( this, GroupTab.class );
                 startActivity( intent3 );
                 return true;
+                
+            case SUPER8:
+                Intent intent4 = new Intent( this, tabtest.class );
+                startActivity( intent4 );
+                return true;    
 
             case ABOUT:
                 Intent i = new Intent( this, About.class );
@@ -289,7 +296,7 @@ public class Schedule extends ListActivity
         else
         {
 
-            Toast.makeText( Schedule.this, "Result has been declared."+nPosition, Toast.LENGTH_SHORT ).show();
+            //Toast.makeText( Schedule.this, "Result has been declared."+nPosition, Toast.LENGTH_SHORT ).show();
              Intent scoreIntent = new Intent( Schedule.this,PastMatches.class );
              scoreIntent.putExtra( "schId", nPosition + 1 );
              startActivity( scoreIntent );

@@ -37,7 +37,7 @@
                 android:id="@+id/currentStastlayout1"
                 android:layout_width="fill_parent"
                 android:layout_marginTop="5dp"
-                android:layout_height="165dp"
+                android:layout_height="190dp"
                 android:background="@drawable/transparent_background" >
 
                 <LinearLayout
@@ -57,7 +57,7 @@
                         android:gravity="center" >
 
                         <TextView
-                            android:id="@+id/record1"
+                            android:id="@+id/record11"
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:layout_marginRight="5dp"
@@ -83,7 +83,7 @@
                         android:isScrollContainer="false" >
 
                         <ListView
-                            android:id="@+id/currentstatslistview"
+                            android:id="@+id/currentstatslistview1"
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
                             android:cacheColorHint="@android:color/transparent"
