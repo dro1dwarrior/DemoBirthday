@@ -293,12 +293,12 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 			
 			String strDt = cursor.getString(cursor.getColumnIndex("Date"));
 			String[] strarr = strDt.split(" ");
-			txtdate.setText(strarr[0] + " " + drawable.getMonthName(strarr[1])
-					+ " (" +cursor.getString(cursor.getColumnIndex("Other1"))+")" );
-			String time = cursor.getString(cursor.getColumnIndex("GMT"));
+			txtdate.setText(strarr[0].trim() + " " + drawable.getMonthName(strarr[1])
+					+ " (" +cursor.getString(cursor.getColumnIndex("Other1")).trim()+")" );
+			String time = cursor.getString(cursor.getColumnIndex("GMT")).trim();
 			
 			txttime.setText(time + " GMT");
-			txtvenue.setText(cursor.getString(cursor.getColumnIndex("Venue")));
+			txtvenue.setText(cursor.getString(cursor.getColumnIndex("Venue")).trim());
 			
 
 		}

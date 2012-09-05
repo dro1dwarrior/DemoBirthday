@@ -65,8 +65,8 @@
         android:id="@+id/rel_center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="10dp"
         android:layout_toLeftOf="@+id/rel2"
         android:layout_toRightOf="@+id/rel1"
@@ -78,6 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="date"
+            android:singleLine="true"
             android:textSize="12sp" />
 
         <TextView
@@ -88,6 +89,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="3dp"
             android:text="Time"
+            android:singleLine="true"
             android:textSize="12sp" />
 
         <TextView
@@ -97,6 +99,7 @@
             android:layout_below="@+id/upcoming_time"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="3dp"
+            android:singleLine="true"
             android:text="Venue"
             android:textSize="12sp" />
     </RelativeLayout>

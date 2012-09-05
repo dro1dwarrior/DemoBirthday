@@ -1,6 +1,7 @@
 package com.appndroid.crick20;
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,6 +10,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
@@ -16,17 +18,20 @@ import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.CursorAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.appndroid.crick20.GroupDetail.upcomingAdapter;
 import com.appndroid.crick20.SimpleGestureFilter.SimpleGestureListener;
 
-public class tabtest extends Activity implements SimpleGestureListener , AnimationListener {
+public class tabtest extends ListActivity implements SimpleGestureListener , AnimationListener {
 	private static ViewFlipper flipper;
 	private SimpleGestureFilter detector;
 
@@ -40,9 +45,13 @@ public class tabtest extends Activity implements SimpleGestureListener , Animati
 	Animation anim;
 	
 	SQLiteDatabase db;
-	ListView lv;
+	getDrawable drawable;
+	static ListView lv,lv1;
+	static Cursor m_cursor,m_cursor1;
+	static ListAdapter m_adapter,m_adapter1;
+	ListView upcominglv,upcominglv1;
 	int[] to;
-	TextView textHeader1;
+	TextView textHeader1,textHeader2;
 	fillList ptList;
 	String[] from, from1, from2;
 
@@ -80,6 +89,7 @@ public class tabtest extends Activity implements SimpleGestureListener , Animati
 
 	public void onCreate(Bundle paramBundle) {
 		super.onCreate(paramBundle);
+		drawable = new getDrawable();
 		setContentView(R.layout.infoflipper_layout);
 		flipper = ((ViewFlipper) findViewById(R.id.flip));
 
@@ -89,10 +99,20 @@ public class tabtest extends Activity implements SimpleGestureListener , Animati
 		final Button superEightA = (Button) findViewById(R.id.Button0001);
 		final Button superEightB = (Button) findViewById(R.id.Button0002);
 		
-		lv = (ListView) findViewById(R.id.currentstatslistview1);
+		lv = (ListView) findViewById(R.id.pointsTable_group1);
 		lv.setEnabled(false);
 		
-		textHeader1 = (TextView) findViewById(R.id.record11);
+		lv1 = (ListView) findViewById(R.id.pointsTable_group2);
+		lv1.setEnabled(false);
+		
+		upcominglv = getListView();
+		upcominglv.setEnabled(false);
+		
+		upcominglv1= (ListView) findViewById(R.id.upcomignlv_group2); 
+		upcominglv1.setEnabled(false);
+		
+		textHeader1 = (TextView) findViewById(R.id.header_group1);
+		textHeader2 = (TextView) findViewById(R.id.header_group2);
 
 		to = new int[] { R.id.stat_item1, R.id.stat_item2, R.id.stat_item3,
 				R.id.stat_item4, R.id.stat_item5, R.id.stat_item6,
@@ -197,7 +217,7 @@ public class tabtest extends Activity implements SimpleGestureListener , Animati
 		});
 
 	}
-	public int getDataFromDB() {
+	public int getDataFromDB(String groupName) {
 
 		db = openOrCreateDatabase("worldcupt20.db",
 				SQLiteDatabase.CREATE_IF_NECESSARY, null);
@@ -205,33 +225,50 @@ public class tabtest extends Activity implements SimpleGestureListener , Animati
 		from = new String[] { "Team", "P", "W", "L", "NR", "Pts", "NRR" };
 
 		ptList = new fillList(from);
-		Cursor cur = db.query("Group1", null,
-				null, null, null, null, null);
+		Cursor cur = db.query(groupName, null,
+				"Team !=''", null, null, null, null);
 		ptList.fillRecordList(cur, ptList, "currentStats");
 
 		return cur.getCount();
 
 	}
 	
-	public void fillData() {
+	public void fillData(ListView lst) {
 
 		textHeader1.setText("Point Table");
 		@SuppressWarnings("unchecked")
 		SimpleAdapter adapter = new overrideAdapter(this,
 				ptList.getFilledList(), R.layout.singlecurrntstat_layout, from,
 				to, "currentStats");
-		lv.setAdapter(adapter);
+		lst.setAdapter(adapter);
 
 	}
 	
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
-		int recordCount = getDataFromDB();
-		fillData();
+		int recordCount = getDataFromDB("Group1");
+		fillData(lv);
+		
+		recordCount = getDataFromDB("Group2");
+		fillData(lv1);
 		super.onResume();
 		db = openOrCreateDatabase("worldcupt20.db",
 				SQLiteDatabase.CREATE_IF_NECESSARY, null);
+		
+		m_cursor = db.rawQuery("select * from schedule where gang ='"
+				+ "Group1"
+				+ "' AND WinnerTeam =''", null);
+		m_cursor.moveToFirst();
+		m_adapter = new upcomingAdapter(this, m_cursor, true);
+		setListAdapter(m_adapter);
+		
+		m_cursor1 = db.rawQuery("select * from schedule where gang ='"
+				+ "Group2"
+				+ "' AND WinnerTeam =''", null);
+		m_cursor1.moveToFirst();
+		m_adapter1 = new upcomingAdapter(this, m_cursor1, true);
+		upcominglv1.setAdapter(m_adapter1);
 		if (menuOut) {
 			menu.setVisibility(View.INVISIBLE);
 			menuOut = false;
@@ -330,6 +367,57 @@ public class tabtest extends Activity implements SimpleGestureListener , Animati
 	public void onAnimationStart(Animation animation) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public class upcomingAdapter extends CursorAdapter {
+		private LayoutInflater inflater;
+
+		public upcomingAdapter(Context context, Cursor c, boolean autoRequery) {
+			super(context, c, autoRequery);
+			// TODO Auto-generated constructor stub
+			inflater = LayoutInflater.from(context);
+		}
+
+		@Override
+		public void bindView(View view, Context context, Cursor cursor) {
+			ImageView imgTeamA = (ImageView) view.findViewById(R.id.upcoming_TeamAicon);
+			ImageView imgTeamB = (ImageView) view.findViewById(R.id.upcoming_TeamBicon);
+			
+			TextView TeamAName = (TextView) view.findViewById(R.id.upcoming_TeamAName);
+			TextView TeamBName = (TextView) view.findViewById(R.id.upcoming_TeamBName);
+			
+			TextView txtdate = (TextView) view.findViewById(R.id.upcoming_date);
+			TextView txttime = (TextView) view.findViewById(R.id.upcoming_time);
+			TextView txtvenue = (TextView) view.findViewById(R.id.upcoming_venue);
+			
+			String szTeamA = cursor.getString(cursor.getColumnIndex("TeamA"));
+			imgTeamA.setImageResource(drawable.getIcon(szTeamA));
+			
+			String szTeamB = cursor.getString(cursor.getColumnIndex("TeamB"));
+			imgTeamB.setImageResource(drawable.getIcon(szTeamB));
+			
+			TeamAName.setText(szTeamA);
+			TeamBName.setText(szTeamB);
+			
+			String strDt = cursor.getString(cursor.getColumnIndex("Date")).trim();
+			String[] strarr = strDt.split(" ");
+			txtdate.setText(strarr[0].trim() + " " + drawable.getMonthName(strarr[1])
+					+ " (" +cursor.getString(cursor.getColumnIndex("Other1")).trim()+")" );
+			String time = cursor.getString(cursor.getColumnIndex("GMT")).trim();
+			
+			txttime.setText(time + " GMT");
+			txtvenue.setText(cursor.getString(cursor.getColumnIndex("Venue")).trim());
+			
+
+		}
+
+		@Override
+		public View newView(Context context, Cursor cursor, ViewGroup parent) {
+			// TODO Auto-generated method stub
+			View view = inflater.inflate(R.layout.upcoming_row, parent, false);
+			return view;
+		}
+
 	}
 
 }
