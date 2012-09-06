@@ -170,5 +170,18 @@ public class FlagsActivity extends Activity
         }
 
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    	if( _display && keyCode== KeyEvent.KEYCODE_BACK)
+        {
+            finish();
+            Intent intent = new Intent( getApplicationContext(), Schedule.class );
+            intent.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
+            intent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
+            startActivity( intent );
+        }
+    	return true;
+    	
+    }
 
 }

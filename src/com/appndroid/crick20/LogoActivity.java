@@ -13,7 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Window;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -102,8 +102,25 @@ public class LogoActivity extends Activity {
 				LogoActivity.this.finish();
 				myTimer.cancel();
 				startActivity(intent);
+				finish();
 			}
 
 		}
 	};
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK)
+			{
+				myTimer.cancel();
+				finish();
+	            int pid = android.os.Process.myPid(); 
+	            android.os.Process.killProcess( pid );
+	            System.exit(0);
+	            return true;  
+				
+			}
+		//return super.onKeyUp(keyCode, event);
+		return false;
+	}
 }

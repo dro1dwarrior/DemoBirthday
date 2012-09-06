@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -31,7 +32,7 @@ import android.widget.ViewFlipper;
 import com.appndroid.crick20.GroupDetail.upcomingAdapter;
 import com.appndroid.crick20.SimpleGestureFilter.SimpleGestureListener;
 
-public class tabtest extends ListActivity implements SimpleGestureListener , AnimationListener {
+public class tabtest extends Activity implements SimpleGestureListener , AnimationListener {
 	private static ViewFlipper flipper;
 	private SimpleGestureFilter detector;
 
@@ -105,7 +106,7 @@ public class tabtest extends ListActivity implements SimpleGestureListener , Ani
 		lv1 = (ListView) findViewById(R.id.pointsTable_group2);
 		lv1.setEnabled(false);
 		
-		upcominglv = getListView();
+		upcominglv = (ListView) findViewById(R.id.upcomignlv_group1);
 		upcominglv.setEnabled(false);
 		
 		upcominglv1= (ListView) findViewById(R.id.upcomignlv_group2); 
@@ -261,7 +262,7 @@ public class tabtest extends ListActivity implements SimpleGestureListener , Ani
 				+ "' AND WinnerTeam =''", null);
 		m_cursor.moveToFirst();
 		m_adapter = new upcomingAdapter(this, m_cursor, true);
-		setListAdapter(m_adapter);
+		upcominglv.setAdapter(m_adapter);
 		
 		m_cursor1 = db.rawQuery("select * from schedule where gang ='"
 				+ "Group2"
@@ -269,6 +270,7 @@ public class tabtest extends ListActivity implements SimpleGestureListener , Ani
 		m_cursor1.moveToFirst();
 		m_adapter1 = new upcomingAdapter(this, m_cursor1, true);
 		upcominglv1.setAdapter(m_adapter1);
+		Log.d("cursor","cursor count is "+m_cursor.getCount()+"-"+m_cursor1.getCount());
 		if (menuOut) {
 			menu.setVisibility(View.INVISIBLE);
 			menuOut = false;

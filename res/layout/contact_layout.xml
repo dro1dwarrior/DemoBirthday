@@ -26,10 +26,10 @@
     <!-- android:textStyle="bold" /> -->
     <!-- </LinearLayout> -->
 
-    <ScrollView
-        android:id="@+id/scroll"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+<!--     <ScrollView -->
+<!--         android:id="@+id/scroll" -->
+<!--         android:layout_width="fill_parent" -->
+<!--         android:layout_height="fill_parent" > -->
 
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -84,7 +84,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
                         android:layout_marginTop="10dp"
-                        android:isScrollContainer="false" >
+                        android:isScrollContainer="true" >
 
                         <ListView
                             android:id="@+id/pointsTable_group2"
@@ -100,7 +100,7 @@
             <RelativeLayout
                 android:id="@+id/upcominglayout"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:layout_below="@+id/currentStastlayout2"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="5dp"
@@ -162,6 +162,6 @@
                 </LinearLayout>
             </RelativeLayout>
         </RelativeLayout>
-    </ScrollView>
+<!--     </ScrollView> -->
 
 </LinearLayout>
