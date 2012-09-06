@@ -179,7 +179,8 @@ public class Schedule extends ListActivity
 
     public static void reloadView( final Context context )
     {
-        m_cursor.requery();
+    	if(m_cursor!=null)
+    		m_cursor.requery();
         if( lv != null )
         {
             lv.invalidateViews();

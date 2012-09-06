@@ -70,7 +70,7 @@ public class FlagsActivity extends Activity
                     if( _display )
                     {
                         finish();
-                        Intent intent = new Intent( getApplicationContext(), Schedule.class );
+                        Intent intent = new Intent( getApplicationContext(), HomeScreen.class );
                         intent.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
                         intent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
                         startActivity( intent );
@@ -175,7 +175,7 @@ public class FlagsActivity extends Activity
     	if( _display && keyCode== KeyEvent.KEYCODE_BACK)
         {
             finish();
-            Intent intent = new Intent( getApplicationContext(), Schedule.class );
+            Intent intent = new Intent( getApplicationContext(), HomeScreen.class );
             intent.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
             intent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
             startActivity( intent );
