@@ -168,7 +168,8 @@
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:cacheColorHint="@android:color/transparent"
-                        android:divider="@android:color/transparent"
+                        android:divider="@layout/data_seperator"
+                        android:dividerHeight="2px"
                         android:listSelector="@android:color/transparent" >
                     </ListView>
                 </LinearLayout>
