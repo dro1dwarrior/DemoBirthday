@@ -30,9 +30,11 @@ public class getDrawable {
 		else if(teamName.toLowerCase().equals("zim")||teamName.toLowerCase().equals("zimbabwe"))
 			return R.drawable.zimbabwe ;
 		else if(teamName.toLowerCase().equals("appicon"))
-			return R.drawable.icon ;
+			//return R.drawable.icon ;
+			return R.drawable.app_icon_rounded;
 		else
-			return R.drawable.icon;
+			//return R.drawable.icon;
+			return R.drawable.app_icon_rounded;
 	}
 	
 	public String getMonthName(String month)
