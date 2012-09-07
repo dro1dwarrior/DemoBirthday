@@ -68,14 +68,14 @@
                 <LinearLayout
                     android:id="@+id/header"
                     android:layout_width="fill_parent"
-                    android:layout_height="30dip"
+                    android:layout_height="25dip"
                     android:gravity="center" >
 
                     <TextView
                         android:id="@+id/record1"
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
-                        android:layout_marginRight="5dp"
+                        android:layout_gravity="center"
                         android:text=""
                         android:textColor="#69D2E7"
                         android:textStyle="bold" />
@@ -94,7 +94,7 @@
                     android:id="@+id/layout"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:isScrollContainer="false" >
 
                     <ListView
@@ -102,7 +102,10 @@
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:cacheColorHint="@android:color/transparent"
+                        android:clickable="false"
                         android:divider="@android:color/transparent"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
                         android:listSelector="@android:color/transparent" >
                     </ListView>
                 </LinearLayout>
@@ -118,7 +121,7 @@
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/transparent_background" >
 
             <LinearLayout
@@ -134,14 +137,14 @@
                 <LinearLayout
                     android:id="@+id/headerupcoming"
                     android:layout_width="fill_parent"
-                    android:layout_height="30dip"
+                    android:layout_height="25dip"
                     android:gravity="center" >
 
                     <TextView
                         android:id="@+id/recordupcoming1"
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
-                        android:layout_marginRight="5dp"
+                        android:layout_gravity="center"
                         android:text="Upcoming Matches"
                         android:textColor="#69D2E7"
                         android:textStyle="bold" />
@@ -160,13 +163,14 @@
                     android:id="@+id/layoutupcoming"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:isScrollContainer="false" >
 
                     <ListView
                         android:id="@android:id/list"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
+                        android:scrollbars="vertical"
                         android:cacheColorHint="@android:color/transparent"
                         android:divider="@layout/data_seperator"
                         android:dividerHeight="2px"

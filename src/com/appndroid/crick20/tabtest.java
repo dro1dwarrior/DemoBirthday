@@ -236,7 +236,7 @@ public class tabtest extends Activity implements SimpleGestureListener , Animati
 	
 	public void fillData(ListView lst) {
 
-		textHeader1.setText("Point Table");
+		textHeader1.setText("Points Table");
 		@SuppressWarnings("unchecked")
 		SimpleAdapter adapter = new overrideAdapter(this,
 				ptList.getFilledList(), R.layout.singlecurrntstat_layout, from,

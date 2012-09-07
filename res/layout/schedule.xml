@@ -54,6 +54,8 @@
             android:layout_height="fill_parent"
             android:cacheColorHint="@android:color/transparent"
             android:divider="@android:color/transparent"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:listSelector="@android:color/transparent" >
         </ListView>
 
