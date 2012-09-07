@@ -3,13 +3,18 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content" >
 
+    <TextView
+        android:id="@+id/txtTop"
+        android:layout_width="fill_parent"
+        android:layout_height="10dp" />
+
     <RelativeLayout
         android:id="@+id/rel1"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="3dp"
-        android:layout_marginTop="5dp" >
+        android:layout_below="@+id/txtTop"
+        android:layout_marginLeft="3dp" >
 
         <ImageView
             android:id="@+id/upcoming_TeamAicon"
@@ -37,8 +42,8 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="3dp"
-        android:layout_marginTop="5dp" >
+        android:layout_below="@+id/txtTop"
+        android:layout_marginRight="3dp" >
 
         <ImageView
             android:id="@+id/upcoming_TeamBicon"
@@ -65,9 +70,10 @@
         android:id="@+id/rel_center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/txtTop"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_toLeftOf="@+id/rel2"
         android:layout_toRightOf="@+id/rel1"
         android:gravity="center_horizontal" >
@@ -103,5 +109,11 @@
             android:text="Venue"
             android:textSize="12sp" />
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txtBottom"
+        android:layout_width="fill_parent"
+        android:layout_height="10dp"
+        android:layout_below="@+id/rel1" />
 
 </RelativeLayout>
