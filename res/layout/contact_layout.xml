@@ -66,7 +66,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
                         android:layout_gravity="center"
-                        android:text=""
+                        android:text="Points Table"
                         android:textColor="#69D2E7"
                         android:textStyle="bold" />
                 </LinearLayout>

@@ -38,12 +38,6 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
-    <!-- <ScrollView -->
-    <!-- xmlns:android="http://schemas.android.com/apk/res/android" -->
-    <!-- android:id="@+id/scroll" -->
-    <!-- android:layout_width="fill_parent" -->
-    <!-- android:layout_height="fill_parent" > -->
-
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
@@ -170,11 +164,11 @@
                         android:id="@android:id/list"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:scrollbars="vertical"
                         android:cacheColorHint="@android:color/transparent"
                         android:divider="@layout/data_seperator"
                         android:dividerHeight="2px"
-                        android:listSelector="@android:color/transparent" >
+                        android:listSelector="@android:color/transparent"
+                        android:scrollbars="vertical" >
                     </ListView>
                 </LinearLayout>
             </LinearLayout>
@@ -190,6 +184,5 @@
                 layout="@layout/menu" />
         </FrameLayout>
     </RelativeLayout>
-    <!-- </ScrollView> -->
 
 </LinearLayout>
