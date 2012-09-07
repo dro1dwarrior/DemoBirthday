@@ -32,394 +32,389 @@ import android.widget.ViewFlipper;
 import com.appndroid.crick20.GroupDetail.upcomingAdapter;
 import com.appndroid.crick20.SimpleGestureFilter.SimpleGestureListener;
 
-public class tabtest extends Activity implements SimpleGestureListener , AnimationListener {
-	private static ViewFlipper flipper;
-	private SimpleGestureFilter detector;
+public class tabtest extends Activity implements SimpleGestureListener, AnimationListener
+{
+    private static ViewFlipper flipper;
+    private SimpleGestureFilter detector;
 
-	static boolean isSwipeToGroupApossible = false;
-	static boolean isSwipeToGroupBpossible = true;
-	private static boolean isCalBtnClicked = false;
-	private static View view, view1;
-	FrameLayout mFrameLayout;
-	View menu;
-	boolean menuOut = false;
-	Animation anim;
-	
-	SQLiteDatabase db;
-	getDrawable drawable;
-	static ListView lv,lv1;
-	static Cursor m_cursor,m_cursor1;
-	static ListAdapter m_adapter,m_adapter1;
-	ListView upcominglv,upcominglv1;
-	int[] to;
-	TextView textHeader1,textHeader2;
-	fillList ptList;
-	String[] from, from1, from2;
+    static boolean isSwipeToGroupApossible = false;
+    static boolean isSwipeToGroupBpossible = true;
+    private static boolean isCalBtnClicked = false;
+    private static View view, view1;
+    FrameLayout mFrameLayout;
+    View menu;
+    boolean menuOut = false;
+    Animation anim;
 
-	private Animation inFromLeftAnimation() {
-		TranslateAnimation localTranslateAnimation = new TranslateAnimation(2,
-				-1.0F, 2, 0.0F, 2, 0.0F, 2, 0.0F);
-		localTranslateAnimation.setDuration(500L);
-		localTranslateAnimation.setInterpolator(new AccelerateInterpolator());
-		return localTranslateAnimation;
-	}
+    SQLiteDatabase db;
+    getDrawable drawable;
+    static ListView lv, lv1;
+    static Cursor m_cursor, m_cursor1;
+    static ListAdapter m_adapter, m_adapter1;
+    ListView upcominglv, upcominglv1;
+    int[] to;
+    TextView textHeader1, textHeader2;
+    fillList ptList;
+    String[] from, from1, from2;
 
-	private Animation inFromRightAnimation() {
-		TranslateAnimation localTranslateAnimation = new TranslateAnimation(2,
-				1.0F, 2, 0.0F, 2, 0.0F, 2, 0.0F);
-		localTranslateAnimation.setDuration(500L);
-		localTranslateAnimation.setInterpolator(new AccelerateInterpolator());
-		return localTranslateAnimation;
-	}
+    private Animation inFromLeftAnimation()
+    {
+        TranslateAnimation localTranslateAnimation = new TranslateAnimation( 2, -1.0F, 2, 0.0F, 2, 0.0F, 2, 0.0F );
+        localTranslateAnimation.setDuration( 500L );
+        localTranslateAnimation.setInterpolator( new AccelerateInterpolator() );
+        return localTranslateAnimation;
+    }
 
-	private Animation outToLeftAnimation() {
-		TranslateAnimation localTranslateAnimation = new TranslateAnimation(2,
-				0.0F, 2, -1.0F, 2, 0.0F, 2, 0.0F);
-		localTranslateAnimation.setDuration(500L);
-		localTranslateAnimation.setInterpolator(new AccelerateInterpolator());
-		return localTranslateAnimation;
-	}
+    private Animation inFromRightAnimation()
+    {
+        TranslateAnimation localTranslateAnimation = new TranslateAnimation( 2, 1.0F, 2, 0.0F, 2, 0.0F, 2, 0.0F );
+        localTranslateAnimation.setDuration( 500L );
+        localTranslateAnimation.setInterpolator( new AccelerateInterpolator() );
+        return localTranslateAnimation;
+    }
 
-	private Animation outToRightAnimation() {
-		TranslateAnimation localTranslateAnimation = new TranslateAnimation(2,
-				0.0F, 2, 1.0F, 2, 0.0F, 2, 0.0F);
-		localTranslateAnimation.setDuration(500L);
-		localTranslateAnimation.setInterpolator(new AccelerateInterpolator());
-		return localTranslateAnimation;
-	}
+    private Animation outToLeftAnimation()
+    {
+        TranslateAnimation localTranslateAnimation = new TranslateAnimation( 2, 0.0F, 2, -1.0F, 2, 0.0F, 2, 0.0F );
+        localTranslateAnimation.setDuration( 500L );
+        localTranslateAnimation.setInterpolator( new AccelerateInterpolator() );
+        return localTranslateAnimation;
+    }
 
-	public void onCreate(Bundle paramBundle) {
-		super.onCreate(paramBundle);
-		drawable = new getDrawable();
-		setContentView(R.layout.infoflipper_layout);
-		flipper = ((ViewFlipper) findViewById(R.id.flip));
+    private Animation outToRightAnimation()
+    {
+        TranslateAnimation localTranslateAnimation = new TranslateAnimation( 2, 0.0F, 2, 1.0F, 2, 0.0F, 2, 0.0F );
+        localTranslateAnimation.setDuration( 500L );
+        localTranslateAnimation.setInterpolator( new AccelerateInterpolator() );
+        return localTranslateAnimation;
+    }
 
-		detector = new SimpleGestureFilter(this, this);
-		View gestureView = (View) findViewById(R.id.gestures);
+    public void onCreate( Bundle paramBundle )
+    {
+        super.onCreate( paramBundle );
+        drawable = new getDrawable();
+        setContentView( R.layout.infoflipper_layout );
+        flipper = ( (ViewFlipper) findViewById( R.id.flip ) );
 
-		final Button superEightA = (Button) findViewById(R.id.Button0001);
-		final Button superEightB = (Button) findViewById(R.id.Button0002);
-		
-		lv = (ListView) findViewById(R.id.pointsTable_group1);
-		lv.setEnabled(false);
-		
-		lv1 = (ListView) findViewById(R.id.pointsTable_group2);
-		lv1.setEnabled(false);
-		
-		upcominglv = (ListView) findViewById(R.id.upcomignlv_group1);
-		upcominglv.setEnabled(false);
-		
-		upcominglv1= (ListView) findViewById(R.id.upcomignlv_group2); 
-		upcominglv1.setEnabled(false);
-		
-		textHeader1 = (TextView) findViewById(R.id.header_group1);
-		textHeader2 = (TextView) findViewById(R.id.header_group2);
+        detector = new SimpleGestureFilter( this, this );
+        View gestureView = (View) findViewById( R.id.gestures );
 
-		to = new int[] { R.id.stat_item1, R.id.stat_item2, R.id.stat_item3,
-				R.id.stat_item4, R.id.stat_item5, R.id.stat_item6,
-				R.id.stat_item7 };
+        final Button superEightA = (Button) findViewById( R.id.Button0001 );
+        final Button superEightB = (Button) findViewById( R.id.Button0002 );
 
-	
-		superEightA.setBackgroundDrawable(getResources().getDrawable(
-				R.drawable.titleback));
-		superEightB.setBackgroundDrawable(getResources().getDrawable(
-				R.drawable.titlebackselected));
-		
-		mFrameLayout = (FrameLayout) this.findViewById(R.id.frameflipper);
-		menu = mFrameLayout.findViewById(R.id.menu);
+        lv = (ListView) findViewById( R.id.pointsTable_group1 );
+        lv.setEnabled( false );
 
-		Context context = getApplicationContext();
-		LayoutInflater inflater = getLayoutInflater();
-		View toastRoot = inflater.inflate(R.layout.my_toast, null);
-		TextView t1 = (TextView) toastRoot.findViewById(R.id.toasttext);
-		t1.setText("Swipe option is also available. Swipe from right to left and vice versa");
-		Toast toast = new Toast(context);
-		toast.setView(toastRoot);
-		toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL,
-				0, 0);
-		toast.show();
+        lv1 = (ListView) findViewById( R.id.pointsTable_group2 );
+        lv1.setEnabled( false );
 
-		superEightA.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View paramView) {
+        upcominglv = (ListView) findViewById( R.id.upcomignlv_group1 );
+        upcominglv.setEnabled( false );
 
-				if (isSwipeToGroupApossible == true
-						&& isSwipeToGroupBpossible == false) {
-					superEightA.setBackgroundDrawable(getResources()
-							.getDrawable(R.drawable.titleback));
-					superEightB.setBackgroundDrawable(getResources()
-							.getDrawable(R.drawable.titlebackselected));
+        upcominglv1 = (ListView) findViewById( R.id.upcomignlv_group2 );
+        upcominglv1.setEnabled( false );
 
-					try {
+        textHeader1 = (TextView) findViewById( R.id.header_group1 );
+        textHeader2 = (TextView) findViewById( R.id.header_group2 );
 
-						flipper.setInAnimation(tabtest.this
-								.inFromLeftAnimation());
-						flipper.setOutAnimation(tabtest.this
-								.outToRightAnimation());
-						flipper.showPrevious();
+        to = new int[] { R.id.stat_item1, R.id.stat_item2, R.id.stat_item3, R.id.stat_item4, R.id.stat_item5, R.id.stat_item6, R.id.stat_item7 };
 
-						isSwipeToGroupApossible = false;
-						isSwipeToGroupBpossible = true;
+        superEightA.setBackgroundDrawable( getResources().getDrawable( R.drawable.titleback ) );
+        superEightB.setBackgroundDrawable( getResources().getDrawable( R.drawable.titlebackselected ) );
 
-					} catch (StackOverflowError e) {
-						// TODO: handle exception
-						String exc = e.getMessage();
-					}
-				}
-			}
-		});
+        mFrameLayout = (FrameLayout) this.findViewById( R.id.frameflipper );
+        menu = mFrameLayout.findViewById( R.id.menu );
 
-		superEightB.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View paramView) {
+        Context context = getApplicationContext();
+        LayoutInflater inflater = getLayoutInflater();
+        View toastRoot = inflater.inflate( R.layout.my_toast, null );
+        TextView t1 = (TextView) toastRoot.findViewById( R.id.toasttext );
+        t1.setText( "Swipe option is also available. Swipe from right to left and vice versa" );
+        Toast toast = new Toast( context );
+        toast.setView( toastRoot );
+        toast.setGravity( Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0 );
+        toast.show();
 
-				if (isSwipeToGroupApossible == false
-						&& isSwipeToGroupBpossible == true) {
+        superEightA.setOnClickListener( new View.OnClickListener()
+        {
+            public void onClick( View paramView )
+            {
 
-					superEightB.setBackgroundDrawable(getResources()
-							.getDrawable(R.drawable.titleback));
-					superEightA.setBackgroundDrawable(getResources()
-							.getDrawable(R.drawable.titlebackselected));
+                if( isSwipeToGroupApossible == true && isSwipeToGroupBpossible == false )
+                {
+                    superEightA.setBackgroundDrawable( getResources().getDrawable( R.drawable.titleback ) );
+                    superEightB.setBackgroundDrawable( getResources().getDrawable( R.drawable.titlebackselected ) );
 
-					isCalBtnClicked = true;
-					flipper.setInAnimation(tabtest.this.inFromRightAnimation());
-					flipper.setOutAnimation(tabtest.this.outToLeftAnimation());
-					flipper.showNext();
+                    try
+                    {
 
-					isSwipeToGroupApossible = true;
-					isSwipeToGroupBpossible = false;
-				}
+                        flipper.setInAnimation( tabtest.this.inFromLeftAnimation() );
+                        flipper.setOutAnimation( tabtest.this.outToRightAnimation() );
+                        flipper.showPrevious();
 
-			}
-		});
-		
-		final ImageView navigationImage = (ImageView) findViewById(R.id.nav);
-		navigationImage.setOnClickListener(new OnClickListener() {
+                        isSwipeToGroupApossible = false;
+                        isSwipeToGroupBpossible = true;
 
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
+                    }
+                    catch( StackOverflowError e )
+                    {
+                        // TODO: handle exception
+                        String exc = e.getMessage();
+                    }
+                }
+            }
+        } );
 
-				Animation anim;
-				if (!menuOut) {
-					navigationImage.setBackgroundResource(R.drawable.navigationselected);
-					menu.setVisibility(View.VISIBLE);
-					ViewUtils.printView("menu", menu);
-					anim = AnimationUtils.loadAnimation(tabtest.this,
-							R.anim.push_right_in);
-				} else {
-					navigationImage.setBackgroundResource(R.drawable.navigationunselected);
-					anim = AnimationUtils.loadAnimation(tabtest.this,
-							R.anim.push_left_out);
-				}
-				anim.setAnimationListener(tabtest.this);
-				// out.setAnimationListener(me);
-				menu.startAnimation(anim);
+        superEightB.setOnClickListener( new View.OnClickListener()
+        {
+            public void onClick( View paramView )
+            {
 
-			}
-		});
+                if( isSwipeToGroupApossible == false && isSwipeToGroupBpossible == true )
+                {
 
-	}
-	public int getDataFromDB(String groupName) {
+                    superEightB.setBackgroundDrawable( getResources().getDrawable( R.drawable.titleback ) );
+                    superEightA.setBackgroundDrawable( getResources().getDrawable( R.drawable.titlebackselected ) );
 
-		db = openOrCreateDatabase("worldcupt20.db",
-				SQLiteDatabase.CREATE_IF_NECESSARY, null);
+                    isCalBtnClicked = true;
+                    flipper.setInAnimation( tabtest.this.inFromRightAnimation() );
+                    flipper.setOutAnimation( tabtest.this.outToLeftAnimation() );
+                    flipper.showNext();
 
-		from = new String[] { "Team", "P", "W", "L", "NR", "Pts", "NRR" };
+                    isSwipeToGroupApossible = true;
+                    isSwipeToGroupBpossible = false;
+                }
 
-		ptList = new fillList(from);
-		Cursor cur = db.query(groupName, null,
-				"Team !=''", null, null, null, null);
-		ptList.fillRecordList(cur, ptList, "currentStats");
+            }
+        } );
 
-		return cur.getCount();
+        final ImageView navigationImage = (ImageView) findViewById( R.id.nav );
+        navigationImage.setOnClickListener( new OnClickListener()
+        {
 
-	}
-	
-	public void fillData(ListView lst) {
+            @Override
+            public void onClick( View v )
+            {
+                // TODO Auto-generated method stub
 
-		textHeader1.setText("Points Table");
-		@SuppressWarnings("unchecked")
-		SimpleAdapter adapter = new overrideAdapter(this,
-				ptList.getFilledList(), R.layout.singlecurrntstat_layout, from,
-				to, "currentStats");
-		lst.setAdapter(adapter);
+                Animation anim;
+                if( !menuOut )
+                {
+                    navigationImage.setBackgroundResource( R.drawable.navigationselected );
+                    menu.setVisibility( View.VISIBLE );
+                    ViewUtils.printView( "menu", menu );
+                    anim = AnimationUtils.loadAnimation( tabtest.this, R.anim.push_right_in );
+                }
+                else
+                {
+                    navigationImage.setBackgroundResource( R.drawable.navigationunselected );
+                    anim = AnimationUtils.loadAnimation( tabtest.this, R.anim.push_left_out );
+                }
+                anim.setAnimationListener( tabtest.this );
+                // out.setAnimationListener(me);
+                menu.startAnimation( anim );
 
-	}
-	
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		int recordCount = getDataFromDB("Group1");
-		fillData(lv);
-		
-		recordCount = getDataFromDB("Group2");
-		fillData(lv1);
-		super.onResume();
-		db = openOrCreateDatabase("worldcupt20.db",
-				SQLiteDatabase.CREATE_IF_NECESSARY, null);
-		
-		m_cursor = db.rawQuery("select * from schedule where gang ='"
-				+ "Group1"
-				+ "' AND WinnerTeam =''", null);
-		m_cursor.moveToFirst();
-		m_adapter = new upcomingAdapter(this, m_cursor, true);
-		upcominglv.setAdapter(m_adapter);
-		
-		m_cursor1 = db.rawQuery("select * from schedule where gang ='"
-				+ "Group2"
-				+ "' AND WinnerTeam =''", null);
-		m_cursor1.moveToFirst();
-		m_adapter1 = new upcomingAdapter(this, m_cursor1, true);
-		upcominglv1.setAdapter(m_adapter1);
-		Log.d("cursor","cursor count is "+m_cursor.getCount()+"-"+m_cursor1.getCount());
-		if (menuOut) {
-			menu.setVisibility(View.INVISIBLE);
-			menuOut = false;
-		}
-	}
+            }
+        } );
 
-	@Override
-	public boolean dispatchTouchEvent(MotionEvent me) {
-		this.detector.onTouchEvent(me);
-		return super.dispatchTouchEvent(me);
-	}
+    }
 
-	public void onSwipe(int direction) {
-		// TODO Auto-generated method stub
-        
-		switch (direction) {
+    public int getDataFromDB( String groupName )
+    {
 
-		case SimpleGestureFilter.SWIPE_LEFT:
-			if (isSwipeToGroupApossible == false
-					&& isSwipeToGroupBpossible == true) {
-				tabtest.this.flipper.setInAnimation(tabtest.this
-						.inFromRightAnimation());
-				tabtest.this.flipper.setOutAnimation(tabtest.this
-						.outToLeftAnimation());
-				tabtest.this.flipper.showNext();
+        db = openOrCreateDatabase( "worldcupt20.db", SQLiteDatabase.CREATE_IF_NECESSARY, null );
 
-				isSwipeToGroupApossible = true;
-				isSwipeToGroupBpossible = false;
-				final Button superEightA = (Button) findViewById(R.id.Button0001);
-				final Button superEightB = (Button) findViewById(R.id.Button0002);
+        from = new String[] { "Team", "P", "W", "L", "NR", "Pts", "NRR" };
 
-			
-				superEightA.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.titlebackselected));
-				superEightB.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.titleback));
-				
-			}
+        ptList = new fillList( from );
+        Cursor cur = db.query( groupName, null, "Team !=''", null, null, null, null );
+        ptList.fillRecordList( cur, ptList, "currentStats" );
 
-			// tabtest.this.flipper.
-			break;
+        return cur.getCount();
 
-		case SimpleGestureFilter.SWIPE_RIGHT:
+    }
 
-			if (isSwipeToGroupApossible == true
-					&& isSwipeToGroupBpossible == false) {
-				tabtest.this.flipper.setInAnimation(tabtest.this
-						.inFromLeftAnimation());
-				tabtest.this.flipper.setOutAnimation(tabtest.this
-						.outToRightAnimation());
-				tabtest.this.flipper.showPrevious();
+    public void fillData( ListView lst )
+    {
 
-				isSwipeToGroupApossible = false;
-				isSwipeToGroupBpossible = true;
-				
-				final Button superEightA = (Button) findViewById(R.id.Button0001);
-				final Button superEightB = (Button) findViewById(R.id.Button0002);
+        textHeader1.setText( "Points Table" );
+        @SuppressWarnings("unchecked")
+        SimpleAdapter adapter = new overrideAdapter( this, ptList.getFilledList(), R.layout.singlecurrntstat_layout, from, to, "currentStats" );
+        lst.setAdapter( adapter );
 
-			
-				superEightA.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.titleback));
-				superEightB.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.titlebackselected));
-				
-				
-			}
+    }
 
-			break;
-		}
+    @Override
+    protected void onResume()
+    {
+        // TODO Auto-generated method stub
+        int recordCount = getDataFromDB( "Group1" );
+        fillData( lv );
 
-	}
+        recordCount = getDataFromDB( "Group2" );
+        fillData( lv1 );
+        super.onResume();
+        db = openOrCreateDatabase( "worldcupt20.db", SQLiteDatabase.CREATE_IF_NECESSARY, null );
 
-	public void onDoubleTap() {
-		// TODO Auto-generated method stub
+        m_cursor = db.rawQuery( "select * from schedule where gang ='" + "Group1" + "' AND WinnerTeam =''", null );
+        m_cursor.moveToFirst();
+        m_adapter = new upcomingAdapter( this, m_cursor, true );
+        upcominglv.setAdapter( m_adapter );
 
-	}
+        m_cursor1 = db.rawQuery( "select * from schedule where gang ='" + "Group2" + "' AND WinnerTeam =''", null );
+        m_cursor1.moveToFirst();
+        m_adapter1 = new upcomingAdapter( this, m_cursor1, true );
+        upcominglv1.setAdapter( m_adapter1 );
+        Log.d( "cursor", "cursor count is " + m_cursor.getCount() + "-" + m_cursor1.getCount() );
+        if( menuOut )
+        {
+            menu.setVisibility( View.INVISIBLE );
+            menuOut = false;
+        }
+    }
 
-	@Override
-	public void onAnimationEnd(Animation animation) {
-		// TODO Auto-generated method stub
-		ViewUtils.printView("menu", menu);
-		menuOut = !menuOut;
-		if (!menuOut) {
-			menu.setVisibility(View.INVISIBLE);
-		}
-		
-	}
+    @Override
+    public boolean dispatchTouchEvent( MotionEvent me )
+    {
+        this.detector.onTouchEvent( me );
+        return super.dispatchTouchEvent( me );
+    }
 
-	@Override
-	public void onAnimationRepeat(Animation animation) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void onSwipe( int direction )
+    {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void onAnimationStart(Animation animation) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	public class upcomingAdapter extends CursorAdapter {
-		private LayoutInflater inflater;
+        switch( direction )
+        {
 
-		public upcomingAdapter(Context context, Cursor c, boolean autoRequery) {
-			super(context, c, autoRequery);
-			// TODO Auto-generated constructor stub
-			inflater = LayoutInflater.from(context);
-		}
+        case SimpleGestureFilter.SWIPE_LEFT:
+            if( isSwipeToGroupApossible == false && isSwipeToGroupBpossible == true )
+            {
+                tabtest.this.flipper.setInAnimation( tabtest.this.inFromRightAnimation() );
+                tabtest.this.flipper.setOutAnimation( tabtest.this.outToLeftAnimation() );
+                tabtest.this.flipper.showNext();
 
-		@Override
-		public void bindView(View view, Context context, Cursor cursor) {
-			ImageView imgTeamA = (ImageView) view.findViewById(R.id.upcoming_TeamAicon);
-			ImageView imgTeamB = (ImageView) view.findViewById(R.id.upcoming_TeamBicon);
-			
-			TextView TeamAName = (TextView) view.findViewById(R.id.upcoming_TeamAName);
-			TextView TeamBName = (TextView) view.findViewById(R.id.upcoming_TeamBName);
-			
-			TextView txtdate = (TextView) view.findViewById(R.id.upcoming_date);
-			TextView txttime = (TextView) view.findViewById(R.id.upcoming_time);
-			TextView txtvenue = (TextView) view.findViewById(R.id.upcoming_venue);
-			
-			String szTeamA = cursor.getString(cursor.getColumnIndex("TeamA"));
-			imgTeamA.setImageResource(drawable.getIcon(szTeamA));
-			
-			String szTeamB = cursor.getString(cursor.getColumnIndex("TeamB"));
-			imgTeamB.setImageResource(drawable.getIcon(szTeamB));
-			
-			TeamAName.setText(szTeamA);
-			TeamBName.setText(szTeamB);
-			
-			String strDt = cursor.getString(cursor.getColumnIndex("Date")).trim();
-			String[] strarr = strDt.split(" ");
-			txtdate.setText(strarr[0].trim() + " " + drawable.getMonthName(strarr[1])
-					+ " (" +cursor.getString(cursor.getColumnIndex("Other1")).trim()+")" );
-			String time = cursor.getString(cursor.getColumnIndex("GMT")).trim();
-			
-			txttime.setText(time + " GMT");
-			txtvenue.setText(cursor.getString(cursor.getColumnIndex("Venue")).trim());
-			
+                isSwipeToGroupApossible = true;
+                isSwipeToGroupBpossible = false;
+                final Button superEightA = (Button) findViewById( R.id.Button0001 );
+                final Button superEightB = (Button) findViewById( R.id.Button0002 );
 
-		}
+                superEightA.setBackgroundDrawable( getResources().getDrawable( R.drawable.titlebackselected ) );
+                superEightB.setBackgroundDrawable( getResources().getDrawable( R.drawable.titleback ) );
 
-		@Override
-		public View newView(Context context, Cursor cursor, ViewGroup parent) {
-			// TODO Auto-generated method stub
-			View view = inflater.inflate(R.layout.upcoming_row, parent, false);
-			return view;
-		}
+            }
 
-	}
+            // tabtest.this.flipper.
+            break;
+
+        case SimpleGestureFilter.SWIPE_RIGHT:
+
+            if( isSwipeToGroupApossible == true && isSwipeToGroupBpossible == false )
+            {
+                tabtest.this.flipper.setInAnimation( tabtest.this.inFromLeftAnimation() );
+                tabtest.this.flipper.setOutAnimation( tabtest.this.outToRightAnimation() );
+                tabtest.this.flipper.showPrevious();
+
+                isSwipeToGroupApossible = false;
+                isSwipeToGroupBpossible = true;
+
+                final Button superEightA = (Button) findViewById( R.id.Button0001 );
+                final Button superEightB = (Button) findViewById( R.id.Button0002 );
+
+                superEightA.setBackgroundDrawable( getResources().getDrawable( R.drawable.titleback ) );
+                superEightB.setBackgroundDrawable( getResources().getDrawable( R.drawable.titlebackselected ) );
+
+            }
+
+            break;
+        }
+
+    }
+
+    public void onDoubleTap()
+    {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onAnimationEnd( Animation animation )
+    {
+        // TODO Auto-generated method stub
+        ViewUtils.printView( "menu", menu );
+        menuOut = !menuOut;
+        if( !menuOut )
+        {
+            menu.setVisibility( View.INVISIBLE );
+        }
+
+    }
+
+    @Override
+    public void onAnimationRepeat( Animation animation )
+    {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onAnimationStart( Animation animation )
+    {
+        // TODO Auto-generated method stub
+
+    }
+
+    public class upcomingAdapter extends CursorAdapter
+    {
+        private LayoutInflater inflater;
+
+        public upcomingAdapter( Context context, Cursor c, boolean autoRequery )
+        {
+            super( context, c, autoRequery );
+            // TODO Auto-generated constructor stub
+            inflater = LayoutInflater.from( context );
+        }
+
+        @Override
+        public void bindView( View view, Context context, Cursor cursor )
+        {
+            ImageView imgTeamA = (ImageView) view.findViewById( R.id.upcoming_TeamAicon );
+            ImageView imgTeamB = (ImageView) view.findViewById( R.id.upcoming_TeamBicon );
+
+            TextView TeamAName = (TextView) view.findViewById( R.id.upcoming_TeamAName );
+            TextView TeamBName = (TextView) view.findViewById( R.id.upcoming_TeamBName );
+
+            TextView txtdate = (TextView) view.findViewById( R.id.upcoming_date );
+            TextView txttime = (TextView) view.findViewById( R.id.upcoming_time );
+            TextView txtvenue = (TextView) view.findViewById( R.id.upcoming_venue );
+
+            String szTeamA = cursor.getString( cursor.getColumnIndex( "TeamA" ) );
+            imgTeamA.setImageResource( drawable.getIcon( szTeamA ) );
+
+            String szTeamB = cursor.getString( cursor.getColumnIndex( "TeamB" ) );
+            imgTeamB.setImageResource( drawable.getIcon( szTeamB ) );
+
+            TeamAName.setText( szTeamA );
+            TeamBName.setText( szTeamB );
+
+            String strDt = cursor.getString( cursor.getColumnIndex( "Date" ) ).trim();
+            String[] strarr = strDt.split( " " );
+            txtdate.setText( strarr[0].trim() + " " + drawable.getMonthName( strarr[1] ) + " (" + cursor.getString( cursor.getColumnIndex( "Other1" ) ).trim() + ")" );
+            String time = cursor.getString( cursor.getColumnIndex( "GMT" ) ).trim();
+
+            txttime.setText( time + " GMT" );
+            txtvenue.setText( cursor.getString( cursor.getColumnIndex( "Venue" ) ).trim() );
+
+        }
+
+        @Override
+        public View newView( Context context, Cursor cursor, ViewGroup parent )
+        {
+            // TODO Auto-generated method stub
+            View view = inflater.inflate( R.layout.upcoming_row, parent, false );
+            return view;
+        }
+
+    }
 
 }

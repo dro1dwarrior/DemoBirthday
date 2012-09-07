@@ -84,7 +84,7 @@
                     android:id="@+id/layout"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:isScrollContainer="true" >
 
                     <ListView
@@ -92,6 +92,8 @@
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:cacheColorHint="@android:color/transparent"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
                         android:listSelector="@android:color/transparent" >
                     </ListView>
                 </LinearLayout>
