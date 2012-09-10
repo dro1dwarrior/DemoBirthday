@@ -319,8 +319,8 @@ public class tabtest extends Activity implements AnimationListener {
 				if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
 						&& Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY
 						&& (isSwipeToGroupApossible == false && isSwipeToGroupBpossible == true)) {
-					flipper.setInAnimation(inFromLeftAnimation());
-					flipper.setOutAnimation(outToRightAnimation());
+					flipper.setInAnimation(inFromRightAnimation());
+					flipper.setOutAnimation(outToLeftAnimation());
 					flipper.showNext();
 					isSwipeToGroupApossible = true;
 					isSwipeToGroupBpossible = false;
@@ -335,8 +335,8 @@ public class tabtest extends Activity implements AnimationListener {
 				} else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
 						&& Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY
 						&& (isSwipeToGroupApossible == true && isSwipeToGroupBpossible == false)) {
-					flipper.setInAnimation(inFromRightAnimation());
-					flipper.setOutAnimation(outToLeftAnimation());
+					flipper.setInAnimation(inFromLeftAnimation());
+					flipper.setOutAnimation(outToRightAnimation());
 					flipper.showPrevious();
 
 					isSwipeToGroupApossible = false;
@@ -444,7 +444,8 @@ public class tabtest extends Activity implements AnimationListener {
 		@Override
 		public View newView(Context context, Cursor cursor, ViewGroup parent) {
 			// TODO Auto-generated method stub
-			View view = inflater.inflate(R.layout.upcoming_row_2, parent, false);
+			View view = inflater
+					.inflate(R.layout.upcoming_row_2, parent, false);
 			return view;
 		}
 
