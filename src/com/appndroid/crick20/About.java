@@ -62,7 +62,7 @@ public class About extends Activity
                 // TODO Auto-generated method stub
                 Intent i = new Intent( Intent.ACTION_SEND );
                 i.setType( "message/rfc822" );
-                i.putExtra( Intent.EXTRA_EMAIL, new String[] { "ipltwenty12@gmail.com" } );
+                i.putExtra( Intent.EXTRA_EMAIL, new String[] { "appndroidt20worldcup@gmail.com" } );
                 i.putExtra( Intent.EXTRA_SUBJECT, "feedback" );
                 i.putExtra( Intent.EXTRA_TEXT, etMessage.getText().toString().trim() );
                 try
