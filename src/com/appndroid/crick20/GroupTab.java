@@ -38,7 +38,7 @@ public class GroupTab extends TabActivity {
 			Intent localIntent1 = new Intent().setClass(this, GroupDetail.class);
 
 			localIntent1.putExtra("teamnames",
-					"Group A - saldasdlk halksd lsahdlksadl kasdlk sad");
+					"Group A - India , England , Afghanistan");
 			localIntent1.putExtra("group","GroupA");
 			spec1 = tabHost.newTabSpec("Group A").setIndicator(localView1)
 					.setContent(localIntent1);
@@ -51,7 +51,7 @@ public class GroupTab extends TabActivity {
 					.setImageResource(R.drawable.ic_tab_b);
 			Intent localIntent2 = new Intent().setClass(this, GroupDetail.class);
 			localIntent2.putExtra("teamnames",
-					"Group B - saldasdlk halksd lsahdlksadl kasdlk sad");
+					"Group B - Australia , West Indies , Ireland");
 			localIntent2.putExtra("group","GroupB");
 			spec2 = tabHost.newTabSpec("Group B").setIndicator(localView2)
 					.setContent(localIntent2);
@@ -64,7 +64,7 @@ public class GroupTab extends TabActivity {
 					.setImageResource(R.drawable.ic_tab_c);
 			Intent localIntent3 = new Intent().setClass(this, GroupDetail.class);
 			localIntent3.putExtra("teamnames",
-					"Group C - saldasdlk halksd lsahdlksadl kasdlk sad");
+					"Group C - Sri Lanka , South Africa , Zimbabwe");
 			localIntent3.putExtra("group","GroupC");
 			spec3 = tabHost.newTabSpec("Group C").setIndicator(localView3)
 					.setContent(localIntent3);
@@ -77,7 +77,7 @@ public class GroupTab extends TabActivity {
 					.setImageResource(R.drawable.ic_tab_d);
 			Intent localIntent4 = new Intent().setClass(this, GroupDetail.class);
 			localIntent4.putExtra("teamnames",
-					"Group D - saldasdlk halksd lsahdlksadl kasdlk sad");
+					"Group D - New Zealand , Pakistan , Bangladesh");
 			localIntent4.putExtra("group","GroupD");
 			spec4 = tabHost.newTabSpec("Group D").setIndicator(localView4)
 					.setContent(localIntent4);
