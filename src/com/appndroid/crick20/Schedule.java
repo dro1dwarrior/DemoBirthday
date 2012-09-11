@@ -32,12 +32,11 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
-import android.widget.Adapter;
 import android.widget.CursorAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -116,28 +115,42 @@ public class Schedule extends ListActivity implements AnimationListener {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
-				Animation anim;
-				if (!menuOut) {
-					navigationImage
-							.setBackgroundResource(R.drawable.navigationselected);
-					menu.setVisibility(View.VISIBLE);
-					ViewUtils.printView("menu", menu);
-					anim = AnimationUtils.loadAnimation(Schedule.this,
-							R.anim.push_right_in);
-				} else {
-					navigationImage
-							.setBackgroundResource(R.drawable.navigationunselected);
-					anim = AnimationUtils.loadAnimation(Schedule.this,
-							R.anim.push_left_out);
-				}
-				anim.setAnimationListener(Schedule.this);
-				// out.setAnimationListener(me);
-				menu.startAnimation(anim);
-
+//				Animation anim;
+//				if (!menuOut) {
+//					navigationImage
+//							.setBackgroundResource(R.drawable.navigationselected);
+//					menu.setVisibility(View.VISIBLE);
+//					ViewUtils.printView("menu", menu);
+//					anim = AnimationUtils.loadAnimation(Schedule.this,
+//							R.anim.push_right_in);
+//				} else {
+//					navigationImage
+//							.setBackgroundResource(R.drawable.navigationunselected);
+//					anim = AnimationUtils.loadAnimation(Schedule.this,
+//							R.anim.push_left_out);
+//				}
+//				anim.setAnimationListener(Schedule.this);
+//				// out.setAnimationListener(me);
+//				menu.startAnimation(anim);
+				callEvent();
+//
 			}
 		});
 
 	}
+	
+	MenuDialog menuDialog;
+
+	public void callEvent() {
+
+		if (menuDialog == null) {
+
+			menuDialog = new MenuDialog(this, "schedule");
+		}
+
+		menuDialog.show();
+	}
+
 
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
