@@ -289,8 +289,8 @@ public class tabtest extends Activity implements AnimationListener {
 		m_cursor1.moveToFirst();
 		m_adapter1 = new upcomingAdapter(this, m_cursor1, true);
 		upcominglv1.setAdapter(m_adapter1);
-		Log.d("cursor", "cursor count is " + m_cursor.getCount() + "-"
-				+ m_cursor1.getCount());
+		//Log.d("cursor", "cursor count is " + m_cursor.getCount() + "-"
+				//+ m_cursor1.getCount());
 		if (menuOut) {
 			menu.setVisibility(View.INVISIBLE);
 			menuOut = false;

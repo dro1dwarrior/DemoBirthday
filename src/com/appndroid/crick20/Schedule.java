@@ -60,6 +60,7 @@ public class Schedule extends ListActivity implements AnimationListener {
 	boolean menuOut = false;
 	Animation anim;
 	ImageView navigationImage;
+	static int listItemToSelect = -1;
 
 	private static final int GROUP_TABLE = Menu.FIRST;
 	private static final int SUPER8 = 2;
@@ -221,6 +222,23 @@ public class Schedule extends ListActivity implements AnimationListener {
 		m_cursor.moveToFirst();
 		m_adapter = new scheduleAdapter(this, m_cursor, true);
 		setListAdapter(m_adapter);
+		m_cursor.moveToFirst();
+		Date d = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat( "dd MM yyyy" );
+        String currentDate = dateFormat.format( d );
+        boolean isSelected = false;
+		do{
+			String date=m_cursor.getString(m_cursor.getColumnIndex("Date")).trim();
+			if( date.equals( currentDate ) && !isSelected )
+            {
+                listItemToSelect = m_cursor.getPosition();
+                isSelected = true;
+                break;
+            }
+			
+		}while(m_cursor.moveToNext());
+		if(listItemToSelect>-1)
+			lv.setSelection(listItemToSelect);
 	}
 
 	@Override
@@ -263,10 +281,10 @@ public class Schedule extends ListActivity implements AnimationListener {
 			TextView txtgroup = (TextView) view
 					.findViewById(R.id.textview_group);
 
-			if (cursor.getString(cursor.getColumnIndex("gang")).contains("SE"))
+			if (cursor.getString(cursor.getColumnIndex("gang")).contains("1")||cursor.getString(cursor.getColumnIndex("gang")).contains("2"))
 				txtgroup.setText("Super Eight's");
 			else
-				txtgroup.setText(cursor.getString(cursor.getColumnIndex("gang")));
+				txtgroup.setText(cursor.getString(cursor.getColumnIndex("gang")).replace("Group","Group "));
 			String time = cursor.getString(cursor.getColumnIndex("GMT"));
 
 			SimpleDateFormat df1 = new SimpleDateFormat("HH:mm:ss");
@@ -294,7 +312,7 @@ public class Schedule extends ListActivity implements AnimationListener {
 					+ drawable.getTeamShortCode(szTeamB));
 			txttime.setText(cursor.getString(cursor.getColumnIndex("Venue")));
 
-			String strDt = cursor.getString(cursor.getColumnIndex("Date"));
+			String strDt = cursor.getString(cursor.getColumnIndex("Date")).trim();
 			String[] strarr = strDt.split(" ");
 			txtdate.setText(strarr[0] + " " + drawable.getMonthName(strarr[1])
 					+ " (" + cursor.getString(cursor.getColumnIndex("Other1"))

@@ -76,7 +76,7 @@ public class GroupDetail extends ListActivity implements AnimationListener
         // }
         db = openOrCreateDatabase( "worldcupt20.db", SQLiteDatabase.CREATE_IF_NECESSARY, null );
         m_cursor = db.rawQuery( "select * from schedule where gang ='" + getIntent().getExtras().getString( "group" ) + "' AND WinnerTeam =''", null );
-        Log.d( "cursor count", "" + m_cursor.getCount() );
+        //Log.d( "cursor count", "" + m_cursor.getCount() );
         // RelativeLayout tv=(RelativeLayout)findViewById(R.id.upcominglayout);
         // RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
         // RelativeLayout.LayoutParams.WRAP_CONTENT, m_cursor.getCount()*95);
