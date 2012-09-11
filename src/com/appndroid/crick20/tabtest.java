@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
@@ -103,6 +104,7 @@ public class tabtest extends Activity implements AnimationListener {
 	public void onCreate(Bundle paramBundle) {
 		super.onCreate(paramBundle);
 		drawable = new getDrawable();
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.infoflipper_layout);
 		flipper = ((ViewFlipper) findViewById(R.id.flip));
 

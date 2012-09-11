@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
+import android.view.Window;
 import android.widget.ImageView;
 
 public class FlagsActivity extends Activity
@@ -26,6 +27,7 @@ public class FlagsActivity extends Activity
     public void onCreate( Bundle savedInstanceState )
     {
         super.onCreate( savedInstanceState );
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView( R.layout.groupsplash );
 
         new CopyDBTask().execute();

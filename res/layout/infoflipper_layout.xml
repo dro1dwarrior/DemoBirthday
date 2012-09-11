@@ -17,7 +17,7 @@
             android:id="@+id/Button0001"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+            android:layout_weight="0.45"
             android:background="@drawable/header_bar"
             android:ellipsize="marquee"
             android:text="Super-8 Group A"
@@ -28,7 +28,7 @@
             android:id="@+id/Button0002"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+            android:layout_weight="0.45"
             android:background="@drawable/titleback"
             android:ellipsize="marquee"
             android:text="Super-8 Group B"
@@ -39,6 +39,7 @@
             android:id="@+id/nav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="0.1"
             android:layout_alignParentRight="true"
             android:background="@drawable/navigationunselected" />
     </LinearLayout>
