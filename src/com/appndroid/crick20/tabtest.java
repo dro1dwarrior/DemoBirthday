@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -218,28 +219,41 @@ public class tabtest extends Activity implements AnimationListener {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
-				Animation anim;
-				if (!menuOut) {
-					navigationImage
-							.setBackgroundResource(R.drawable.navigationselected);
-					menu.setVisibility(View.VISIBLE);
-					ViewUtils.printView("menu", menu);
-					anim = AnimationUtils.loadAnimation(tabtest.this,
-							R.anim.push_right_in);
-				} else {
-					navigationImage
-							.setBackgroundResource(R.drawable.navigationunselected);
-					anim = AnimationUtils.loadAnimation(tabtest.this,
-							R.anim.push_left_out);
-				}
-				anim.setAnimationListener(tabtest.this);
-				// out.setAnimationListener(me);
-				menu.startAnimation(anim);
-
+//				Animation anim;
+//				if (!menuOut) {
+//					navigationImage
+//							.setBackgroundResource(R.drawable.navigationselected);
+//					menu.setVisibility(View.VISIBLE);
+//					ViewUtils.printView("menu", menu);
+//					anim = AnimationUtils.loadAnimation(tabtest.this,
+//							R.anim.push_right_in);
+//				} else {
+//					navigationImage
+//							.setBackgroundResource(R.drawable.navigationunselected);
+//					anim = AnimationUtils.loadAnimation(tabtest.this,
+//							R.anim.push_left_out);
+//				}
+//				anim.setAnimationListener(tabtest.this);
+//				// out.setAnimationListener(me);
+//				menu.startAnimation(anim);
+//
+				callEvent();
 			}
+				
 		});
 
 	}
+		MenuDialog menuDialog;
+
+		public void callEvent() {
+
+			//if (menuDialog == null) {
+
+				menuDialog = new MenuDialog(this, "standings");
+			//}
+
+			menuDialog.show();
+		}
 
 	public int getDataFromDB(String groupName) {
 
@@ -266,6 +280,14 @@ public class tabtest extends Activity implements AnimationListener {
 				to, "currentStats");
 		lst.setAdapter(adapter);
 
+	}
+	
+	@Override
+	public boolean onKeyUp(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if(keyCode== KeyEvent.KEYCODE_MENU)
+			callEvent();
+		return super.onKeyUp(keyCode, event);
 	}
 
 	@Override

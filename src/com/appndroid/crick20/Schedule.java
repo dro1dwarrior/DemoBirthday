@@ -143,10 +143,10 @@ public class Schedule extends ListActivity implements AnimationListener {
 
 	public void callEvent() {
 
-		if (menuDialog == null) {
+		//if (menuDialog == null) {
 
 			menuDialog = new MenuDialog(this, "schedule");
-		}
+		//}
 
 		menuDialog.show();
 	}
@@ -155,68 +155,67 @@ public class Schedule extends ListActivity implements AnimationListener {
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		// TODO Auto-generated method stub
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			if (menuOut) {
-				anim = AnimationUtils.loadAnimation(Schedule.this,
-						R.anim.push_left_out);
-				anim.setAnimationListener(Schedule.this);
-				menu.startAnimation(anim);
-
-				navigationImage
-						.setBackgroundResource(R.drawable.navigationunselected);
-				return false;
-			} else
-				return super.onKeyUp(keyCode, event);
-
-		}
+//		if (keyCode == KeyEvent.KEYCODE_BACK) {
+//			if (menuOut) {
+//				anim = AnimationUtils.loadAnimation(Schedule.this,
+//						R.anim.push_left_out);
+//				anim.setAnimationListener(Schedule.this);
+//				menu.startAnimation(anim);
+//
+//				navigationImage
+//						.setBackgroundResource(R.drawable.navigationunselected);
+//				return false;
+//			} 
+		if(keyCode== KeyEvent.KEYCODE_MENU)
+			callEvent();
 		return super.onKeyUp(keyCode, event);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		super.onCreateOptionsMenu(menu);
-		try {
-			menu.add(0, GROUP_TABLE, 0, "Group Table").setShortcut('2', 'a')
-					.setIcon(android.R.drawable.ic_menu_my_calendar);
-			menu.add(0, SUPER8, 0, "Super 8").setIcon(
-					android.R.drawable.ic_menu_my_calendar);
-			menu.add(0, ABOUT, 0, "About").setIcon(
-					android.R.drawable.ic_menu_info_details);
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-
-		try {
-			switch (item.getItemId()) {
-
-			case GROUP_TABLE:
-				Intent intent3 = new Intent(this, GroupTab.class);
-				startActivity(intent3);
-				return true;
-
-			case SUPER8:
-				Intent intent4 = new Intent(this, tabtest.class);
-				startActivity(intent4);
-				return true;
-
-			case ABOUT:
-				Intent i = new Intent(this, About.class);
-				startActivity(i);
-				return true;
-			}
-		} catch (Exception e) {
-
-			System.out.println(e.toString() + item.getItemId());
-			return false;
-		}
-
-		return super.onOptionsItemSelected(item);
-	}
+//	@Override
+//	public boolean onCreateOptionsMenu(Menu menu) {
+//		super.onCreateOptionsMenu(menu);
+//		try {
+//			menu.add(0, GROUP_TABLE, 0, "Group Table").setShortcut('2', 'a')
+//					.setIcon(android.R.drawable.ic_menu_my_calendar);
+//			menu.add(0, SUPER8, 0, "Super 8").setIcon(
+//					android.R.drawable.ic_menu_my_calendar);
+//			menu.add(0, ABOUT, 0, "About").setIcon(
+//					android.R.drawable.ic_menu_info_details);
+//		} catch (Exception e) {
+//			System.out.println(e.toString());
+//		}
+//		return true;
+//	}
+//
+//	@Override
+//	public boolean onOptionsItemSelected(MenuItem item) {
+//
+//		try {
+//			switch (item.getItemId()) {
+//
+//			case GROUP_TABLE:
+//				Intent intent3 = new Intent(this, GroupTab.class);
+//				startActivity(intent3);
+//				return true;
+//
+//			case SUPER8:
+//				Intent intent4 = new Intent(this, tabtest.class);
+//				startActivity(intent4);
+//				return true;
+//
+//			case ABOUT:
+//				Intent i = new Intent(this, About.class);
+//				startActivity(i);
+//				return true;
+//			}
+//		} catch (Exception e) {
+//
+//			System.out.println(e.toString() + item.getItemId());
+//			return false;
+//		}
+//
+//		return super.onOptionsItemSelected(item);
+//	}
 
 	@Override
 	protected void onDestroy() {
@@ -224,6 +223,17 @@ public class Schedule extends ListActivity implements AnimationListener {
 		if (db != null)
 			db.close();
 	};
+	
+	@Override
+	protected void onRestart() {
+		// TODO Auto-generated method stub
+		Log.d("schedule","on restart");
+		super.onRestart();
+		db = openOrCreateDatabase("worldcupt20.db",
+				SQLiteDatabase.CREATE_IF_NECESSARY, null);
+		m_cursor = db.rawQuery("select * from schedule", null);
+		
+	}
 
 	@Override
 	protected void onResume() {
@@ -233,7 +243,7 @@ public class Schedule extends ListActivity implements AnimationListener {
 				SQLiteDatabase.CREATE_IF_NECESSARY, null);
 		m_cursor = db.rawQuery("select * from schedule", null);
 		m_cursor.moveToFirst();
-		m_adapter = new scheduleAdapter(this, m_cursor, true);
+		m_adapter = new scheduleAdapter(this, m_cursor, false);
 		setListAdapter(m_adapter);
 		m_cursor.moveToFirst();
 		Date d = new Date();
@@ -265,7 +275,6 @@ public class Schedule extends ListActivity implements AnimationListener {
 		if (m_cursor != null)
 			m_cursor.requery();
 		if (lv != null) {
-			lv.invalidateViews();
 			lv.invalidate();
 		}
 	}

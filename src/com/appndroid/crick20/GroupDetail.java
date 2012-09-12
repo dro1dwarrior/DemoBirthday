@@ -120,24 +120,25 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
-				Animation anim;
-				if (!menuOut) {
-					navigationImage
-							.setBackgroundResource(R.drawable.navigationselected);
-					menu.setVisibility(View.VISIBLE);
-					ViewUtils.printView("menu", menu);
-					anim = AnimationUtils.loadAnimation(GroupDetail.this,
-							R.anim.push_right_in);
-				} else {
-					navigationImage
-							.setBackgroundResource(R.drawable.navigationunselected);
-					anim = AnimationUtils.loadAnimation(GroupDetail.this,
-							R.anim.push_left_out);
-				}
-				anim.setAnimationListener(GroupDetail.this);
-				// out.setAnimationListener(me);
-				menu.startAnimation(anim);
-
+//				Animation anim;
+//				if (!menuOut) {
+//					navigationImage
+//							.setBackgroundResource(R.drawable.navigationselected);
+//					menu.setVisibility(View.VISIBLE);
+//					ViewUtils.printView("menu", menu);
+//					anim = AnimationUtils.loadAnimation(GroupDetail.this,
+//							R.anim.push_right_in);
+//				} else {
+//					navigationImage
+//							.setBackgroundResource(R.drawable.navigationunselected);
+//					anim = AnimationUtils.loadAnimation(GroupDetail.this,
+//							R.anim.push_left_out);
+//				}
+//				anim.setAnimationListener(GroupDetail.this);
+//				// out.setAnimationListener(me);
+//				menu.startAnimation(anim);
+//
+				callEvent();
 			}
 		});
 
@@ -162,33 +163,33 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 		mFrameLayout = (FrameLayout) this.findViewById(R.id.flipper);
 		menu = mFrameLayout.findViewById(R.id.menu);
 
-		final ImageView navigationImage = (ImageView) findViewById(R.id.nav);
-		navigationImage.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-
-				Animation anim;
-				if (!menuOut) {
-					navigationImage
-							.setBackgroundResource(R.drawable.navigationselected);
-					menu.setVisibility(View.VISIBLE);
-					ViewUtils.printView("menu", menu);
-					anim = AnimationUtils.loadAnimation(GroupDetail.this,
-							R.anim.push_right_in);
-				} else {
-					navigationImage
-							.setBackgroundResource(R.drawable.navigationunselected);
-					anim = AnimationUtils.loadAnimation(GroupDetail.this,
-							R.anim.push_left_out);
-				}
-				anim.setAnimationListener(GroupDetail.this);
-				// out.setAnimationListener(me);
-				menu.startAnimation(anim);
-
-			}
-		});
+//		final ImageView navigationImage = (ImageView) findViewById(R.id.nav);
+//		navigationImage.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//
+//				Animation anim;
+//				if (!menuOut) {
+//					navigationImage
+//							.setBackgroundResource(R.drawable.navigationselected);
+//					menu.setVisibility(View.VISIBLE);
+//					ViewUtils.printView("menu", menu);
+//					anim = AnimationUtils.loadAnimation(GroupDetail.this,
+//							R.anim.push_right_in);
+//				} else {
+//					navigationImage
+//							.setBackgroundResource(R.drawable.navigationunselected);
+//					anim = AnimationUtils.loadAnimation(GroupDetail.this,
+//							R.anim.push_left_out);
+//				}
+//				anim.setAnimationListener(GroupDetail.this);
+//				// out.setAnimationListener(me);
+//				menu.startAnimation(anim);
+//
+//			}
+//		});
 
 		// Context context = getApplicationContext();
 		// LayoutInflater inflater = getLayoutInflater();
@@ -218,49 +219,65 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 		return cur.getCount();
 
 	}
+	
+	MenuDialog menuDialog;
+
+	public void callEvent() {
+
+		//if (menuDialog == null) {
+
+			menuDialog = new MenuDialog(this, "standings");
+		//}
+
+		menuDialog.show();
+	}
+
 
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		// TODO Auto-generated method stub
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			if (menuOut) {
-				anim = AnimationUtils.loadAnimation(GroupDetail.this,
-						R.anim.push_left_out);
-				anim.setAnimationListener(GroupDetail.this);
-				menu.startAnimation(anim);
-
-				navigationImage
-						.setBackgroundResource(R.drawable.navigationunselected);
-				return false;
-			} else
-				return super.onKeyUp(keyCode, event);
-
-		} else if (keyCode == KeyEvent.KEYCODE_MENU) {
-			if (menuOut) {
-
-				anim = AnimationUtils.loadAnimation(GroupDetail.this,
-						R.anim.push_right_in);
-				anim.setAnimationListener(GroupDetail.this);
-				menu.startAnimation(anim);
-
-				navigationImage
-						.setBackgroundResource(R.drawable.navigationselected);
-				return false;
-
-			}
-			else
-			{
-				anim = AnimationUtils.loadAnimation(GroupDetail.this,
-						R.anim.push_left_out);
-				anim.setAnimationListener(GroupDetail.this);
-				menu.startAnimation(anim);
-
-				navigationImage
-						.setBackgroundResource(R.drawable.navigationunselected);
-				return false;
-			}
-		}
-		return false;
+//		if (keyCode == KeyEvent.KEYCODE_BACK) {
+//			if (menuOut) {
+//				anim = AnimationUtils.loadAnimation(GroupDetail.this,
+//						R.anim.push_left_out);
+//				anim.setAnimationListener(GroupDetail.this);
+//				menu.startAnimation(anim);
+//
+//				navigationImage
+//						.setBackgroundResource(R.drawable.navigationunselected);
+//				return false;
+//			} else
+//				return super.onKeyUp(keyCode, event);
+//
+//		} else if (keyCode == KeyEvent.KEYCODE_MENU) {
+//			if (menuOut) {
+//
+//				anim = AnimationUtils.loadAnimation(GroupDetail.this,
+//						R.anim.push_right_in);
+//				anim.setAnimationListener(GroupDetail.this);
+//				menu.startAnimation(anim);
+//
+//				navigationImage
+//						.setBackgroundResource(R.drawable.navigationselected);
+//				return false;
+//
+//			}
+//			else
+//			{
+//				anim = AnimationUtils.loadAnimation(GroupDetail.this,
+//						R.anim.push_left_out);
+//				anim.setAnimationListener(GroupDetail.this);
+//				menu.startAnimation(anim);
+//
+//				navigationImage
+//						.setBackgroundResource(R.drawable.navigationunselected);
+//				return false;
+//			}
+//		}
+//		return false;
+		if(keyCode== KeyEvent.KEYCODE_MENU)
+			callEvent();
+		return super.onKeyUp(keyCode, event);
 	}
 
 	@Override

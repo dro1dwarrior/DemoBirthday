@@ -47,7 +47,7 @@ public class HomeScreen extends Activity{
 				// TODO Auto-generated method stub
 
 				    Intent schIntent = new Intent(mcontext,
-							GroupTab.class);
+							tabtest.class);
 					schIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					schIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					mcontext.startActivity(schIntent);

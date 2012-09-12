@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -35,7 +36,7 @@ public class MenuDialog extends AlertDialog {
 
 		// http://overoid.tistory.com/29
 
-		scheduleClick = (ImageView) menu.findViewById(R.id.dlgSettings_img);
+		scheduleClick = (ImageView) menu.findViewById(R.id.dlgSch_img);
 
 		// scheduleClick.setBackgroundDrawable(d);
 
@@ -48,8 +49,9 @@ public class MenuDialog extends AlertDialog {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-
+				Log.d("Menu dialog","before if"+schActivity);
 				if (schActivity.equals("schedule")) {
+					Log.d("Menu dialog","inside if"+schActivity);
 					schActivity = "";
 					dismiss();
 
@@ -77,7 +79,8 @@ public class MenuDialog extends AlertDialog {
 
 				} else {
 
-					Intent schIntent = new Intent(mcontext, GroupTab.class);
+					Intent schIntent ;
+					schIntent= new Intent(mcontext, GroupTab.class);
 					mcontext.startActivity(schIntent);
 					dismiss();
 				}

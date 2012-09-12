@@ -17,6 +17,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -28,9 +29,12 @@ public class NetworkManager {
 	public static boolean isNetworkConnection = false;
 	public static boolean isDataFetched = false;
 	public static String isAvailable = "false", serverName = "";
+	SQLiteDatabase db;
 
 	public NetworkManager(Context context) {
 		mContext = context;
+		Utils.getDB(mContext);
+		db = Utils.db;
 	}
 
 	public String generateString(InputStream stream) {
@@ -122,7 +126,7 @@ public class NetworkManager {
 				String winnerTeam = "", matchResult = "", teamAscore = "", teamBscore = "", manofthematch = "", other1 = "", other2 = "", other3 = "";
 
 				int pointTableID = 1;
-				String Team = "", Played = "", Won = "", Lost = "", NoResult = "", Points = "", NetRunRate = "",Position="";
+				String Team = "", Played = "", Won = "", Lost = "", NoResult = "", Points = "", NetRunRate = "", Position = "";
 
 				String A1 = "", A2 = "", B1 = "", B2 = "", C1 = "", C2 = "", D1 = "", D2 = "";
 				String TeamA = "", TeamB = "", matchType = "";
@@ -296,10 +300,8 @@ public class NetworkManager {
 									NetRunRate = (xpp
 											.getAttributeValue(attrCnt)
 											.toString());
-								}
-								else if (key.equals("Standing")) {
-									Position = (xpp
-											.getAttributeValue(attrCnt)
+								} else if (key.equals("Standing")) {
+									Position = (xpp.getAttributeValue(attrCnt)
 											.toString());
 								}
 
@@ -351,7 +353,7 @@ public class NetworkManager {
 							values.put("teamBscore", teamBscore);
 							values.put("manofthematch", manofthematch);
 
-							int i = Schedule.db
+							int i = db
 									.update("schedule", values, "_id=?",
 											new String[] { Long
 													.toString(matchnumber) });
@@ -400,15 +402,13 @@ public class NetworkManager {
 							values.put("Points", Points);
 							values.put("NetRunRate", NetRunRate);
 
-							 int i = Schedule.db
-							 .update(currentTag, values, "_id=?",
-							 new String[] { Position });
-							
-							 Log.d("POINT TABLE DBUPDATE",
-							 " Records update : "
-							 + String.valueOf(i));
+							int i = db.update(currentTag, values,
+									"_id=?", new String[] { Position });
 
-							//pointTableID++;
+							Log.d("POINT TABLE DBUPDATE", " Records update : "
+									+ String.valueOf(i));
+
+							// pointTableID++;
 
 						} else if (currentTag
 								.equalsIgnoreCase("orangeCapHolder")) {
@@ -462,13 +462,13 @@ public class NetworkManager {
 								values.clear();
 								values.put("TeamA", A1);
 
-								int i = Schedule.db.update("schedule", values,
+								int i = db.update("schedule", values,
 										"TeamA=?", new String[] { "A1" });
 
 								values.clear();
 								values.put("TeamB", A1);
 
-								i = Schedule.db.update("schedule", values,
+								i = db.update("schedule", values,
 										"TeamB=?", new String[] { "A1" });
 
 								values.clear();
@@ -477,13 +477,13 @@ public class NetworkManager {
 								values.clear();
 								values.put("TeamA", B1);
 
-								int i = Schedule.db.update("schedule", values,
+								int i = db.update("schedule", values,
 										"TeamA=?", new String[] { "B1" });
 
 								values.clear();
 								values.put("TeamB", B1);
 
-								i = Schedule.db.update("schedule", values,
+								i = db.update("schedule", values,
 										"TeamB=?", new String[] { "B1" });
 
 								values.clear();
@@ -493,13 +493,13 @@ public class NetworkManager {
 								values.clear();
 								values.put("TeamA", C1);
 
-								int i = Schedule.db.update("schedule", values,
+								int i = db.update("schedule", values,
 										"TeamA=?", new String[] { "C1" });
 
 								values.clear();
 								values.put("TeamB", C1);
 
-								i = Schedule.db.update("schedule", values,
+								i = db.update("schedule", values,
 										"TeamB=?", new String[] { "C1" });
 
 								values.clear();
@@ -508,13 +508,13 @@ public class NetworkManager {
 								values.clear();
 								values.put("TeamA", D1);
 
-								int i = Schedule.db.update("schedule", values,
+								int i = db.update("schedule", values,
 										"TeamA=?", new String[] { "D1" });
 
 								values.clear();
 								values.put("TeamB", D1);
 
-								i = Schedule.db.update("schedule", values,
+								i = db.update("schedule", values,
 										"TeamB=?", new String[] { "D1" });
 
 								values.clear();
@@ -523,13 +523,13 @@ public class NetworkManager {
 								values.clear();
 								values.put("TeamA", A2);
 
-								int i = Schedule.db.update("schedule", values,
+								int i = db.update("schedule", values,
 										"TeamA=?", new String[] { "A2" });
 
 								values.clear();
 								values.put("TeamB", A2);
 
-								i = Schedule.db.update("schedule", values,
+								i = db.update("schedule", values,
 										"TeamB=?", new String[] { "A2" });
 
 								values.clear();
@@ -538,13 +538,13 @@ public class NetworkManager {
 								values.clear();
 								values.put("TeamA", B2);
 
-								int i = Schedule.db.update("schedule", values,
+								int i = db.update("schedule", values,
 										"TeamA=?", new String[] { "B2" });
 
 								values.clear();
 								values.put("TeamB", B2);
 
-								i = Schedule.db.update("schedule", values,
+								i = db.update("schedule", values,
 										"TeamB=?", new String[] { "B2" });
 
 								values.clear();
@@ -553,13 +553,13 @@ public class NetworkManager {
 								values.clear();
 								values.put("TeamA", C2);
 
-								int i = Schedule.db.update("schedule", values,
+								int i = db.update("schedule", values,
 										"TeamA=?", new String[] { "C2" });
 
 								values.clear();
 								values.put("TeamB", C2);
 
-								i = Schedule.db.update("schedule", values,
+								i = db.update("schedule", values,
 										"TeamB=?", new String[] { "C2" });
 
 								values.clear();
@@ -568,13 +568,13 @@ public class NetworkManager {
 								values.clear();
 								values.put("TeamA", D2);
 
-								int i = Schedule.db.update("schedule", values,
+								int i = db.update("schedule", values,
 										"TeamA=?", new String[] { "D2" });
 
 								values.clear();
 								values.put("TeamB", D2);
 
-								i = Schedule.db.update("schedule", values,
+								i = db.update("schedule", values,
 										"TeamB=?", new String[] { "D2" });
 
 								values.clear();
@@ -589,7 +589,7 @@ public class NetworkManager {
 								values.put("TeamA", TeamA);
 								values.put("TeamB", TeamB);
 
-								int i = Schedule.db.update("schedule", values,
+								int i = db.update("schedule", values,
 										"Match=?", new String[] { matchType });
 
 							}
