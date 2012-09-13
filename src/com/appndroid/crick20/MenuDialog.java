@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 public class MenuDialog extends AlertDialog {
 
-	ImageView scheduleClick, standingsClick, aboutClick, settingsClick;
+	ImageView scheduleClick, standingsClick, aboutClick, settingsClick,homeClick;
 	Context mcontext;
 	String schActivity = "";
 
@@ -44,6 +44,21 @@ public class MenuDialog extends AlertDialog {
 		settingsClick = (ImageView) menu.findViewById(R.id.dlgSettings_img);
 
 		standingsClick = (ImageView) menu.findViewById(R.id.dlgStandings_img);
+		
+		homeClick=(ImageView)menu.findViewById(R.id.dlgHome_img);
+		homeClick.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent schIntent = new Intent(mcontext, HomeScreen.class);
+				schIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				schIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				mcontext.startActivity(schIntent);
+				dismiss();
+				
+			}
+		});
 
 		scheduleClick.setOnClickListener(new View.OnClickListener() {
 

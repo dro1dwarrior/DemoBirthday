@@ -5,7 +5,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:background="@drawable/layout_bg" >
 
     <ScrollView
         android:id="@+id/scroll"
@@ -17,26 +18,77 @@
             android:layout_height="wrap_content" >
 
             <RelativeLayout
-                android:id="@+id/rel1"
+                android:id="@+id/rel0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp" >
 
                 <ImageView
-                    android:id="@+id/dlgSch_img"
+                    android:id="@+id/dlgHome_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="40dp"
+                    android:src="@drawable/home_ico" />
+
+                <ImageView
+                    android:id="@+id/dlgSch_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
                     android:src="@drawable/ic_schedule" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel00"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rel0"
+                android:layout_marginBottom="5dp" >
+
+                <TextView
+                    android:id="@+id/dlgHomeTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="45dp"
+                    android:text="Home"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/dlgSchTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="16dp"
+                    android:text="Schedule"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rel1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/rel00" >
 
                 <ImageView
                     android:id="@+id/dlgStandings_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="40dp"
+                    android:src="@drawable/stats" />
+
+                <ImageView
+                    android:id="@+id/dlgSettings_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
-                    android:src="@drawable/stats" />
+                    android:src="@drawable/setting" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -47,22 +99,22 @@
                 android:layout_marginBottom="5dp" >
 
                 <TextView
-                    android:id="@+id/dlgSchTxt"
+                    android:id="@+id/dlgStandingsTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="35dp"
-                    android:text="Schedule"
+                    android:text="Points Table"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/dlgStandingsTxt"
+                    android:id="@+id/dlgSettingsTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="16dp"
-                    android:text="Points Table"
+                    android:text="Settings"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -75,20 +127,20 @@
                 android:layout_marginTop="10dp" >
 
                 <ImageView
-                    android:id="@+id/dlgSettings_img"
+                    android:id="@+id/dlgAbout_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="40dp"
-                    android:src="@drawable/setting" />
-
-                <ImageView
-                    android:id="@+id/dlgAbout_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
                     android:src="@drawable/about" />
+
+<!--                 <ImageView -->
+<!--                     android:id="" -->
+<!--                     android:layout_width="wrap_content" -->
+<!--                     android:layout_height="wrap_content" -->
+<!--                     android:layout_alignParentRight="true" -->
+<!--                     android:layout_marginRight="20dp" -->
+<!--                     android:src="@drawable/about" /> -->
             </RelativeLayout>
 
             <RelativeLayout
@@ -96,27 +148,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rel7"
-                android:layout_marginBottom="5dp" >
-
-                <TextView
-                    android:id="@+id/dlgSettingsTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="40dp"
-                    android:text="Settings"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold" />
+                android:layout_marginBottom="15dp" >
 
                 <TextView
                     android:id="@+id/dlgAboutTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="21dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="40dp"
                     android:text="About"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold" />
+
+<!--                 <TextView -->
+<!--                     android:id="" -->
+<!--                     android:layout_width="wrap_content" -->
+<!--                     android:layout_height="wrap_content" -->
+<!--                     android:layout_alignParentRight="true" -->
+<!--                     android:layout_marginRight="21dp" -->
+<!--                     android:text="About" -->
+<!--                     android:textColor="#FFFFFF" -->
+<!--                     android:textStyle="bold" /> -->
             </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
