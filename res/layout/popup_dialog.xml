@@ -4,9 +4,8 @@
     style="@style/Theme.menu"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:orientation="horizontal"
-    android:background="@drawable/layout_bg" >
+    android:background="@drawable/layout_bg"
+    android:orientation="horizontal" >
 
     <ScrollView
         android:id="@+id/scroll"
@@ -15,7 +14,8 @@
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical" >
 
             <RelativeLayout
                 android:id="@+id/rel0"
@@ -67,12 +67,13 @@
                     android:textColor="#FFFFFF"
                     android:textStyle="bold" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rel1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_below="@+id/rel00" >
+                android:layout_below="@+id/rel00"
+                android:layout_marginTop="20dp" >
 
                 <ImageView
                     android:id="@+id/dlgStandings_img"
@@ -124,7 +125,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rel2"
-                android:layout_marginTop="10dp" >
+                android:layout_marginTop="20dp" >
 
                 <ImageView
                     android:id="@+id/dlgAbout_img"
@@ -134,42 +135,48 @@
                     android:layout_marginLeft="40dp"
                     android:src="@drawable/about" />
 
-<!--                 <ImageView -->
-<!--                     android:id="" -->
-<!--                     android:layout_width="wrap_content" -->
-<!--                     android:layout_height="wrap_content" -->
-<!--                     android:layout_alignParentRight="true" -->
-<!--                     android:layout_marginRight="20dp" -->
-<!--                     android:src="@drawable/about" /> -->
+                <!-- <ImageView -->
+                <!-- android:id="" -->
+                <!-- android:layout_width="wrap_content" -->
+                <!-- android:layout_height="wrap_content" -->
+                <!-- android:layout_alignParentRight="true" -->
+                <!-- android:layout_marginRight="20dp" -->
+                <!-- android:src="@drawable/about" /> -->
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rel8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rel7"
-                android:layout_marginBottom="15dp" >
+                android:layout_below="@+id/rel7" >
 
                 <TextView
                     android:id="@+id/dlgAboutTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
+                    android:layout_marginBottom="15dp"
                     android:layout_marginLeft="40dp"
                     android:text="About"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold" />
 
-<!--                 <TextView -->
-<!--                     android:id="" -->
-<!--                     android:layout_width="wrap_content" -->
-<!--                     android:layout_height="wrap_content" -->
-<!--                     android:layout_alignParentRight="true" -->
-<!--                     android:layout_marginRight="21dp" -->
-<!--                     android:text="About" -->
-<!--                     android:textColor="#FFFFFF" -->
-<!--                     android:textStyle="bold" /> -->
+                <!-- <TextView -->
+                <!-- android:id="" -->
+                <!-- android:layout_width="wrap_content" -->
+                <!-- android:layout_height="wrap_content" -->
+                <!-- android:layout_alignParentRight="true" -->
+                <!-- android:layout_marginRight="21dp" -->
+                <!-- android:text="About" -->
+                <!-- android:textColor="#FFFFFF" -->
+                <!-- android:textStyle="bold" /> -->
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/emptyText"
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:layout_below="@+id/rel8" />
         </RelativeLayout>
     </ScrollView>
 
