@@ -17,8 +17,11 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 public class NetworkManager {
@@ -472,6 +475,10 @@ public class NetworkManager {
 										"TeamB=?", new String[] { "A1" });
 
 								values.clear();
+								SharedPreferences sp=  PreferenceManager.getDefaultSharedPreferences(mContext);
+								Editor edit = sp.edit();
+								edit.putBoolean("isGroupStage", false);
+								edit.commit();
 							}
 							if (!B1.equals("")) {
 								values.clear();

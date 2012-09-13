@@ -5,7 +5,9 @@ import com.appndroid.crick20.NetworkManager.HttpAsyncConnector;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -58,7 +60,14 @@ public class HomeScreen extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent schIntent = new Intent(mcontext, GroupTab.class);
+				SharedPreferences sp = PreferenceManager
+						.getDefaultSharedPreferences(mcontext);
+				boolean isGroupStage = sp.getBoolean("isGroupStage", true);
+				Intent schIntent;
+				if (isGroupStage)
+					schIntent = new Intent(mcontext, GroupTab.class);
+				else
+					schIntent = new Intent(mcontext, tabtest.class);
 				schIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				schIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				mcontext.startActivity(schIntent);
@@ -90,16 +99,15 @@ public class HomeScreen extends Activity {
 				mcontext.startActivity(schIntent);
 			}
 		});
-		mainIcon=(ImageView) findViewById(R.id.iv_main_icon);
+		mainIcon = (ImageView) findViewById(R.id.iv_main_icon);
 		mainIcon.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		
 
 		// aboutClick = (ImageView) findViewById(R.id.about_img);
 		// settingsClick = (ImageView) findViewById(R.id.settings_img);
