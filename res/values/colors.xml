@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gd_action_bar_tint">#ffa8c24e</color>
+    <color name="gd_action_bar_divider_tint">#77ffffff</color>
+    <color name="SV_color">#ffffffff</color>
+    <color name="FV_color">#ffffffff</color>
+    <color name="Action_bar_color">#ffae4a2d</color>
+    <color name="Red">#fff00000</color>
+    <color name="Match_finished">#fffa3030</color>
+    <color name="Match_in_progress">#ff4d8f13</color>
+    <color name="Match_not_started">#ff4d4d4d</color>
+    <color name="Button_group_selected">#fffcc883</color>
+    <color name="Button_group">#ffffffff</color>
+    <color name="For_player_lv1">#ffe7e7e7</color>
+    <color name="For_player_lv2">#fffafafa</color>
+    <color name="Team_ranking_text_simple">#ffb8b8b8</color>
+    <color name="Team_ranking_text_fav">#ffa66c00</color>
+    <color name="Common_background">#ff889e00</color>
+    <color name="Start_act_elements_pressed">#ffe4f482</color>
+    <color name="Start_act_elements">#00889e00</color>
+    <color name="btn_dialog_disabled">#ffffffff</color>
+    <color name="btn_dialog_enabled">#ff111111</color>
+</resources>
