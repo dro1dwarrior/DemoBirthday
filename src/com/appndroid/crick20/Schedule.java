@@ -53,7 +53,7 @@ public class Schedule extends ListActivity implements AnimationListener {
 	getDrawable drawable;
 	int milli_offset = 0;
 	static ListView lv;
-	private NetworkManager networkmanager;
+	
 	FrameLayout mFrameLayout;
 	View menu;
 	boolean menuOut = false;
@@ -85,16 +85,6 @@ public class Schedule extends ListActivity implements AnimationListener {
 		SharedPreferences sp = PreferenceManager
 				.getDefaultSharedPreferences(this);
 		milli_offset = sp.getInt("offset", 0);
-
-		networkmanager = new NetworkManager(Schedule.this);
-
-		if (!NetworkManager.isDataFetched) {
-
-			HttpAsyncConnector httpConnect = networkmanager.new HttpAsyncConnector();
-			httpConnect
-					.setTaskParams(ApplicationDefines.CommandType.COMMAND_SCHEDULE);
-			httpConnect.execute();
-		}
 
 		drawable = new getDrawable();
 		// SQLiteDatabase db;

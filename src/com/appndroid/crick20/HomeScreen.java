@@ -1,5 +1,7 @@
 package com.appndroid.crick20;
 
+import com.appndroid.crick20.NetworkManager.HttpAsyncConnector;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +18,8 @@ public class HomeScreen extends Activity {
 	LinearLayout scheduleClick, pointsTableClick, aboutClick, settingsClick;
 	ImageView mainIcon;
 	Context mcontext;
-
+	private NetworkManager networkmanager;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -25,6 +28,16 @@ public class HomeScreen extends Activity {
 		setContentView(R.layout.home_new);
 
 		mcontext = this;
+		
+		networkmanager = new NetworkManager(HomeScreen.this);
+
+        if (!NetworkManager.isDataFetched) {
+
+            HttpAsyncConnector httpConnect = networkmanager.new HttpAsyncConnector();
+            httpConnect
+                    .setTaskParams(ApplicationDefines.CommandType.COMMAND_SCHEDULE);
+            httpConnect.execute();
+        }
 
 		scheduleClick = (LinearLayout) findViewById(R.id.ll_schedule);
 		scheduleClick.setOnClickListener(new OnClickListener() {
