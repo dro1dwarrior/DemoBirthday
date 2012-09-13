@@ -3,15 +3,18 @@ package com.appndroid.crick20;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 public class MenuDialog extends AlertDialog {
 
-	ImageView scheduleClick, standingsClick, aboutClick, settingsClick,homeClick;
+	ImageView scheduleClick, standingsClick, aboutClick, settingsClick,
+			homeClick;
 	Context mcontext;
 	String schActivity = "";
 
@@ -44,10 +47,10 @@ public class MenuDialog extends AlertDialog {
 		settingsClick = (ImageView) menu.findViewById(R.id.dlgSettings_img);
 
 		standingsClick = (ImageView) menu.findViewById(R.id.dlgStandings_img);
-		
-		homeClick=(ImageView)menu.findViewById(R.id.dlgHome_img);
+
+		homeClick = (ImageView) menu.findViewById(R.id.dlgHome_img);
 		homeClick.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -56,7 +59,7 @@ public class MenuDialog extends AlertDialog {
 				schIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				mcontext.startActivity(schIntent);
 				dismiss();
-				
+
 			}
 		});
 
@@ -64,9 +67,9 @@ public class MenuDialog extends AlertDialog {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Log.d("Menu dialog","before if"+schActivity);
+				Log.d("Menu dialog", "before if" + schActivity);
 				if (schActivity.equals("schedule")) {
-					Log.d("Menu dialog","inside if"+schActivity);
+					Log.d("Menu dialog", "inside if" + schActivity);
 					schActivity = "";
 					dismiss();
 
@@ -93,9 +96,14 @@ public class MenuDialog extends AlertDialog {
 					dismiss();
 
 				} else {
-
-					Intent schIntent ;
-					schIntent= new Intent(mcontext, GroupTab.class);
+					SharedPreferences sp = PreferenceManager
+							.getDefaultSharedPreferences(mcontext);
+					boolean isGroupStage = sp.getBoolean("isGroupStage", true);
+					Intent schIntent;
+					if (isGroupStage)
+						schIntent = new Intent(mcontext, GroupTab.class);
+					else
+						schIntent = new Intent(mcontext, tabtest.class);
 					mcontext.startActivity(schIntent);
 					dismiss();
 				}
