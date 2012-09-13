@@ -6,12 +6,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -19,6 +21,7 @@ public class HomeScreen extends Activity {
 
 	LinearLayout scheduleClick, pointsTableClick, aboutClick, settingsClick;
 	ImageView mainIcon;
+	WebView webview;
 	Context mcontext;
 	private NetworkManager networkmanager;
 	
@@ -40,6 +43,11 @@ public class HomeScreen extends Activity {
                     .setTaskParams(ApplicationDefines.CommandType.COMMAND_SCHEDULE);
             httpConnect.execute();
         }
+        WebView wv = (WebView) findViewById(R.id.browser_home);
+        wv.getSettings().setJavaScriptEnabled(true);
+        wv.setBackgroundColor(Color.TRANSPARENT);
+        String html = "<html><body style='margin:0;padding:0;'><script type='text/javascript' src='http://ad.leadboltads.net/show_app_ad.js?section_id=475192381'></script></body></html>";
+        wv.loadData(html, "text/html", "utf-8");
 
 		scheduleClick = (LinearLayout) findViewById(R.id.ll_schedule);
 		scheduleClick.setOnClickListener(new OnClickListener() {
