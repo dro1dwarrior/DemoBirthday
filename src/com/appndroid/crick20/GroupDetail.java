@@ -100,7 +100,7 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.airport);
+		setContentView(R.layout.groupdetail);
 
 		drawable = new getDrawable();
 		SharedPreferences sp = PreferenceManager
