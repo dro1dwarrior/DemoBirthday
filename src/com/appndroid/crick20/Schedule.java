@@ -258,7 +258,6 @@ public class Schedule extends ListActivity implements AnimationListener {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		NetworkManager.isDataFetched = false;
 	}
 
 	public static void reloadView(final Context context) {
