@@ -2,15 +2,15 @@ package com.appndroid.crick20;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 public class HomeScreen extends Activity
 {
-
 
     ImageView scheduleClick, pointsTableClick, aboutClick, settingsClick;
     Context mcontext;
@@ -23,6 +23,18 @@ public class HomeScreen extends Activity
         setContentView( R.layout.home_new );
 
         mcontext = this;
+
+        LinearLayout ll1 = (LinearLayout) findViewById( R.id.ll_start_matches );
+        ll1.setOnClickListener( new OnClickListener()
+        {
+
+            @Override
+            public void onClick( View v )
+            {
+                // TODO Auto-generated method stub
+                Log.d( "************", "************" );
+            }
+        } );
         // aboutClick = (ImageView) findViewById(R.id.about_img);
         // settingsClick = (ImageView) findViewById(R.id.settings_img);
         // scheduleClick=(ImageView)findViewById(R.id.sch_img);
