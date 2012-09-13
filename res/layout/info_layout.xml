@@ -8,7 +8,7 @@
     <RelativeLayout
         android:id="@+id/currentStastlayout1"
         android:layout_width="fill_parent"
-        android:layout_height="190dp"
+        android:layout_height="175dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/transparent_background" >
 
@@ -33,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:layout_gravity="center"
-                    android:text=""
+                    android:text="Points Table"
                     android:textColor="#69D2E7"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -72,9 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/currentStastlayout1"
         android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/transparent_background" >
 
         <LinearLayout
@@ -117,14 +115,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_marginTop="5dp"
-                android:isScrollContainer="true" >
+                android:isScrollContainer="false" >
 
                 <ListView
                     android:id="@+id/upcomignlv_group1"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:cacheColorHint="@android:color/transparent"
-                    android:divider="@android:color/transparent"
+                    android:divider="@layout/data_seperator"
+                    android:dividerHeight="2px"
+                    android:scrollbars="vertical"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:listSelector="@android:color/transparent" >

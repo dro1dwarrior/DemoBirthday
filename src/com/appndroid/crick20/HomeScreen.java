@@ -5,10 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 
 public class HomeScreen extends Activity
 {
+
 
     ImageView scheduleClick, pointsTableClick, aboutClick, settingsClick;
     Context mcontext;
@@ -83,5 +85,4 @@ public class HomeScreen extends Activity
         // });
         //
     }
-
 }

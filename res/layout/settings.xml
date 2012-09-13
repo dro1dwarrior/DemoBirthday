@@ -1,11 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/layout_bg"
+    android:orientation="vertical" >
 
-    <TextView
+    <!-- <TextView -->
+    <!-- android:id="@+id/text" -->
+    <!-- android:layout_width="wrap_content" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:text="Settings Page" /> -->
+
+    <LinearLayout
+        android:id="@+id/Linear1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Settings Page" />
+        android:background="#602a2a" >
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="#ffffff"
+            android:text="Live Score Settings" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Linear1"
+        android:layout_marginTop="5dp" >
+
+        <TextView
+            android:id="@+id/lblAutoUpdate"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Live score Auto Update :"
+            android:textColor="#228b22"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/changeDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblAutoUpdate"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="Update duration"
+            android:textColor="#228b22"
+            android:textSize="14dp"
+            android:visibility="gone"
+            >
+        </TextView>
+
+        <ToggleButton
+            android:id="@+id/toggleAutoUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/lblAutoUpdate"
+            android:layout_alignParentRight="true"
+            android:text="ToggleButton" />
+    </RelativeLayout>
+
+</RelativeLayout>

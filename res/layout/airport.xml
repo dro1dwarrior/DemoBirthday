@@ -4,19 +4,15 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <RelativeLayout
+    <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/rel1"
         android:layout_width="fill_parent"
         android:layout_height="45.0dip"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:weightSum="1.0" >
 
-        <ImageView
-            android:id="@+id/nav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/navigationunselected" />
+       
 
         <TextView
             android:id="@+id/title"
@@ -25,7 +21,8 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/nav"
-            android:background="@drawable/header_bar"
+            android:layout_weight="0.9"
+            android:background="@drawable/titleback"
             android:ellipsize="marquee"
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -34,9 +31,18 @@
             android:paddingLeft="20dp"
             android:scrollHorizontally="true"
             android:text="xzczxc xcxzc zxczxcxz c xzc"
-            android:textSize="12.0sp"
+            android:textColor="#69D2E7"
+            android:textSize="16.0sp"
             android:textStyle="bold" />
-    </RelativeLayout>
+        
+         <ImageView
+            android:id="@+id/nav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="0.1"
+            android:background="@drawable/navigationunselected" />
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="fill_parent"

@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,292 +34,379 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class GroupDetail extends ListActivity implements AnimationListener
-{
+public class GroupDetail extends ListActivity implements AnimationListener {
 
-    SQLiteDatabase db;
-    static Cursor m_cursor;
-    static ListAdapter m_adapter;
-    TextView textHeader1;
-    getDrawable drawable;
-    ListView lv;
-    ListView upcominglv;
-    String[] from, from1, from2;
-    int[] to;
-    int milli_offset = 0;
-    fillList ptList;
+	SQLiteDatabase db;
+	static Cursor m_cursor;
+	static ListAdapter m_adapter;
+	TextView textHeader1;
+	getDrawable drawable;
+	ListView lv;
+	ListView upcominglv;
+	String[] from, from1, from2;
+	int[] to;
+	int milli_offset = 0;
+	fillList ptList;
 
-    TabHost m_tabHost;
-    FrameLayout mFrameLayout;
-    View menu;
-    boolean menuOut = false;
-    Animation anim;
+	TabHost m_tabHost;
+	FrameLayout mFrameLayout;
+	View menu;
+	boolean menuOut = false;
+	Animation anim;
+	ImageView navigationImage;
 
-    @Override
-    protected void onResume()
-    {
-        // TODO Auto-generated method stub
-        super.onResume();
-        // ProgressDialog dialog = ProgressDialog.show(GroupDetail.this, "",
-        // "Please wait...", true);
-        // fillRecordTask task = new fillRecordTask();
-        // task.dialog = dialog;
-        // task.execute();
-        int recordCount = getDataFromDB();
-        fillData();
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		// ProgressDialog dialog = ProgressDialog.show(GroupDetail.this, "",
+		// "Please wait...", true);
+		// fillRecordTask task = new fillRecordTask();
+		// task.dialog = dialog;
+		// task.execute();
+		int recordCount = getDataFromDB();
+		fillData();
 
-        // if (!NetworkManager.isNetworkConnection) {
-        // Toast.makeText(
-        // getApplicationContext(),
-        // "Please connect your device to network and try again for latest update",
-        // Toast.LENGTH_LONG).show();
-        //
-        // }
-        db = openOrCreateDatabase( "worldcupt20.db", SQLiteDatabase.CREATE_IF_NECESSARY, null );
-        m_cursor = db.rawQuery( "select * from schedule where gang ='" + getIntent().getExtras().getString( "group" ) + "' AND WinnerTeam =''", null );
-        Log.d( "cursor count", "" + m_cursor.getCount() );
-        // RelativeLayout tv=(RelativeLayout)findViewById(R.id.upcominglayout);
-        // RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-        // RelativeLayout.LayoutParams.WRAP_CONTENT, m_cursor.getCount()*95);
-        // lp.setMargins(0, 10, 0, 0);
-        // lp.addRule(RelativeLayout.BELOW, R.id.currentStastlayout1);
-        // tv.setLayoutParams(lp);
+		// if (!NetworkManager.isNetworkConnection) {
+		// Toast.makeText(
+		// getApplicationContext(),
+		// "Please connect your device to network and try again for latest update",
+		// Toast.LENGTH_LONG).show();
+		//
+		// }
+		db = openOrCreateDatabase("worldcupt20.db",
+				SQLiteDatabase.CREATE_IF_NECESSARY, null);
+		m_cursor = db.rawQuery("select * from schedule where gang ='"
+				+ getIntent().getExtras().getString("group")
+				+ "' AND WinnerTeam =''", null);
+		// Log.d( "cursor count", "" + m_cursor.getCount() );
+		// RelativeLayout tv=(RelativeLayout)findViewById(R.id.upcominglayout);
+		// RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+		// RelativeLayout.LayoutParams.WRAP_CONTENT, m_cursor.getCount()*95);
+		// lp.setMargins(0, 10, 0, 0);
+		// lp.addRule(RelativeLayout.BELOW, R.id.currentStastlayout1);
+		// tv.setLayoutParams(lp);
 
-        m_cursor.moveToFirst();
-        m_adapter = new upcomingAdapter( this, m_cursor, true );
-        setListAdapter( m_adapter );
-        if( menuOut )
-        {
-            menu.setVisibility( View.INVISIBLE );
-            menuOut = false;
-        }
-    }
+		m_cursor.moveToFirst();
+		m_adapter = new upcomingAdapter(this, m_cursor, true);
+		setListAdapter(m_adapter);
+		if (menuOut) {
+			menu.setVisibility(View.INVISIBLE);
+			menuOut = false;
+		}
+	}
 
-    @Override
-    protected void onCreate( Bundle savedInstanceState )
-    {
-        // TODO Auto-generated method stub
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.airport );
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.airport);
 
-        drawable = new getDrawable();
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences( this );
-        milli_offset = sp.getInt( "offset", 0 );
+		drawable = new getDrawable();
+		SharedPreferences sp = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		milli_offset = sp.getInt("offset", 0);
 
-        lv = (ListView) findViewById( R.id.currentstatslistview );
-        lv.setEnabled( false );
+		lv = (ListView) findViewById(R.id.currentstatslistview);
+		lv.setEnabled(false);
 
-        upcominglv = getListView();
+		upcominglv = getListView();
 
-        textHeader1 = (TextView) findViewById( R.id.record1 );
+		textHeader1 = (TextView) findViewById(R.id.record1);
 
-        to = new int[] { R.id.stat_item1, R.id.stat_item2, R.id.stat_item3, R.id.stat_item4, R.id.stat_item5, R.id.stat_item6, R.id.stat_item7 };
+		navigationImage = (ImageView) findViewById(R.id.nav);
+		navigationImage.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
 
-        if( !NetworkManager.isNetworkConnection )
-        {
+//				Animation anim;
+//				if (!menuOut) {
+//					navigationImage
+//							.setBackgroundResource(R.drawable.navigationselected);
+//					menu.setVisibility(View.VISIBLE);
+//					ViewUtils.printView("menu", menu);
+//					anim = AnimationUtils.loadAnimation(GroupDetail.this,
+//							R.anim.push_right_in);
+//				} else {
+//					navigationImage
+//							.setBackgroundResource(R.drawable.navigationunselected);
+//					anim = AnimationUtils.loadAnimation(GroupDetail.this,
+//							R.anim.push_left_out);
+//				}
+//				anim.setAnimationListener(GroupDetail.this);
+//				// out.setAnimationListener(me);
+//				menu.startAnimation(anim);
+//
+				callEvent();
+			}
+		});
 
-            NetworkManager networkmanager = new NetworkManager( GroupDetail.this );
+		to = new int[] { R.id.stat_item1, R.id.stat_item2, R.id.stat_item3,
+				R.id.stat_item4, R.id.stat_item5, R.id.stat_item6,
+				R.id.stat_item7 };
 
-            com.appndroid.crick20.NetworkManager.HttpAsyncConnector httpConnect = networkmanager.new HttpAsyncConnector();
-            httpConnect.setTaskParams( ApplicationDefines.CommandType.COMMAND_SCHEDULE );
-            httpConnect.execute();
-        }
+		if (!NetworkManager.isNetworkConnection) {
 
-        String names = getIntent().getExtras().getString( "teamnames" );
-        TextView t1 = (TextView) findViewById( R.id.title );
-        t1.setText( names );
+			NetworkManager networkmanager = new NetworkManager(GroupDetail.this);
 
-        mFrameLayout = (FrameLayout) this.findViewById( R.id.flipper );
-        menu = mFrameLayout.findViewById( R.id.menu );
+			com.appndroid.crick20.NetworkManager.HttpAsyncConnector httpConnect = networkmanager.new HttpAsyncConnector();
+			httpConnect
+					.setTaskParams(ApplicationDefines.CommandType.COMMAND_SCHEDULE);
+			httpConnect.execute();
+		}
 
-        final ImageView navigationImage = (ImageView) findViewById( R.id.nav );
-        navigationImage.setOnClickListener( new OnClickListener()
-        {
+		String names = getIntent().getExtras().getString("teamnames");
+		TextView t1 = (TextView) findViewById(R.id.title);
+		t1.setText(names);
 
-            @Override
-            public void onClick( View v )
-            {
-                // TODO Auto-generated method stub
+		mFrameLayout = (FrameLayout) this.findViewById(R.id.flipper);
+		menu = mFrameLayout.findViewById(R.id.menu);
 
-                Animation anim;
-                if( !menuOut )
-                {
-                    navigationImage.setBackgroundResource( R.drawable.navigationselected );
-                    menu.setVisibility( View.VISIBLE );
-                    ViewUtils.printView( "menu", menu );
-                    anim = AnimationUtils.loadAnimation( GroupDetail.this, R.anim.push_right_in );
-                }
-                else
-                {
-                    navigationImage.setBackgroundResource( R.drawable.navigationunselected );
-                    anim = AnimationUtils.loadAnimation( GroupDetail.this, R.anim.push_left_out );
-                }
-                anim.setAnimationListener( GroupDetail.this );
-                // out.setAnimationListener(me);
-                menu.startAnimation( anim );
+//		final ImageView navigationImage = (ImageView) findViewById(R.id.nav);
+//		navigationImage.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//
+//				Animation anim;
+//				if (!menuOut) {
+//					navigationImage
+//							.setBackgroundResource(R.drawable.navigationselected);
+//					menu.setVisibility(View.VISIBLE);
+//					ViewUtils.printView("menu", menu);
+//					anim = AnimationUtils.loadAnimation(GroupDetail.this,
+//							R.anim.push_right_in);
+//				} else {
+//					navigationImage
+//							.setBackgroundResource(R.drawable.navigationunselected);
+//					anim = AnimationUtils.loadAnimation(GroupDetail.this,
+//							R.anim.push_left_out);
+//				}
+//				anim.setAnimationListener(GroupDetail.this);
+//				// out.setAnimationListener(me);
+//				menu.startAnimation(anim);
+//
+//			}
+//		});
 
-            }
-        } );
+		// Context context = getApplicationContext();
+		// LayoutInflater inflater = getLayoutInflater();
+		// View toastRoot = inflater.inflate(R.layout.my_toast, null);
+		// TextView t11 = (TextView) toastRoot.findViewById(R.id.toasttext);
+		// t11.setText(getIntent().getExtras().getString("group"));
+		// Toast toast = new Toast(context);
+		// toast.setView(toastRoot);
+		// toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL,
+		// 0, 0);
+		// toast.show();
 
-        // Context context = getApplicationContext();
-        // LayoutInflater inflater = getLayoutInflater();
-        // View toastRoot = inflater.inflate(R.layout.my_toast, null);
-        // TextView t11 = (TextView) toastRoot.findViewById(R.id.toasttext);
-        // t11.setText(getIntent().getExtras().getString("group"));
-        // Toast toast = new Toast(context);
-        // toast.setView(toastRoot);
-        // toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL,
-        // 0, 0);
-        // toast.show();
+	}
 
-    }
+	public int getDataFromDB() {
 
-    public int getDataFromDB()
-    {
+		db = openOrCreateDatabase("worldcupt20.db",
+				SQLiteDatabase.CREATE_IF_NECESSARY, null);
 
-        db = openOrCreateDatabase( "worldcupt20.db", SQLiteDatabase.CREATE_IF_NECESSARY, null );
+		from = new String[] { "Team", "P", "W", "L", "NR", "Pts", "NRR" };
 
-        from = new String[] { "Team", "P", "W", "L", "NR", "Pts", "NRR" };
+		ptList = new fillList(from);
+		Cursor cur = db.query(getIntent().getExtras().getString("group"), null,
+				null, null, null, null, null);
+		ptList.fillRecordList(cur, ptList, "currentStats");
 
-        ptList = new fillList( from );
-        Cursor cur = db.query( getIntent().getExtras().getString( "group" ), null, null, null, null, null, null );
-        ptList.fillRecordList( cur, ptList, "currentStats" );
+		return cur.getCount();
 
-        return cur.getCount();
+	}
+	
+	MenuDialog menuDialog;
 
-    }
+	public void callEvent() {
 
-    @Override
-    protected void onPause()
-    {
-        // TODO Auto-generated method stub
-        super.onPause();
+		//if (menuDialog == null) {
 
-    }
+			menuDialog = new MenuDialog(this, "standings");
+		//}
 
-    @Override
-    protected void onDestroy()
-    {
-        super.onDestroy();
-        if( db != null )
-            db.close();
-    };
+		menuDialog.show();
+	}
 
-    @Override
-    public void onAnimationEnd( Animation animation )
-    {
-        ViewUtils.printView( "menu", menu );
-        menuOut = !menuOut;
-        if( !menuOut )
-        {
-            menu.setVisibility( View.INVISIBLE );
-        }
-    }
 
-    @Override
-    public void onAnimationRepeat( Animation animation )
-    {
-    }
+	@Override
+	public boolean onKeyUp(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+//		if (keyCode == KeyEvent.KEYCODE_BACK) {
+//			if (menuOut) {
+//				anim = AnimationUtils.loadAnimation(GroupDetail.this,
+//						R.anim.push_left_out);
+//				anim.setAnimationListener(GroupDetail.this);
+//				menu.startAnimation(anim);
+//
+//				navigationImage
+//						.setBackgroundResource(R.drawable.navigationunselected);
+//				return false;
+//			} else
+//				return super.onKeyUp(keyCode, event);
+//
+//		} else if (keyCode == KeyEvent.KEYCODE_MENU) {
+//			if (menuOut) {
+//
+//				anim = AnimationUtils.loadAnimation(GroupDetail.this,
+//						R.anim.push_right_in);
+//				anim.setAnimationListener(GroupDetail.this);
+//				menu.startAnimation(anim);
+//
+//				navigationImage
+//						.setBackgroundResource(R.drawable.navigationselected);
+//				return false;
+//
+//			}
+//			else
+//			{
+//				anim = AnimationUtils.loadAnimation(GroupDetail.this,
+//						R.anim.push_left_out);
+//				anim.setAnimationListener(GroupDetail.this);
+//				menu.startAnimation(anim);
+//
+//				navigationImage
+//						.setBackgroundResource(R.drawable.navigationunselected);
+//				return false;
+//			}
+//		}
+//		return false;
+		if(keyCode== KeyEvent.KEYCODE_MENU)
+			callEvent();
+		return super.onKeyUp(keyCode, event);
+	}
 
-    @Override
-    public void onAnimationStart( Animation animation )
-    {
-    }
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
 
-    public void fillData()
-    {
+	}
 
-        textHeader1.setText( "Points Table" );
-        @SuppressWarnings("unchecked")
-        SimpleAdapter adapter = new overrideAdapter( this, ptList.getFilledList(), R.layout.singlecurrntstat_layout, from, to, "currentStats" );
-        lv.setAdapter( adapter );
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (db != null)
+			db.close();
+	};
 
-    }
+	@Override
+	public void onAnimationEnd(Animation animation) {
+		ViewUtils.printView("menu", menu);
+		menuOut = !menuOut;
+		if (!menuOut) {
+			menu.setVisibility(View.INVISIBLE);
+		}
+	}
 
-    private class fillRecordTask extends AsyncTask< String, Void, String >
-    {
+	@Override
+	public void onAnimationRepeat(Animation animation) {
+	}
 
-        ProgressDialog dialog = null;
-        int recordCount;
+	@Override
+	public void onAnimationStart(Animation animation) {
+	}
 
-        // can use UI thread here
-        protected void onPreExecute()
-        {
+	public void fillData() {
 
-        }
+		textHeader1.setText("Points Table - "
+				+ getIntent().getExtras().getString("group"));
+		@SuppressWarnings("unchecked")
+		SimpleAdapter adapter = new overrideAdapter(this,
+				ptList.getFilledList(), R.layout.singlecurrntstat_layout, from,
+				to, "currentStats");
+		lv.setAdapter(adapter);
 
-        // automatically done on worker thread (separate from UI thread)
-        protected String doInBackground( final String... args )
-        {
-            recordCount = getDataFromDB();
-            return "";
-        }
+	}
 
-        // can use UI thread here
-        protected void onPostExecute( final String result )
-        {
-            if( dialog != null )
-            {
-                dialog.dismiss();
-                dialog = null;
-            }
+	private class fillRecordTask extends AsyncTask<String, Void, String> {
 
-            fillData();
+		ProgressDialog dialog = null;
+		int recordCount;
 
-        }
+		// can use UI thread here
+		protected void onPreExecute() {
 
-    }
+		}
 
-    public class upcomingAdapter extends CursorAdapter
-    {
-        private LayoutInflater inflater;
+		// automatically done on worker thread (separate from UI thread)
+		protected String doInBackground(final String... args) {
+			recordCount = getDataFromDB();
+			return "";
+		}
 
-        public upcomingAdapter( Context context, Cursor c, boolean autoRequery )
-        {
-            super( context, c, autoRequery );
-            // TODO Auto-generated constructor stub
-            inflater = LayoutInflater.from( context );
-        }
+		// can use UI thread here
+		protected void onPostExecute(final String result) {
+			if (dialog != null) {
+				dialog.dismiss();
+				dialog = null;
+			}
 
-        @Override
-        public void bindView( View view, Context context, Cursor cursor )
-        {
-            ImageView imgTeamA = (ImageView) view.findViewById( R.id.upcoming_TeamAicon );
-            ImageView imgTeamB = (ImageView) view.findViewById( R.id.upcoming_TeamBicon );
+			fillData();
 
-            TextView TeamAName = (TextView) view.findViewById( R.id.upcoming_TeamAName );
-            TextView TeamBName = (TextView) view.findViewById( R.id.upcoming_TeamBName );
+		}
 
-            TextView txtdate = (TextView) view.findViewById( R.id.upcoming_date );
-            TextView txttime = (TextView) view.findViewById( R.id.upcoming_time );
-            TextView txtvenue = (TextView) view.findViewById( R.id.upcoming_venue );
+	}
 
-            String szTeamA = cursor.getString( cursor.getColumnIndex( "TeamA" ) );
-            imgTeamA.setImageResource( drawable.getIcon( szTeamA ) );
+	public class upcomingAdapter extends CursorAdapter {
+		private LayoutInflater inflater;
 
-            String szTeamB = cursor.getString( cursor.getColumnIndex( "TeamB" ) );
-            imgTeamB.setImageResource( drawable.getIcon( szTeamB ) );
+		public upcomingAdapter(Context context, Cursor c, boolean autoRequery) {
+			super(context, c, autoRequery);
+			// TODO Auto-generated constructor stub
+			inflater = LayoutInflater.from(context);
+		}
 
-            TeamAName.setText( szTeamA );
-            TeamBName.setText( szTeamB );
+		@Override
+		public void bindView(View view, Context context, Cursor cursor) {
+			ImageView imgTeamA = (ImageView) view
+					.findViewById(R.id.upcoming_TeamAicon);
+			ImageView imgTeamB = (ImageView) view
+					.findViewById(R.id.upcoming_TeamBicon);
 
-            String strDt = cursor.getString( cursor.getColumnIndex( "Date" ) );
-            String[] strarr = strDt.split( " " );
-            txtdate.setText( strarr[0].trim() + " " + drawable.getMonthName( strarr[1] ) + " (" + cursor.getString( cursor.getColumnIndex( "Other1" ) ).trim() + ")" );
-            String time = cursor.getString( cursor.getColumnIndex( "GMT" ) ).trim();
+			TextView TeamAName = (TextView) view
+					.findViewById(R.id.upcoming_TeamAName);
+			TextView TeamBName = (TextView) view
+					.findViewById(R.id.upcoming_TeamBName);
 
-            txttime.setText( time + " GMT" );
-            txtvenue.setText( cursor.getString( cursor.getColumnIndex( "Venue" ) ).trim() );
+			TextView txtdate = (TextView) view.findViewById(R.id.upcoming_date);
+			TextView txttime = (TextView) view.findViewById(R.id.upcoming_time);
+			TextView txtvenue = (TextView) view
+					.findViewById(R.id.upcoming_venue);
 
-        }
+			String szTeamA = cursor.getString(cursor.getColumnIndex("TeamA"));
+			imgTeamA.setImageResource(drawable.getIcon(szTeamA));
 
-        @Override
-        public View newView( Context context, Cursor cursor, ViewGroup parent )
-        {
-            // TODO Auto-generated method stub
-            View view = inflater.inflate( R.layout.upcoming_row, parent, false );
-            return view;
-        }
+			String szTeamB = cursor.getString(cursor.getColumnIndex("TeamB"));
+			imgTeamB.setImageResource(drawable.getIcon(szTeamB));
 
-    }
+			TeamAName.setText(szTeamA);
+			TeamBName.setText(szTeamB);
+
+			String strDt = cursor.getString(cursor.getColumnIndex("Date"));
+			String[] strarr = strDt.split(" ");
+			txtdate.setText(strarr[0].trim() + " "
+					+ drawable.getMonthName(strarr[1]) + " ("
+					+ cursor.getString(cursor.getColumnIndex("Other1")).trim()
+					+ ")");
+			String time = cursor.getString(cursor.getColumnIndex("GMT")).trim();
+
+			txttime.setText(time + " GMT");
+			txtvenue.setText(cursor.getString(cursor.getColumnIndex("Venue"))
+					.trim());
+
+		}
+
+		@Override
+		public View newView(Context context, Cursor cursor, ViewGroup parent) {
+			// TODO Auto-generated method stub
+			View view = inflater.inflate(R.layout.upcoming_row, parent, false);
+			return view;
+		}
+
+	}
 }
