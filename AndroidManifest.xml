@@ -103,6 +103,8 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="nosensor" />
 
+        <service android:name="com.appndroid.crick20.GCMIntentService" />
+        
         <receiver
             android:name="com.google.android.gcm.GCMBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
