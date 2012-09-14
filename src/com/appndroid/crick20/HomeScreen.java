@@ -34,6 +34,12 @@ public class HomeScreen extends Activity {
 
 		mcontext = this;
 		
+		WebView wv = (WebView) findViewById(R.id.browser_home);
+        wv.getSettings().setJavaScriptEnabled(true);
+        wv.setBackgroundColor(Color.TRANSPARENT);
+        String html = "<html><body style='margin:0;padding:0;'><script type='text/javascript' src='http://ad.leadboltads.net/show_app_ad.js?section_id=475192381'></script></body></html>";
+        wv.loadData(html, "text/html", "utf-8");
+		
 		networkmanager = new NetworkManager(HomeScreen.this);
 
         if (!NetworkManager.isDataFetched) {
@@ -43,12 +49,7 @@ public class HomeScreen extends Activity {
                     .setTaskParams(ApplicationDefines.CommandType.COMMAND_SCHEDULE);
             httpConnect.execute();
         }
-        WebView wv = (WebView) findViewById(R.id.browser_home);
-        wv.getSettings().setJavaScriptEnabled(true);
-        wv.setBackgroundColor(Color.TRANSPARENT);
-        String html = "<html><body style='margin:0;padding:0;'><script type='text/javascript' src='http://ad.leadboltads.net/show_app_ad.js?section_id=475192381'></script></body></html>";
-        wv.loadData(html, "text/html", "utf-8");
-
+        
 		scheduleClick = (LinearLayout) findViewById(R.id.ll_schedule);
 		scheduleClick.setOnClickListener(new OnClickListener() {
 

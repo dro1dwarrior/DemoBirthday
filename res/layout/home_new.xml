@@ -14,7 +14,7 @@
         android:paddingLeft="20dp"
         android:text="T20 World Cup"
         android:textColor="#69D2E7"
-        android:textSize="16.0sp"
+        android:textSize="19.0sp"
         android:textStyle="bold" />
 
     <LinearLayout

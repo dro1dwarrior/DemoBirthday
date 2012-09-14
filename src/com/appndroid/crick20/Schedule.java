@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -37,6 +38,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
+import android.webkit.WebView;
 import android.widget.CursorAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -61,6 +63,7 @@ public class Schedule extends ListActivity implements AnimationListener
     Animation anim;
     ImageView navigationImage;
     static int listItemToSelect = -1;
+    WebView wv;
 
     private static final int GROUP_TABLE = Menu.FIRST;
     private static final int SUPER8 = 2;
@@ -129,6 +132,12 @@ public class Schedule extends ListActivity implements AnimationListener
                 //
             }
         } );
+        
+        wv = (WebView) findViewById(R.id.browser_schedule);
+        wv.getSettings().setJavaScriptEnabled(true);
+        wv.setBackgroundColor(Color.TRANSPARENT);
+        String html = "<html><body style='margin:0;padding:0;'><script type='text/javascript' src='http://ad.leadboltads.net/show_app_ad.js?section_id=581427376'></script></body></html>";
+        wv.loadData(html, "text/html", "utf-8");
 
     }
 

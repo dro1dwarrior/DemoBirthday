@@ -3,12 +3,14 @@ package com.appndroid.crick20;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
@@ -22,6 +24,7 @@ public class GroupTab extends TabActivity {
 	public static TabHost.TabSpec spec5;
 	public static TabHost tabHost;
 	public SharedPreferences myPrefs;
+	WebView wv;
 
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
@@ -134,6 +137,11 @@ public class GroupTab extends TabActivity {
 				}
 			}
 		});
+		wv = (WebView) findViewById(R.id.browser_stats);
+        wv.getSettings().setJavaScriptEnabled(true);
+        wv.setBackgroundColor(Color.TRANSPARENT);
+        String html = "<html><body style='margin:0;padding:0;'><script type='text/javascript' src='http://ad.leadboltads.net/show_app_ad.js?section_id=581427376'></script></body></html>";
+        wv.loadData(html, "text/html", "utf-8");
 
 	}
 }
