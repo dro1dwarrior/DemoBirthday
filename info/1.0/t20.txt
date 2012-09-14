@@ -1,0 +1,15 @@
+	Version 1.0
+ T20 World Cup - An app that helps you follow the ICC T20 Cricket World cup 2012 edition. Download & and follow the event with ease...! :wink:
+
+Features:
+1. Schedule to keep track of the event with ease.
+Schedule will be updated as it progresses into knockout stages.
+2. Points Table group-wise. As the tournament progresses into super-8 stage, the points table will reflect the super-8 standings.
+3. Settings.
+4. About. ( Here you can drop in your valueable suggestions, feedbacks... )
+
+
+Upcoming features:
+1. Live score updates of the ongoing matches
+2. Push Notification for important milestones in the match.
+3. Live score sharing feature using Facebook & Twitter.
