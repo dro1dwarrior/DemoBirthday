@@ -1,4 +1,4 @@
-package com.appndroid.crick20;
+package com.appndroid.crick20.ui;
 
 
 public class MyPagerAdapter  

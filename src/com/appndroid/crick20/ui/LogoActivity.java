@@ -1,4 +1,4 @@
-package com.appndroid.crick20;
+package com.appndroid.crick20.ui;
 
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -20,6 +20,7 @@ import android.view.Window;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
+import com.appndroid.crick20.R;
 import com.google.android.gcm.GCMRegistrar;
 
 public class LogoActivity extends Activity
@@ -45,12 +46,12 @@ public class LogoActivity extends Activity
         int build_version = Integer.parseInt( Build.VERSION.SDK );
         if( build_version >= 8 )
         {
-            GCMRegistrar.checkDevice( this );
-            GCMRegistrar.checkManifest( this );
-            final String regId = GCMRegistrar.getRegistrationId( this );
+            GCMRegistrar.checkDevice( LogoActivity.this );
+            GCMRegistrar.checkManifest( LogoActivity.this );
+            final String regId = GCMRegistrar.getRegistrationId( LogoActivity.this );
             if( regId.equals( "" ) )
             {
-                // GCMRegistrar.register( this, "GCM_SENDER_ID" );
+                GCMRegistrar.register( LogoActivity.this, "899727754395" );
                 Log.d( "LogoActivity-GCMRegister()", "GCM register call check passed" );
             }
             else
@@ -58,6 +59,8 @@ public class LogoActivity extends Activity
                 Log.d( "LogoActivity-GCMRegister()", "GCM registered Id" + regId );
             }
         }
+        else
+            Log.d( "LogoActivity-GCMRegister()", "Push notification not supported" );
         // GCM End
 
         Calendar c = Calendar.getInstance();
@@ -132,7 +135,7 @@ public class LogoActivity extends Activity
                     e.printStackTrace();
                 }
                 Intent intent;
-                intent = new Intent( getApplicationContext(), com.appndroid.crick20.FlagsActivity.class );
+                intent = new Intent( getApplicationContext(), com.appndroid.crick20.ui.FlagsActivity.class );
                 intent.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
                 LogoActivity.this.finish();
                 myTimer.cancel();

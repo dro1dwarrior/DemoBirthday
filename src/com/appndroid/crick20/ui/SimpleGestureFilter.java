@@ -1,4 +1,4 @@
-package com.appndroid.crick20;
+package com.appndroid.crick20.ui;
 
 import android.app.Activity;
 import android.view.GestureDetector;

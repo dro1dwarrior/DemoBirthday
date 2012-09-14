@@ -1,4 +1,4 @@
-package com.appndroid.crick20;
+package com.appndroid.crick20.ui;
 
 import java.io.InputStream;
 import java.io.StringReader;
@@ -31,13 +31,11 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
-import android.view.animation.AnimationUtils;
 import android.webkit.WebView;
 import android.widget.CursorAdapter;
 import android.widget.FrameLayout;
@@ -47,7 +45,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appndroid.crick20.NetworkManager.HttpAsyncConnector;
+import com.appndroid.crick20.R;
 
 public class Schedule extends ListActivity implements AnimationListener
 {

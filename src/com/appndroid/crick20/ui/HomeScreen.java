@@ -1,6 +1,4 @@
-package com.appndroid.crick20;
-
-import com.appndroid.crick20.NetworkManager.HttpAsyncConnector;
+package com.appndroid.crick20.ui;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,13 +7,15 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.appndroid.crick20.R;
+import com.appndroid.crick20.ui.NetworkManager.HttpAsyncConnector;
 
 public class HomeScreen extends Activity {
 

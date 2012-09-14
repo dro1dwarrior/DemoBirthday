@@ -1,8 +1,10 @@
-package com.appndroid.crick20;
+package com.appndroid.crick20.ui;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import com.appndroid.crick20.R;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -150,7 +152,7 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 
 			NetworkManager networkmanager = new NetworkManager(GroupDetail.this);
 
-			com.appndroid.crick20.NetworkManager.HttpAsyncConnector httpConnect = networkmanager.new HttpAsyncConnector();
+			com.appndroid.crick20.ui.NetworkManager.HttpAsyncConnector httpConnect = networkmanager.new HttpAsyncConnector();
 			httpConnect
 					.setTaskParams(ApplicationDefines.CommandType.COMMAND_SCHEDULE);
 			httpConnect.execute();

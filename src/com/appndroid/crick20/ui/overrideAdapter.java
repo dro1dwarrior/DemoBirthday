@@ -1,7 +1,9 @@
-package com.appndroid.crick20;
+package com.appndroid.crick20.ui;
 
 import java.util.List;
 import java.util.Map;
+
+import com.appndroid.crick20.R;
 
 import android.content.Context;
 import android.view.View;

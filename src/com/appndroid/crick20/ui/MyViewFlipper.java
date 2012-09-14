@@ -1,4 +1,4 @@
-package com.appndroid.crick20;
+package com.appndroid.crick20.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;

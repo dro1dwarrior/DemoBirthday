@@ -1,4 +1,4 @@
-package com.appndroid.crick20;
+package com.appndroid.crick20.ui;
 
 import android.app.Activity;
 import android.app.ListActivity;
@@ -36,8 +36,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-import com.appndroid.crick20.GroupDetail.upcomingAdapter;
-import com.appndroid.crick20.SimpleGestureFilter.SimpleGestureListener;
+import com.appndroid.crick20.R;
+import com.appndroid.crick20.ui.GroupDetail.upcomingAdapter;
+import com.appndroid.crick20.ui.SimpleGestureFilter.SimpleGestureListener;
 
 public class tabtest extends Activity implements AnimationListener {
 	private static ViewFlipper flipper;

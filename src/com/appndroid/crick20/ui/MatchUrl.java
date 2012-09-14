@@ -1,4 +1,4 @@
-package com.appndroid.crick20;
+package com.appndroid.crick20.ui;
 
 import java.io.InputStream;
 import java.io.StringReader;
@@ -15,6 +15,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
+
+import com.appndroid.crick20.R;
 
 import android.app.Activity;
 import android.content.ContentValues;

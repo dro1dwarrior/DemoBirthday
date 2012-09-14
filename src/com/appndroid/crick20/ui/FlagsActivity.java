@@ -1,6 +1,8 @@
-package com.appndroid.crick20;
+package com.appndroid.crick20.ui;
 
 import java.io.IOException;
+
+import com.appndroid.crick20.R;
 
 import android.app.Activity;
 import android.content.Intent;

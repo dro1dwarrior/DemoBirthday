@@ -1,4 +1,4 @@
-package com.appndroid.crick20;
+package com.appndroid.crick20.ui;
 
 import kankan.wheel.R;
 import kankan.wheel.widget.OnWheelScrollListener;
