@@ -148,7 +148,8 @@ public class Schedule extends ListActivity implements AnimationListener
 
         menuDialog = new MenuDialog( this, "schedule" );
         // }
-
+        menuDialog.setCancelable( true );
+        menuDialog.setCanceledOnTouchOutside( true );
         menuDialog.show();
     }
 

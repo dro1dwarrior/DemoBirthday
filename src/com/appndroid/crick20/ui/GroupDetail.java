@@ -229,6 +229,8 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 		//if (menuDialog == null) {
 
 			menuDialog = new MenuDialog(this, "standings");
+			menuDialog.setCancelable( true );
+			menuDialog.setCanceledOnTouchOutside( true );
 		//}
 
 		menuDialog.show();

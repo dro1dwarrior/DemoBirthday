@@ -135,7 +135,8 @@ public class PastMatches extends Activity {
 //
 //			menuDialog = new MenuDialog(this, "scores");
 //		}
-//
+//      menuDialog.setCancelable( true );
+//      menuDialog.setCanceledOnTouchOutside( true );
 //		menuDialog.show();
 //	}
 	@Override
