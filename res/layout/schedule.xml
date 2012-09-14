@@ -35,7 +35,8 @@
             android:paddingLeft="20dp"
             android:scrollHorizontally="true"
             android:text="Schedule"
-            android:textSize="16.0sp"
+            android:textColor="#69D2E7"
+            android:textSize="18.0sp"
             android:textStyle="bold" />
     </RelativeLayout>
 
@@ -43,7 +44,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/rel1"
-        android:layout_marginBottom="50dp" >
+        android:layout_marginBottom="0dp" >
 
         <!-- <android.support.v4.view.ViewPager -->
         <!-- android:id="@+id/myfivepanelpager" -->
@@ -72,11 +73,11 @@
         </FrameLayout>
     </RelativeLayout>
 
-    <WebView
-        android:id="@+id/browser_schedule"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="1dp" />
+    <!-- <WebView -->
+    <!-- android:id="@+id/browser_schedule" -->
+    <!-- android:layout_width="fill_parent" -->
+    <!-- android:layout_height="50dp" -->
+    <!-- android:layout_alignParentBottom="true" -->
+    <!-- android:layout_marginTop="1dp" /> -->
 
 </RelativeLayout>
