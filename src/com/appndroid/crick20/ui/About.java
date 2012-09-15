@@ -69,7 +69,7 @@ public class About extends Activity
                 i.putExtra( Intent.EXTRA_TEXT, etMessage.getText().toString().trim() );
                 try
                 {
-                    startActivity( Intent.createChooser( i, "Send mail..." ) );
+                    startActivity( Intent.createChooser( i, "E-mail Feedback!" ) );
                 }
                 catch( Exception ex )
                 {
