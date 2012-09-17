@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/app_background"
@@ -9,9 +9,9 @@
         android:id="@+id/matchheader"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="0dp"
         android:background="@drawable/layout_bg"
         android:gravity="center|center_vertical" >
 
@@ -29,16 +29,19 @@
             android:layout_alignBottom="@+id/head_team1logo"
             android:layout_marginLeft="7dp"
             android:layout_toRightOf="@+id/head_team1logo"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/head_versustext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="5dp"
-            android:gravity="center|center_vertical"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/head_team2logo"
+            android:layout_toRightOf="@+id/head_team1name"
+            android:gravity="center_vertical"
             android:text="v/s" />
 
         <ImageView
@@ -53,23 +56,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/head_team2logo"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="7dp"
-            android:textSize="16sp"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/progressBar1"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <ProgressBar
             android:id="@+id/progressBar1"
             style="?android:attr/progressBarStyleSmall"
-            android:layout_width="25dp"
-            android:layout_height="25dp" />
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignBaseline="@+id/head_team2logo"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/nav"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/nav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/navigationunselected" />
     </RelativeLayout>
 
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/matchheader" >
+        android:layout_below="@+id/matchheader"
+        android:layout_marginBottom="30dp" >
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -79,7 +96,6 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center|center_vertical"
                 android:layout_marginTop="24dp" >
 
                 <RelativeLayout
@@ -144,26 +160,27 @@
                 android:id="@+id/prevInng"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="24dp"
+                android:paddingLeft="15dp"
                 android:visibility="gone" >
 
                 <RelativeLayout
                     android:id="@+id/relparent"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content" >
 
                     <ImageView
                         android:id="@+id/image2"
                         android:layout_width="36dp"
                         android:layout_height="30dp"
-                        android:layout_alignParentLeft="true" />
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="5dp" />
 
                     <TextView
                         android:id="@+id/team2_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/image2"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold" />
@@ -240,13 +257,13 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <Button
+            <ImageButton
                 android:id="@+id/updatebtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dip"
+                android:layout_height="30dip"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:text="update" />
+                android:layout_marginTop="5dp"
+                android:background="@drawable/refresh" />
 
             <RelativeLayout
                 android:id="@+id/matchDetails"
@@ -254,7 +271,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/transparent_background" >
 
                 <TextView
@@ -373,4 +390,31 @@
         </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/t20_header" >
+
+        <ImageButton
+            android:id="@+id/facebookbtn"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/facebook" />
+
+        <ImageButton
+            android:id="@+id/twitterbtn"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/twitter" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -114,6 +114,10 @@ public class HomeScreen extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				Intent schIntent = new Intent(mcontext, LiveLayout.class);
+				schIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				schIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				mcontext.startActivity(schIntent);
 
 			}
 		});

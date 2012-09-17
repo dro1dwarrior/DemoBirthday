@@ -39,6 +39,41 @@ public class getDrawable {
 			return R.drawable.app_icon_rounded;
 	}
 	
+	public int getIcon_square(String teamName)
+	{	
+		
+		if(teamName.toLowerCase().equals("afg")||teamName.toLowerCase().equals("afghanistan"))
+			return  R.drawable.afghanistan_sq ;
+		else if(teamName.toLowerCase().equals("aus")||teamName.toLowerCase().equals("australia"))
+			return R.drawable.australia_sq;
+		else if(teamName.toLowerCase().equals("ban")||teamName.toLowerCase().equals("bangladesh"))
+			return  R.drawable.bangladesh_sq ;
+		else if(teamName.toLowerCase().equals("eng")||teamName.toLowerCase().contains("england"))
+			return R.drawable.england_sq ;
+		else if(teamName.toLowerCase().equals("ind")||teamName.toLowerCase().equals("india"))
+			return R.drawable.india_sq ;
+		else if(teamName.toLowerCase().equals("ire")||teamName.toLowerCase().equals("ireland"))
+			return  R.drawable.ireland_sq ;
+		else if(teamName.toLowerCase().equals("nz")||teamName.toLowerCase().equals("new zealand")||teamName.toLowerCase().equals("newzealand"))
+			return R.drawable.newzealand_sq ;
+		else if(teamName.toLowerCase().equals("pak")||teamName.toLowerCase().equals("pakistan"))
+			return  R.drawable.pakistan_sq ;
+		else if(teamName.toLowerCase().equals("sl")||teamName.toLowerCase().equals("sri lanka")||teamName.toLowerCase().equals("srilanka"))
+			return R.drawable.srilanka_sq ;
+		else if(teamName.toLowerCase().equals("rsa")||teamName.toLowerCase().equals("south africa")||teamName.toLowerCase().equals("southafrica"))
+			return R.drawable.southafrica_sq ;
+		else if(teamName.toLowerCase().equals("wi")||teamName.toLowerCase().equals("west indies")||teamName.toLowerCase().equals("westindies"))
+			return R.drawable.westindies_sq ;
+		else if(teamName.toLowerCase().equals("zim")||teamName.toLowerCase().equals("zimbabwe"))
+			return R.drawable.zimbabwe_sq ;
+		else if(teamName.toLowerCase().equals("appicon"))
+			//return R.drawable.icon ;
+			return R.drawable.appy_icon;
+		else
+			//return R.drawable.icon;
+			return R.drawable.app_icon_rounded;
+	}
+	
 	public String getMonthName(String month)
     {
     	if(month.equals("01"))
