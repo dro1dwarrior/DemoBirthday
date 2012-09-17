@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/series_schedule_slider" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="9.0dip"
+        android:layout_marginTop="14.0dip"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/galleryitem_flag1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/afghanistan" />
+
+        <TextView
+            android:id="@+id/galleryitem_team1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="2.0dip"
+            android:gravity="center_horizontal"
+            android:text=""
+            android:textColor="#ffffff"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="190.0dip"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/galleryitem_text1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="2.0dip"
+            android:gravity="center_horizontal"
+            android:text=""
+            android:textColor="#ffffff"
+            android:textSize="12.0dip" />
+
+        <TextView
+            android:id="@+id/galleryitem_text2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="2.0dip"
+            android:gravity="center_horizontal"
+            android:text=""
+            android:textColor="#ffffff"
+            android:textSize="12.0dip" />
+
+        <TextView
+            android:id="@+id/galleryitem_text3"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="2.0dip"
+            android:gravity="center_horizontal"
+            android:text=""
+            android:textColor="#ffffff"
+            android:textSize="12.0dip" />
+
+        <TextView
+            android:id="@+id/galleryitem_text4"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="2.0dip"
+            android:gravity="center_horizontal"
+            android:text=""
+            android:textColor="#ffffff"
+            android:textSize="12.0dip" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="9.0dip"
+        android:layout_marginTop="14.0dip"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/galleryitem_flag2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/afghanistan" />
+
+        <TextView
+            android:id="@+id/galleryitem_team2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2.0dip"
+            android:gravity="center_horizontal"
+            android:text=""
+            android:textColor="#ffffff"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>

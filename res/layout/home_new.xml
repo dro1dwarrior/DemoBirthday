@@ -20,8 +20,8 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="225dip"
-        android:layout_marginTop="10dp"
         android:layout_below="@+id/title"
+        android:layout_marginTop="10dp"
         android:background="@drawable/main_white_main_white_background"
         android:orientation="vertical"
         android:paddingLeft="12.5dip"
@@ -139,67 +139,15 @@
             android:layout_marginBottom="46.0dip"
             android:layout_marginTop="-155.0dip"
             android:background="@drawable/icon_v" />
-
-        <!-- <LinearLayout -->
-        <!-- android:id="@+id/ll_favorite" -->
-        <!-- android:layout_width="fill_parent" -->
-        <!-- android:layout_height="45.0dip" -->
-        <!-- android:background="@drawable/bgr_fav_team_start_and_pressed" -->
-        <!-- android:gravity="center" > -->
-
-
-        <!-- <ImageView -->
-        <!-- android:id="@+id/iv_favorite" -->
-        <!-- android:layout_width="30.0dip" -->
-        <!-- android:layout_height="30.0dip" -->
-        <!-- android:background="@drawable/unknown_team_flag" /> -->
-
-
-        <!-- <TextView -->
-        <!-- android:id="@+id/tv_title_fav_ll" -->
-        <!-- android:layout_width="wrap_content" -->
-        <!-- android:layout_height="45.0dip" -->
-        <!-- android:layout_margin="5.0dip" -->
-        <!-- android:gravity="center" -->
-        <!-- android:text="select_team" -->
-        <!-- android:textColor="#ff4d4d4d" -->
-        <!-- android:textSize="14.0dip" /> -->
-
-
-        <!-- <TextView -->
-        <!-- android:id="@+id/tv_fav_team_name" -->
-        <!-- android:layout_width="wrap_content" -->
-        <!-- android:layout_height="45.0dip" -->
-        <!-- android:gravity="center" -->
-        <!-- android:textColor="#ff4d4d4d" -->
-        <!-- android:textSize="14.0dip" -->
-        <!-- android:textStyle="bold" /> -->
-        <!-- </LinearLayout> -->
-
-
-        <!-- <LinearLayout -->
-        <!-- android:layout_width="fill_parent" -->
-        <!-- android:layout_height="fill_parent" > -->
-
-
-        <!-- <com.bigwhiteplanet.EURO2012.ui.views.ExtendListView -->
-        <!-- android:id="@+id/lv_team_matches" -->
-        <!-- android:layout_width="fill_parent" -->
-        <!-- android:layout_height="wrap_content" -->
-        <!-- android:scrollingCache="false" -->
-        <!-- android:visibility="gone" /> -->
-        <!-- </LinearLayout> -->
     </LinearLayout>
 
-    <!-- <LinearLayout -->
-    <!-- android:id="@+id/ad_layout" -->
-    <!-- android:layout_width="fill_parent" -->
-    <!-- android:layout_height="wrap_content" /> -->
-<!--    <WebView -->
-<!--         android:id="@+id/browser_home" -->
-<!--         android:layout_alignParentBottom="true" -->
-<!--         android:layout_width="fill_parent" -->
-<!--         android:layout_marginTop="1dp" -->
-<!--         android:layout_height="50dp" /> -->
+    <com.appndroid.crick20.ui.CLGNMatchGallery
+        android:id="@+id/home_gallery"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_about"
+        android:fadingEdge="none"
+        android:paddingTop="5.0dip"
+        android:spacing="10.0dip" />
 
 </RelativeLayout>
