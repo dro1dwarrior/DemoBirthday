@@ -18,8 +18,8 @@
 	  android:layout_width="wrap_content"
 	  android:layout_height="wrap_content"
 	  android:text=""
-	  android:layout_marginLeft="6dp"
-	  android:textSize="18sp"
+	  android:layout_marginLeft="3dp"
+	  android:textSize="17sp"
 	  android:textColor="#F000"
 	  android:textStyle="bold"/>
 </LinearLayout>

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.appndroid.crick20"
     android:installLocation="auto"
-    android:versionCode="2"
+    android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk android:minSdkVersion="5" />
@@ -72,6 +72,12 @@
         </activity>
         <activity
             android:name="com.appndroid.crick20.ui.PastMatches"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity
+            android:name="com.appndroid.crick20.ui.LiveLayout"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/app_name"
             android:screenOrientation="nosensor" >
