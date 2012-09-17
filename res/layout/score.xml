@@ -9,9 +9,9 @@
         android:id="@+id/matchheader"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="0dp"
         android:background="@drawable/layout_bg"
         android:gravity="center|center_vertical" >
 
@@ -173,8 +173,8 @@
                         android:id="@+id/image2"
                         android:layout_width="36dp"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_alignParentLeft="true" />
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="5dp" />
 
                     <TextView
                         android:id="@+id/team2_name"
@@ -257,13 +257,21 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+            <ImageButton
+                android:id="@+id/updatebtn"
+                android:layout_width="30dip"
+                android:layout_height="30dip"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/refresh" />
+
             <RelativeLayout
                 android:id="@+id/matchDetails"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/transparent_background" >
 
                 <TextView
@@ -382,34 +390,31 @@
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="40dp"
-        android:layout_alignParentBottom="true" >
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/t20_header" >
 
         <ImageButton
-            android:id="@+id/updatebtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="2dp"
-            android:background="@drawable/refresh"/>
-        <ImageButton
             android:id="@+id/facebookbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="2dp"
-            android:background="@drawable/facebook"/>
+            android:layout_marginTop="5dp"
+            android:background="@drawable/facebook" />
+
         <ImageButton
             android:id="@+id/twitterbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:layout_alignParentRight="true"
             android:layout_gravity="right"
-            android:layout_marginTop="2dp"
-            android:background="@drawable/twitter"/>
-    </LinearLayout>
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/twitter" />
+    </RelativeLayout>
 
 </RelativeLayout>
