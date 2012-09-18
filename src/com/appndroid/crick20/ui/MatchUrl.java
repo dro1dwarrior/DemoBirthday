@@ -58,7 +58,7 @@ public class MatchUrl extends Activity {
 				buffer.append(new String(b, 0, n));
 			}
 			str = buffer.toString();
-			System.out.println(str);
+			// System.out.println(str);
 			// Log.d("NetworkManager.HttpAsyncConnector-doInBackground()",
 			// "Response is ::: " + szResponse);
 

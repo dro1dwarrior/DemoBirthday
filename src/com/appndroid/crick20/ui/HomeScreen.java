@@ -578,7 +578,7 @@ public class HomeScreen extends Activity {
 				buffer.append(new String(b, 0, n));
 			}
 			str = buffer.toString();
-			System.out.println(str);
+			// System.out.println(str);
 
 			str = str.replace("\n", "");
 			str = str.replace("\t", "");
