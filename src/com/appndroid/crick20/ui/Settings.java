@@ -56,7 +56,7 @@ public class Settings extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Log.d("aaaaaaaaaaa", "togg" + toggleButton1.getText());
+				// Log.d("aaaaaaaaaaa", "togg" + toggleButton1.getText());
 				if (toggleButton1.getText().toString().equalsIgnoreCase("on")) {
 					showDurationList();
 

@@ -53,7 +53,6 @@ public class MatchGallery extends Gallery
 
     public boolean onFling( MotionEvent paramMotionEvent1, MotionEvent paramMotionEvent2, float paramFloat1, float paramFloat2 )
     {
-        Log.d("MatchGallery", " on Fling ");
         if( isScrollingLeft( paramMotionEvent1, paramMotionEvent2 ) )
             ;
         for( float f = 500.0F;; f = -500.0F )

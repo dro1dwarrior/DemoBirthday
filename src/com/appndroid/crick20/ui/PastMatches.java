@@ -53,7 +53,8 @@ public class PastMatches extends Activity {
 
 		} catch (Exception e) {
 			// TODO: handle exception
-			Log.d("SCORES", "EXCEPTION IS :: " + e.getMessage());
+			// Log.d("SCORES", "EXCEPTION IS :: " + e.getMessage());
+			e.printStackTrace();
 		}
 		ImageView headerClick = (ImageView) findViewById(R.id.header);
 //		headerClick.setOnClickListener(new OnClickListener() {

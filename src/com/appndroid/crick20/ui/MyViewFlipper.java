@@ -16,7 +16,7 @@ public class MyViewFlipper extends ViewFlipper {
         try{
             super.onDetachedFromWindow();
         }catch(Exception e) {
-            Log.d("MyViewFlipper","Stopped a viewflipper crash");
+			// Log.d("MyViewFlipper","Stopped a viewflipper crash");
             stopFlipping();
         }
     }

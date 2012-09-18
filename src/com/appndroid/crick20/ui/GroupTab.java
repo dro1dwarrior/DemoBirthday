@@ -128,7 +128,6 @@ public class GroupTab extends TabActivity {
 			@Override
 			public void onTabChanged(String tabId) {
 				// TODO Auto-generated method stub
-				Log.d("universalIM", "Tab Changed : " + tabId);
 
 				// TextView t1 = (TextView) findViewById(R.id.title);
 

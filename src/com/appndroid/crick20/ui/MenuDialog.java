@@ -69,9 +69,9 @@ public class MenuDialog extends AlertDialog {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Log.d("Menu dialog", "before if" + schActivity);
+				// Log.d("Menu dialog", "before if" + schActivity);
 				if (schActivity.equals("schedule")) {
-					Log.d("Menu dialog", "inside if" + schActivity);
+					// Log.d("Menu dialog", "inside if" + schActivity);
 					schActivity = "";
 					dismiss();
 

@@ -24,13 +24,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
 
-public class MatchUrl extends Activity{
-	
+public class MatchUrl extends Activity {
+
 	private boolean m_isIpl = false;
 	private String currentTag;
 	int m_xmlTagId = 0;
 	private ArrayList<String> matchesArray = new ArrayList<String>();
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,9 +38,8 @@ public class MatchUrl extends Activity{
 		setContentView(R.layout.matchurl);
 		fetchliveurls();
 	}
-	
-	private void fetchliveurls()
-	{
+
+	private void fetchliveurls() {
 		HttpClient hc;
 		String szResponse = "";
 		boolean bSuccess = false;
@@ -60,16 +59,16 @@ public class MatchUrl extends Activity{
 			}
 			str = buffer.toString();
 			System.out.println(str);
-			Log.d("NetworkManager.HttpAsyncConnector-doInBackground()",
-					"Response is ::: " + szResponse);
+			// Log.d("NetworkManager.HttpAsyncConnector-doInBackground()",
+			// "Response is ::: " + szResponse);
 
 			str = str.replace("\n", "");
 			str = str.replace("\t", "");
-			//str="<matches><match><seriesName>England in Sri Lanka 2012</seriesName><team1>Sri Lanka</team1><team2>England</team2><startdate>03 04 2012</startdate><enddate>07 04 2012</enddate><type>TEST</type><scores-url>http://sifyscores.cricbuzz.com/data/2012/2012_SL_ENG/SL_ENG_APR03_APR07/scores.xml</scores-url><full-commentary-url>http://sifyscores.cricbuzz.com/data/2012/2012_SL_ENG/SL_ENG_APR03_APR07/full-commentary.xml</full-commentary-url><squads-url>http://sifyscores.cricbuzz.com/data/2012/2012_SL_ENG/SL_ENG_APR03_APR07/squads.xml</squads-url><highlights-url>http://sifyscores.cricbuzz.com/data/2012/2012_SL_ENG/SL_ENG_APR03_APR07/highlights.xml</highlights-url><graphs-url>http://sifyscores.cricbuzz.com/data/2012/2012_SL_ENG/SL_ENG_APR03_APR07/graphs.xml</graphs-url><series-statistics-url>http://webclient.cricbuzz.com/statistics/series/xml/2083</series-statistics-url></match><match><seriesName>Indian Premier League 2012</seriesName><team1>Kolkata Knight Riders</team1><team2>Delhi Daredevils</team2><startdate>05 04 2012</startdate><enddate>05 04 2012</enddate><type>T20</type><scores-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/KOL_DEL_APR05/scores.xml</scores-url><full-commentary-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/KOL_DEL_APR05/full-commentary.xml</full-commentary-url><squads-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/KOL_DEL_APR05/squads.xml</squads-url><highlights-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/KOL_DEL_APR05/highlights.xml</highlights-url><graphs-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/KOL_DEL_APR05/graphs.xml</graphs-url><series-statistics-url>http://webclient.cricbuzz.com/statistics/series/xml/2115</series-statistics-url></match><match><seriesName>Indian Premier League 2012</seriesName><team1>Chennai Super Kings</team1><team2>Mumbai Indians</team2><startdate>05 04 2012</startdate><enddate>05 04 2012</enddate><type>T20</type><scores-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/CHN_MUM_APR04/scores.xml</scores-url><full-commentary-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/CHN_MUM_APR04/full-commentary.xml</full-commentary-url><squads-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/CHN_MUM_APR04/squads.xml</squads-url><highlights-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/CHN_MUM_APR04/highlights.xml</highlights-url><graphs-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/CHN_MUM_APR04/graphs.xml</graphs-url><series-statistics-url>http://webclient.cricbuzz.com/statistics/series/xml/2115</series-statistics-url></match></matches>";
+			// str="<matches><match><seriesName>England in Sri Lanka 2012</seriesName><team1>Sri Lanka</team1><team2>England</team2><startdate>03 04 2012</startdate><enddate>07 04 2012</enddate><type>TEST</type><scores-url>http://sifyscores.cricbuzz.com/data/2012/2012_SL_ENG/SL_ENG_APR03_APR07/scores.xml</scores-url><full-commentary-url>http://sifyscores.cricbuzz.com/data/2012/2012_SL_ENG/SL_ENG_APR03_APR07/full-commentary.xml</full-commentary-url><squads-url>http://sifyscores.cricbuzz.com/data/2012/2012_SL_ENG/SL_ENG_APR03_APR07/squads.xml</squads-url><highlights-url>http://sifyscores.cricbuzz.com/data/2012/2012_SL_ENG/SL_ENG_APR03_APR07/highlights.xml</highlights-url><graphs-url>http://sifyscores.cricbuzz.com/data/2012/2012_SL_ENG/SL_ENG_APR03_APR07/graphs.xml</graphs-url><series-statistics-url>http://webclient.cricbuzz.com/statistics/series/xml/2083</series-statistics-url></match><match><seriesName>Indian Premier League 2012</seriesName><team1>Kolkata Knight Riders</team1><team2>Delhi Daredevils</team2><startdate>05 04 2012</startdate><enddate>05 04 2012</enddate><type>T20</type><scores-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/KOL_DEL_APR05/scores.xml</scores-url><full-commentary-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/KOL_DEL_APR05/full-commentary.xml</full-commentary-url><squads-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/KOL_DEL_APR05/squads.xml</squads-url><highlights-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/KOL_DEL_APR05/highlights.xml</highlights-url><graphs-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/KOL_DEL_APR05/graphs.xml</graphs-url><series-statistics-url>http://webclient.cricbuzz.com/statistics/series/xml/2115</series-statistics-url></match><match><seriesName>Indian Premier League 2012</seriesName><team1>Chennai Super Kings</team1><team2>Mumbai Indians</team2><startdate>05 04 2012</startdate><enddate>05 04 2012</enddate><type>T20</type><scores-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/CHN_MUM_APR04/scores.xml</scores-url><full-commentary-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/CHN_MUM_APR04/full-commentary.xml</full-commentary-url><squads-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/CHN_MUM_APR04/squads.xml</squads-url><highlights-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/CHN_MUM_APR04/highlights.xml</highlights-url><graphs-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/CHN_MUM_APR04/graphs.xml</graphs-url><series-statistics-url>http://webclient.cricbuzz.com/statistics/series/xml/2115</series-statistics-url></match></matches>";
 			xmlParseMatch(str);
-			
-			Log.d("aaaaaaaaa size",""+matchesArray.size());
-		
+
+			Log.d("MatchArray size", "MatchArray" + matchesArray.size());
+
 		} catch (SocketException e) {
 
 		} catch (UnknownHostException ex) {
@@ -85,14 +84,14 @@ public class MatchUrl extends Activity{
 		try {
 			Calendar c = Calendar.getInstance();
 			int currentdate = c.get(Calendar.DATE);
-			Log.d("Date", "Date is :: " + currentdate);
+			// Log.d("Date", "Date is :: " + currentdate);
 			int date = 0;
-			
+
 			Date d = new Date();
 			SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
 			String CDate = dateFormat.format(d);
-			
-			String teamA = null, teamB = null, scoreUrl = null, matchDate=null;
+
+			String teamA = null, teamB = null, scoreUrl = null, matchDate = null;
 			ContentValues values = new ContentValues();
 			// TODO Auto-generated method stub
 			XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
@@ -170,9 +169,11 @@ public class MatchUrl extends Activity{
 				else if (eventType == XmlPullParser.TEXT) {
 					switch (m_xmlTagId) {
 					case 1: // seriesName
-						//if (xpp.getText().equals("Indian Premier League 2012")) {
-							m_isIpl = true;
-						//}
+						// if
+						// (xpp.getText().equals("Indian Premier League 2012"))
+						// {
+						m_isIpl = true;
+						// }
 						break;
 					case 2: // team1
 						Log.d("aaa", "teamA" + xpp.getText());
@@ -180,28 +181,28 @@ public class MatchUrl extends Activity{
 							teamA = xpp.getText();
 						break;
 					case 3: // team2
-						Log.d("aaa", "teamB" + xpp.getText());
+						Log.d("bbb", "teamB" + xpp.getText());
 						if (!xpp.getText().equalsIgnoreCase("\n"))
 							teamB = xpp.getText();
 						break;
 					case 4: // scores-url
-						Log.d("aaa", "URL" + xpp.getText());
+						// Log.d("url", "URL" + xpp.getText());
 						if (!xpp.getText().equalsIgnoreCase("\n"))
-						scoreUrl = xpp.getText();
-						//if(CDate.equals(matchDate))
-						//{
-							if (teamA != null && teamB != null && scoreUrl != null) {
+							scoreUrl = xpp.getText();
+						// if(CDate.equals(matchDate))
+						// {
+						if (teamA != null && teamB != null && scoreUrl != null) {
 
-								matchesArray.add(teamA + "||" + teamB + "||"
-										+ scoreUrl);
-								teamA = null;
-								teamB = null;
-								scoreUrl = null;
+							matchesArray.add(teamA + "||" + teamB + "||"
+									+ scoreUrl);
+							teamA = null;
+							teamB = null;
+							scoreUrl = null;
 
-							}
-						
-						//}					
-						
+						}
+
+						// }
+
 						break;
 					case 5: // full-commentary-url
 
@@ -240,8 +241,6 @@ public class MatchUrl extends Activity{
 			e.printStackTrace();
 		}
 
-	
-		
 	}
 
 }

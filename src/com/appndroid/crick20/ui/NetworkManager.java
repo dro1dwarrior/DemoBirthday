@@ -79,9 +79,9 @@ public class NetworkManager {
 				hc = new DefaultHttpClient();
 				if (m_nCommandType == ApplicationDefines.CommandType.COMMAND_SCHEDULE) {
 					get = new HttpGet(ApplicationDefines.Constants.SCHEDULE_URL);
-					Log.d("NetworkManager.HttpAsyncConnector-doInBackground()",
-							"Request is ::: "
-									+ ApplicationDefines.Constants.SCHEDULE_URL);
+					// Log.d("NetworkManager.HttpAsyncConnector-doInBackground()",
+					// "Request is ::: "
+					// + ApplicationDefines.Constants.SCHEDULE_URL);
 				}
 
 				HttpResponse rp = hc.execute(get);
@@ -89,8 +89,8 @@ public class NetworkManager {
 				szResponse = generateString(data);
 				isNetworkConnection = true;
 				isDataFetched = true;
-				Log.d("NetworkManager.HttpAsyncConnector-doInBackground()",
-						"Response is ::: " + szResponse);
+				// Log.d("NetworkManager.HttpAsyncConnector-doInBackground()",
+				// "Response is ::: " + szResponse);
 
 			} catch (SocketException e) {
 
@@ -105,8 +105,6 @@ public class NetworkManager {
 			catch (Exception e) {
 				// TODO Auto-generated catch block
 
-				Log.d("NetworkManager.HttpAsyncConnector-doInBackground()",
-						"EXCEPTION is ::: " + e.getMessage());
 				e.printStackTrace();
 			}
 
@@ -116,8 +114,8 @@ public class NetworkManager {
 		// can use UI thread here
 		protected void onPostExecute(final String szResponse) {
 			super.onPostExecute(szResponse);
-			Log.d("NetworkManager.HttpAsyncConnector-onPostExecute()",
-					"Response is :: " + szResponse);
+			// Log.d("NetworkManager.HttpAsyncConnector-onPostExecute()",
+			// "Response is :: " + szResponse);
 			parseResponse(szResponse);
 
 		}
@@ -405,8 +403,8 @@ public class NetworkManager {
 							values.put("Points", Points);
 							values.put("NetRunRate", NetRunRate);
 
-							int i = db.update(currentTag, values,
-									"_id=?", new String[] { Position });
+							int i = db.update(currentTag, values, "_id=?",
+									new String[] { Position });
 
 							Log.d("POINT TABLE DBUPDATE", " Records update : "
 									+ String.valueOf(i));
@@ -471,11 +469,12 @@ public class NetworkManager {
 								values.clear();
 								values.put("TeamB", A1);
 
-								i = db.update("schedule", values,
-										"TeamB=?", new String[] { "A1" });
+								i = db.update("schedule", values, "TeamB=?",
+										new String[] { "A1" });
 
 								values.clear();
-								SharedPreferences sp=  PreferenceManager.getDefaultSharedPreferences(mContext);
+								SharedPreferences sp = PreferenceManager
+										.getDefaultSharedPreferences(mContext);
 								Editor edit = sp.edit();
 								edit.putBoolean("isGroupStage", false);
 								edit.commit();
@@ -490,8 +489,8 @@ public class NetworkManager {
 								values.clear();
 								values.put("TeamB", B1);
 
-								i = db.update("schedule", values,
-										"TeamB=?", new String[] { "B1" });
+								i = db.update("schedule", values, "TeamB=?",
+										new String[] { "B1" });
 
 								values.clear();
 							}
@@ -506,8 +505,8 @@ public class NetworkManager {
 								values.clear();
 								values.put("TeamB", C1);
 
-								i = db.update("schedule", values,
-										"TeamB=?", new String[] { "C1" });
+								i = db.update("schedule", values, "TeamB=?",
+										new String[] { "C1" });
 
 								values.clear();
 							}
@@ -521,8 +520,8 @@ public class NetworkManager {
 								values.clear();
 								values.put("TeamB", D1);
 
-								i = db.update("schedule", values,
-										"TeamB=?", new String[] { "D1" });
+								i = db.update("schedule", values, "TeamB=?",
+										new String[] { "D1" });
 
 								values.clear();
 							}
@@ -536,8 +535,8 @@ public class NetworkManager {
 								values.clear();
 								values.put("TeamB", A2);
 
-								i = db.update("schedule", values,
-										"TeamB=?", new String[] { "A2" });
+								i = db.update("schedule", values, "TeamB=?",
+										new String[] { "A2" });
 
 								values.clear();
 							}
@@ -551,8 +550,8 @@ public class NetworkManager {
 								values.clear();
 								values.put("TeamB", B2);
 
-								i = db.update("schedule", values,
-										"TeamB=?", new String[] { "B2" });
+								i = db.update("schedule", values, "TeamB=?",
+										new String[] { "B2" });
 
 								values.clear();
 							}
@@ -566,8 +565,8 @@ public class NetworkManager {
 								values.clear();
 								values.put("TeamB", C2);
 
-								i = db.update("schedule", values,
-										"TeamB=?", new String[] { "C2" });
+								i = db.update("schedule", values, "TeamB=?",
+										new String[] { "C2" });
 
 								values.clear();
 							}
@@ -581,8 +580,8 @@ public class NetworkManager {
 								values.clear();
 								values.put("TeamB", D2);
 
-								i = db.update("schedule", values,
-										"TeamB=?", new String[] { "D2" });
+								i = db.update("schedule", values, "TeamB=?",
+										new String[] { "D2" });
 
 								values.clear();
 							}
@@ -610,8 +609,8 @@ public class NetworkManager {
 
 			catch (Exception e) {
 
-				Log.d("NetworkManager.DBUPDATE",
-						"EXCEPTION IS :: " + e.getMessage());
+				// Log.d("NetworkManager.DBUPDATE",
+				// "EXCEPTION IS :: " + e.getMessage());
 				e.printStackTrace();
 			}
 			Schedule.reloadView(mContext);

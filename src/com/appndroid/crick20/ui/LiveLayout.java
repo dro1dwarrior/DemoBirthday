@@ -274,7 +274,7 @@ public class LiveLayout extends Activity
         protected String doInBackground( String... arg0 )
         {
             // TODO Auto-generated method stub
-            Log.d( "aaaMatch URL", matchUrl );
+			// Log.d( "aaaMatch URL", matchUrl );
             xml = XMLfunctions.getXML( matchUrl );
             // String
             // abc="<?xml version='1.0' encoding='UTF-16'?><scorecard><match><type>T20</type><series>India in South Africa one-off T20I</series><matchday>1</matchday><home>South Africa</home><away>India</away><venue>The Wanderers Stadium, Johannesburg</venue><matchdesc>One-off T20I</matchdesc><startdate>30 03 2012</startdate><enddate>30 03 2012</enddate><toss><winner>India</winner><decision>Fielding</decision></toss><state>inprogress</state><result type=''><winningteam/><wonbyruns/><wonbywickets/></result><manofmatch> </manofmatch><manofseries> </manofseries><umpires><Umpire1><Name>Johanes Cloete</Name><Country>RSA</Country></Umpire1><Umpire2><Name>Shaun George</Name><Country>RSA</Country></Umpire2><ThirdUmpire><Name>Adrian Holdstock</Name><Country>RSA</Country></ThirdUmpire><MatchReferee><Name>Chris Broad</Name><Country>Eng</Country></MatchReferee></umpires></match><currentscores><currentinningsno>1</currentinningsno><batteamname>South Africa</batteamname><bwlteamname>India</bwlteamname><batteamruns>209</batteamruns><batteamwkts>4</batteamwkts><batteamovers>19.4</batteamovers><batsman><playerid>484</playerid><name>Albie Morkel*</name><runs>6</runs><balls-faced>1</balls-faced><fours>0</fours><sixes>1</sixes></batsman><batsman><playerid>8283</playerid><name>Farhaan Behardien </name><runs>20</runs><balls-faced>11</balls-faced><fours>2</fours><sixes>0</sixes></batsman><bowler><playerid>413</playerid><name>Suresh Raina*</name><overs>3.4</overs><maidens>0</maidens><runs>39</runs><wickets>2</wickets></bowler><bowler><playerid>73</playerid><name>Irfan Pathan</name><overs>4</overs><maidens>0</maidens><runs>44</runs><wickets>1</wickets></bowler><maxovers/><target/><lastwicket><playerid>317</playerid><name>Justin Ontong</name><runs>203</runs><wicket-nbr>4</wicket-nbr></lastwicket><extras><byes>0</byes><wides>2</wides><noballs>0</noballs><legbyes>1</legbyes><penalty>0</penalty><total>3</total></extras><lastfiveovers><runs>68</runs><wickets>3</wickets><fours>6</fours><sixes>4</sixes></lastfiveovers><curr-runrate>10.63</curr-runrate></currentscores><prevOvers>1 2 . 1 1 2 <b>&nbsp;&nbsp;|&nbsp;&nbsp;</b>1 6 4 4 1 4 <b>&nbsp;&nbsp;|&nbsp;&nbsp;</b>W 2 1 1 1 6 <b>&nbsp;&nbsp;|&nbsp;&nbsp;</b>2 4 2 1 4 1</prevOvers><innings no='1'><totalruns>209</totalruns><totalwickets>4</totalwickets><totalovers>19.4</totalovers><declared/><followon/><batteam name='South Africa'><players><player><playerid>2234</playerid><name>Richard Levi</name><captain>no</captain><keeper>no</keeper><runs>19</runs><balls>7</balls><fours>4</fours><sixes>0</sixes><status>caught</status><bowler>Irfan Pathan</bowler><fielder>R Sharma</fielder></player><player><playerid>213</playerid><name>Jacques Kallis</name><captain>no</captain><keeper>no</keeper><runs>61</runs><balls>42</balls><fours>5</fours><sixes>2</sixes><status>caught</status><bowler>R Ashwin</bowler><fielder>R Sharma</fielder></player><player><playerid>7664</playerid><name>Colin Ingram</name><captain>no</captain><keeper>no</keeper><runs>78</runs><balls>50</balls><fours>8</fours><sixes>3</sixes><status>caught</status><bowler>S Raina</bowler><fielder>R Sharma</fielder></player><player><playerid>8283</playerid><name>Farhaan Behardien </name><captain>no</captain><keeper>no</keeper><runs>20</runs><balls>11</balls><fours>2</fours><sixes>0</sixes><status>batting</status><bowler/><fielder/></player><player><playerid>317</playerid><name>Justin Ontong</name><captain>no</captain><keeper>no</keeper><runs>22</runs><balls>7</balls><fours>2</fours><sixes>2</sixes><status>bowled</status><bowler>S Raina</bowler><fielder/></player><player><playerid>484</playerid><name>Albie Morkel</name><captain>no</captain><keeper>no</keeper><runs>6</runs><balls>1</balls><fours>0</fours><sixes>1</sixes><status>batting</status><bowler/><fielder/></player><player><playerid>8099</playerid><name>Dane Vilas</name><captain>no</captain><keeper>yes</keeper><runs>0</runs><balls>0</balls><fours>0</fours><sixes>0</sixes><status>dnb</status><bowler/><fielder/></player><player><playerid>487</playerid><name>Johan Botha</name><captain>yes</captain><keeper>no</keeper><runs>0</runs><balls>0</balls><fours>0</fours><sixes>0</sixes><status>dnb</status><bowler/><fielder/></player><player><playerid>1692</playerid><name>Wayne Parnell</name><captain>no</captain><keeper>no</keeper><runs>0</runs><balls>0</balls><fours>0</fours><sixes>0</sixes><status>dnb</status><bowler/><fielder/></player><player><playerid>1689</playerid><name>Lonwabo Tsotsobe</name><captain>no</captain><keeper>no</keeper><runs>0</runs><balls>0</balls><fours>0</fours><sixes>0</sixes><status>dnb</status><bowler/><fielder/></player><player><playerid>6320</playerid><name>Juan Theron</name><captain>no</captain><keeper>no</keeper><runs>0</runs><balls>0</balls><fours>0</fours><sixes>0</sixes>"
@@ -478,8 +478,6 @@ public class LiveLayout extends Activity
             firstinngWkts = XMLfunctions.getValue( e, "totalwickets" );
             firstinngOve = XMLfunctions.getValue( e, "totalovers" );
 
-            Log.d( "aaaaaaaaaaaaaaaaaaaa", "first" + firstinngRuns + "/" + firstinngWkts + " in " + firstinngOve + " ovrs" );
-
             firstinngRuns = convertString( firstinngRuns );
             EditText txt = (EditText) findViewById( R.id.firsting1 );
             txt.setText( String.valueOf( firstinngRuns.charAt( 0 ) ) );
@@ -512,7 +510,6 @@ public class LiveLayout extends Activity
             secondinngWkts = XMLfunctions.getValue( e1, "totalwickets" );
             secondinngOve = XMLfunctions.getValue( e1, "totalovers" );
 
-            Log.d( "aaaaaaaaaaa", "second" + secondinngRuns + "/" + secondinngWkts + " in " + secondinngOve + " ovrs" );
             secondinngRuns = convertString( secondinngRuns );
 
             WheelView wheel = getWheel( R.id.runs_1 );
@@ -586,7 +583,6 @@ public class LiveLayout extends Activity
                         liveScore = awayTeam;
 
                     }
-                    Log.d( "aaaaaaaaaaaa", "first" + firstinngRuns + "/" + firstinngWkts + " in " + firstinngOve + " ovrs" );
 
                     firstinngRuns = convertString( firstinngRuns );
 
