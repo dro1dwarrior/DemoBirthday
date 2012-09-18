@@ -17,8 +17,9 @@
 
         <ImageView
             android:id="@+id/head_team1logo"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="7dp" />
 
@@ -36,19 +37,20 @@
             android:id="@+id/head_versustext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:singleLine="true"
+            android:layout_alignBaseline="@+id/head_team1name"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/head_team2logo"
             android:layout_toRightOf="@+id/head_team1name"
-            android:gravity="center_vertical"
             android:text="v/s" />
 
         <ImageView
             android:id="@+id/head_team2logo"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginRight="7dp"
+            android:layout_marginTop="10dp"
             android:layout_toLeftOf="@+id/head_team2name" />
 
         <TextView
@@ -56,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/head_team2logo"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="2dp"
             android:layout_toLeftOf="@+id/progressBar1"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -67,7 +69,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_alignBaseline="@+id/head_team2logo"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="2dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="10dp"
             android:layout_toLeftOf="@+id/nav"
@@ -99,12 +101,20 @@
                 android:layout_marginTop="4dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/transparent_background" >
+                <ImageButton
+                android:id="@+id/updatebtn"
+                android:layout_width="30dip"
+                android:layout_height="30dip"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/refresh" />
 
                 <LinearLayout
                     android:id="@+id/ll_first"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp" >
+                    android:layout_marginTop="30dp" >
 
                     <RelativeLayout
                         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -267,21 +277,21 @@
                 </LinearLayout>
             </RelativeLayout>
 
-            <ImageButton
-                android:id="@+id/updatebtn"
-                android:layout_width="30dip"
-                android:layout_height="30dip"
-                android:layout_below="@+id/scoreLinear"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/refresh" />
+<!--             <ImageButton -->
+<!--                 android:id="@+id/updatebtn" -->
+<!--                 android:layout_width="30dip" -->
+<!--                 android:layout_height="30dip" -->
+<!--                 android:layout_below="@+id/scoreLinear" -->
+<!--                 android:layout_centerHorizontal="true" -->
+<!--                 android:layout_marginLeft="10dp" -->
+<!--                 android:layout_marginTop="5dp" -->
+<!--                 android:background="@drawable/refresh" /> -->
 
             <RelativeLayout
                 android:id="@+id/matchDetails"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/updatebtn"
+                android:layout_below="@+id/scoreLinear"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
