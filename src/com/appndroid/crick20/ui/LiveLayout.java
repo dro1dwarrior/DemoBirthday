@@ -13,12 +13,14 @@ import org.w3c.dom.NodeList;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -58,6 +60,8 @@ public class LiveLayout extends Activity {
 	private Context con;
 	WheelView country;
 	Handler mHandler;
+	protected Handler taskHandler = new Handler();
+	protected Boolean isComplete = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -151,10 +155,41 @@ public class LiveLayout extends Activity {
 
 			}
 		});
-		runNextTask();
+		//runNextTask();
+		setTimer();
 
 	}
 	MenuDialog menuDialog;
+	
+	protected void setTimer() {
+		final long elapse = 0;
+		Runnable t = new Runnable() {
+			public void run() {
+				runNextTask();
+				boolean autoupdate;
+				SharedPreferences sp= PreferenceManager.getDefaultSharedPreferences(LiveLayout.this);
+				autoupdate=sp.getBoolean("spAutoUpdate", false);
+				if (!isComplete && autoupdate) {
+					Log.d("aaaaaaa","post delayed");
+					int item= sp.getInt("spAutoDuration", 0);
+					int timer=0;
+					if(item ==0)
+						timer=60000;
+					else if(item == 1)
+						timer=120000;
+					else if(item == 2)
+						timer=180000;
+					else if(item == 3)
+						timer=300000;
+					if(timer>0)
+						taskHandler.postDelayed(this, timer); // 60000 - 1min ,
+															// 90000 - 1.5 min ,
+															// 120000 - 2 min
+				}
+			}
+		};
+		taskHandler.postDelayed(t, elapse);
+	}
 
     public void callEvent()
     {
