@@ -74,6 +74,14 @@ public class PastMatches extends Activity {
         });
 
 	}
+	
+	@Override
+    public boolean onKeyUp( int keyCode, KeyEvent event )
+    {
+        if( keyCode == KeyEvent.KEYCODE_MENU )
+            callEvent();
+        return super.onKeyUp( keyCode, event );
+    }
 
 	public void fillData(Cursor cur) {
 
