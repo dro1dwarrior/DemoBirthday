@@ -1,8 +1,12 @@
 package com.appndroid.crick20.ui;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.SocketException;
+import java.net.URL;
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,6 +17,7 @@ import java.util.List;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -23,7 +28,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -43,6 +51,7 @@ import android.widget.TextView;
 
 import com.appndroid.crick20.R;
 import com.appndroid.crick20.ui.NetworkManager.HttpAsyncConnector;
+import com.google.android.gcm.GCMRegistrar;
 
 public class HomeScreen extends Activity {
 
@@ -84,6 +93,68 @@ public class HomeScreen extends Activity {
 		mcontext = this;
 		Utils.setContext(this);
 
+		// GCM Start
+
+		ConnectivityManager connectivityManager = (ConnectivityManager) this
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetInfo = connectivityManager.getActiveNetworkInfo();
+		NetworkInfo mobNetInfo = connectivityManager
+				.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+		NetworkInfo wifiInfo = connectivityManager
+				.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+		// GCM Start
+		int build_version = Integer.parseInt(Build.VERSION.SDK);
+		String regId = "";
+		if (build_version >= 8) {
+			GCMRegistrar.checkDevice(HomeScreen.this);
+			GCMRegistrar.checkManifest(HomeScreen.this);
+			regId = GCMRegistrar.getRegistrationId(HomeScreen.this);
+			if (regId.equals("")) {
+				GCMRegistrar.register(HomeScreen.this, "899727754395");
+				// Log.d("HomeScreen-GCMRegister()",
+				// "GCM register call check passed");
+			} else {
+				if (!Utils.getIsPushStatusPostedOnServer(this)) {
+					String szServer = "http://buyholdsell.in/ipl/add-device-id.php?device_id=";
+					String szCompleteUrl = szServer + regId + "&salt=";
+					szCompleteUrl = szCompleteUrl
+							+ Utils.getMd5Hash("G6derTY" + regId);
+					try {
+
+						if ((mobNetInfo != null && mobNetInfo.isAvailable() && mobNetInfo
+								.isConnected())
+								|| (activeNetInfo != null
+										&& activeNetInfo.isAvailable() && activeNetInfo
+											.isConnected())
+								|| (wifiInfo != null && wifiInfo.isAvailable() && wifiInfo
+										.isConnected())) {
+							// Log.d("HomeScreen", "URL is: " + szCompleteUrl);
+							HttpClient httpclient = new DefaultHttpClient();
+							HttpPost httppost = new HttpPost(szCompleteUrl);
+							HttpResponse response = httpclient
+									.execute(httppost);
+							String szResponse = inputStreamToString(
+									response.getEntity().getContent())
+									.toString();
+							Log.d("HomeScreen", "Response is :" + szResponse);
+							if (szResponse.equalsIgnoreCase("1"))
+								Utils.setIsPushStatusPostedOnServer(this, true);
+						} else {
+							Log.d("HomeScreen", "NETWORK NOT AVAILABLE");
+							return;
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						Log.d("HomeScreen", "EXCEPTION");
+						e.printStackTrace();
+					}
+
+				}
+			}
+		}
+		// GCM End
+
 		// WebView wv = (WebView) findViewById(R.id.browser_home);
 		// wv.getSettings().setJavaScriptEnabled(true);
 		// wv.setBackgroundColor(Color.TRANSPARENT);
@@ -91,8 +162,7 @@ public class HomeScreen extends Activity {
 		// "<html><body style='margin:0;padding:0;'><script type='text/javascript' src='http://ad.leadboltads.net/show_app_ad.js?section_id=475192381'></script></body></html>";
 		// wv.loadData(html, "text/html", "utf-8");
 
-		// if( NetworkManager.isNetworkConnection )
-		{
+		if (!Utils.isDataMatchURLparsed) {
 			new fetchURLTask().execute();
 		}
 		gallery = (Gallery) findViewById(R.id.home_gallery);
@@ -177,7 +247,8 @@ public class HomeScreen extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				// Intent schIntent = new Intent( mcontext, LiveLayout.class );
+				// Intent schIntent = new Intent( mcontext, LiveLayout.class
+				// );
 				// schIntent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
 				// schIntent.addFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
 				// mcontext.startActivity( schIntent );
@@ -248,6 +319,19 @@ public class HomeScreen extends Activity {
 		//
 
 		AppRater.app_launched(this);
+	}
+
+	private StringBuilder inputStreamToString(InputStream content)
+			throws IOException {
+		// TODO Auto-generated method stub
+		String line = "";
+		StringBuilder total = new StringBuilder();
+
+		BufferedReader rd = new BufferedReader(new InputStreamReader(content));
+		while ((line = rd.readLine()) != null) {
+			total.append(line);
+		}
+		return total;
 	}
 
 	private void populateGallery() {
@@ -678,7 +762,13 @@ public class HomeScreen extends Activity {
 	private class fetchURLTask extends AsyncTask<Void, Void, Void> {
 		@Override
 		protected Void doInBackground(Void... arg0) {
-			fetchliveurls();
+			try {
+				fetchliveurls();
+				Utils.isDataMatchURLparsed = true;
+			} catch (Exception e) {
+				e.printStackTrace();
+				Utils.isDataMatchURLparsed = false;
+			}
 			return null;
 		}
 	}
