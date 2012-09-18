@@ -104,9 +104,9 @@ public class HomeScreen extends Activity
 
         drawable = new getDrawable();
         Utils.getDB( this );
-        mCursor = Utils.db.query( "schedule", null, null, null, null, null, null );
-        // mCursor = Utils.db.query( "schedule", null, "MatchUrl != '' AND MatchResult == '' ", null, null, null, null
-        // );
+        //mCursor = Utils.db.query( "schedule", null, null, null, null, null, null );
+        mCursor = Utils.db.query( "schedule", null, "MatchUrl != '' AND MatchResult == '' ", null, null, null, null
+         );
         mCursor.moveToFirst();
         Log.d( "HomeScreen-onCreate", " Cursor Count for LIVE MATCHES " + mCursor.getCount() );
 
@@ -194,10 +194,10 @@ public class HomeScreen extends Activity
             public void onClick( View v )
             {
                 // TODO Auto-generated method stub
-                Intent schIntent = new Intent( mcontext, LiveLayout.class );
-                schIntent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
-                schIntent.addFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
-                mcontext.startActivity( schIntent );
+//                Intent schIntent = new Intent( mcontext, LiveLayout.class );
+//                schIntent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
+//                schIntent.addFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
+//                mcontext.startActivity( schIntent );
 
             }
         } );
@@ -283,7 +283,7 @@ public class HomeScreen extends Activity
                 String szTeamB = mCursor.getString( mCursor.getColumnIndex( "TeamB" ) );
                 teamA.add( szTeamA );
                 teamB.add( szTeamB );
-                stadium.add( mCursor.getString( mCursor.getColumnIndex( "Stadium" ) ) );
+                stadium.add( mCursor.getString( mCursor.getColumnIndex( "Venue" ) ) );
                 group.add( mCursor.getString( mCursor.getColumnIndex( "gang" ) ) );
                 match.add( drawable.getTeamShortCode( szTeamA ) + " vs " + drawable.getTeamShortCode( szTeamB ) );
 

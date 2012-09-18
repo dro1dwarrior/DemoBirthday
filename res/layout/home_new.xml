@@ -17,6 +17,15 @@
         android:textSize="19.0sp"
         android:textStyle="bold" />
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/title" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
     <LinearLayout
         android:id="@+id/ll_main"
         android:layout_width="fill_parent"
@@ -142,12 +151,23 @@
             android:background="@drawable/icon_v" />
     </LinearLayout>
 
+            <TextView
+                android:id="@+id/txtTodaysMatches"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_main"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="Live Scorecard"
+                android:textColor="#69D2E7"
+                android:textSize="16dip"
+                android:textStyle="bold" />
+
     <com.appndroid.crick20.ui.MatchGallery
         android:id="@+id/home_gallery"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ll_main"
-        android:layout_marginTop="5dp"
+                android:layout_below="@+id/txtTodaysMatches"
         android:fadingEdge="none"
         android:paddingTop="5.0dip"
         android:spacing="10.0dip" />
@@ -178,5 +198,7 @@
             android:background="@drawable/countershape" >
         </TextView>
     </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>
