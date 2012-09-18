@@ -84,6 +84,7 @@ public class HomeScreen extends Activity
         setContentView( R.layout.home_new );
 
         mcontext = this;
+        Utils.setContext( this );
 
         // WebView wv = (WebView) findViewById(R.id.browser_home);
         // wv.getSettings().setJavaScriptEnabled(true);
@@ -102,16 +103,8 @@ public class HomeScreen extends Activity
         mDotsLayout.setVisibility( View.INVISIBLE );
         counter1 = (TextView) findViewById( R.id.counter1 );
         counter2 = (TextView) findViewById( R.id.counter2 );
-
         drawable = new getDrawable();
-        Utils.getDB( this );
-        //mCursor = Utils.db.query( "schedule", null, null, null, null, null, null );
-        mCursor = Utils.db.query( "schedule", null, "MatchUrl != '' AND MatchResult == '' ", null, null, null, null
-         );
-        mCursor.moveToFirst();
-        Log.d( "HomeScreen-onCreate", " Cursor Count for LIVE MATCHES " + mCursor.getCount() );
 
-        populateGallery();
         networkmanager = new NetworkManager( HomeScreen.this );
 
         if( !NetworkManager.isDataFetched )
@@ -195,10 +188,10 @@ public class HomeScreen extends Activity
             public void onClick( View v )
             {
                 // TODO Auto-generated method stub
-//                Intent schIntent = new Intent( mcontext, LiveLayout.class );
-//                schIntent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
-//                schIntent.addFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
-//                mcontext.startActivity( schIntent );
+                // Intent schIntent = new Intent( mcontext, LiveLayout.class );
+                // schIntent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
+                // schIntent.addFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
+                // mcontext.startActivity( schIntent );
 
             }
         } );
@@ -264,6 +257,8 @@ public class HomeScreen extends Activity
         // }
         // });
         //
+
+        AppRater.app_launched( this );
     }
 
     private void populateGallery()
@@ -271,6 +266,8 @@ public class HomeScreen extends Activity
         // TODO Auto-generated method stub
         if( mCursor.getCount() > 0 )
         {
+            TextView txt = (TextView) findViewById( R.id.txtTodaysMatches );
+            txt.setVisibility( View.VISIBLE );
             teamA.clear();
             teamB.clear();
             match.clear();
@@ -390,6 +387,20 @@ public class HomeScreen extends Activity
         // TODO Auto-generated method stub
         super.onPause();
         NetworkManager.isDataFetched = false;
+    }
+
+    @Override
+    protected void onResume()
+    {
+        // TODO Auto-generated method stub
+        super.onResume();
+        Utils.getDB( this );
+        // mCursor = Utils.db.query( "schedule", null, null, null, null, null, null );
+        mCursor = Utils.db.query( "schedule", null, "MatchUrl != '' AND MatchResult == '' ", null, null, null, null );
+        mCursor.moveToFirst();
+        Log.d( "HomeScreen-onCreate", " Cursor Count for LIVE MATCHES " + mCursor.getCount() );
+
+        populateGallery();
     }
 
     public class MyAdapter extends BaseAdapter
@@ -652,7 +663,7 @@ public class HomeScreen extends Activity
                             int i = Utils.db.update( "schedule", cvalues, "TeamA=? AND TeamB = ? AND Date=?",
                                     new String[] { teamA.replaceAll( " ", "" ), teamB.replaceAll( " ", "" ), matchDate } );
                             Log.d( "HomeScreen", "DB UPDATED number of updated columns" + i );
-                            if( i > 0 )
+                            if( i > 0 && Utils.currentContext == HomeScreen.this )
                             {
                                 Log.d( " DB UPDATEDDDD ", " UPDATEDDDDDDDDDDDDDDDDDDD" );
                                 gallery.clearAnimation();

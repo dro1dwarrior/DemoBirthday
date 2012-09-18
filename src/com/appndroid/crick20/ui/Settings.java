@@ -33,6 +33,7 @@ public class Settings extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.settings);
+		Utils.setContext( this );
 		m_context = this;
 		sp = PreferenceManager.getDefaultSharedPreferences(m_context);
 
@@ -72,7 +73,7 @@ public class Settings extends Activity {
 	public void showDurationList() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(m_context);
 		builder.setTitle("Live score Auto update duration");
-		int selPosition = sp.getInt("spAutoDuration", 0);
+		int selPosition = sp.getInt("spAutoDuration", -1);
 		builder.setSingleChoiceItems(items, selPosition,
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int item) {

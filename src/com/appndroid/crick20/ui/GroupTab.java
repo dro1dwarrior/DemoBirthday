@@ -40,6 +40,7 @@ public class GroupTab extends TabActivity {
 			// this.myPrefs = getSharedPreferences("preference", 0);
 			this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 			setContentView(R.layout.group_tab);
+			Utils.setContext( this );
 			getResources();
 			tabHost = getTabHost();
 			tabHost.getTabWidget().setDividerDrawable(R.drawable.tab_divider);

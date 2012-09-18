@@ -158,8 +158,10 @@
                 android:layout_below="@+id/ll_main"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                android:text="Live Scorecard"
+                android:text="Today\'s Matches"
+                android:background="@drawable/transparent_background"
                 android:textColor="#69D2E7"
+                android:visibility="gone"
                 android:textSize="16dip"
                 android:textStyle="bold" />
 

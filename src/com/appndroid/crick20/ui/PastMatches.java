@@ -39,6 +39,7 @@ public class PastMatches extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.past_matches);
 
+		Utils.setContext( this );
 		int schId = getIntent().getExtras().getInt("schId");
 		db = openOrCreateDatabase( "worldcupt20.db", SQLiteDatabase.CREATE_IF_NECESSARY, null );
 

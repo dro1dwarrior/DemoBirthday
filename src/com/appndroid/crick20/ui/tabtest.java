@@ -110,6 +110,7 @@ public class tabtest extends Activity implements AnimationListener
         drawable = new getDrawable();
         this.requestWindowFeature( Window.FEATURE_NO_TITLE );
         setContentView( R.layout.infoflipper_layout );
+        Utils.setContext( this );
         flipper = ( (ViewFlipper) findViewById( R.id.flip ) );
 
         gestureDetector = new GestureDetector( new MyGestureDetector() );

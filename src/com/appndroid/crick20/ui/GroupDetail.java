@@ -104,6 +104,7 @@ public class GroupDetail extends ListActivity implements AnimationListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.groupdetail);
 
+		Utils.setContext( this );
 		drawable = new getDrawable();
 		SharedPreferences sp = PreferenceManager
 				.getDefaultSharedPreferences(this);

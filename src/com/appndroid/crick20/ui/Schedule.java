@@ -86,6 +86,7 @@ public class Schedule extends ListActivity implements AnimationListener
         super.onCreate( savedInstanceState );
         setContentView( R.layout.schedule );
 
+        Utils.setContext( this );
         lv = getListView();
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences( this );
         milli_offset = sp.getInt( "offset", 0 );
@@ -132,12 +133,13 @@ public class Schedule extends ListActivity implements AnimationListener
                 //
             }
         } );
-        
-//        wv = (WebView) findViewById(R.id.browser_schedule);
-//        wv.getSettings().setJavaScriptEnabled(true);
-//        wv.setBackgroundColor(Color.TRANSPARENT);
-//        String html = "<html><body style='margin:0;padding:0;'><script type='text/javascript' src='http://ad.leadboltads.net/show_app_ad.js?section_id=581427376'></script></body></html>";
-//        wv.loadData(html, "text/html", "utf-8");
+
+        // wv = (WebView) findViewById(R.id.browser_schedule);
+        // wv.getSettings().setJavaScriptEnabled(true);
+        // wv.setBackgroundColor(Color.TRANSPARENT);
+        // String html =
+        // "<html><body style='margin:0;padding:0;'><script type='text/javascript' src='http://ad.leadboltads.net/show_app_ad.js?section_id=581427376'></script></body></html>";
+        // wv.loadData(html, "text/html", "utf-8");
 
     }
 
@@ -370,8 +372,8 @@ public class Schedule extends ListActivity implements AnimationListener
         int counter = cur.getCount();
         winnerTeamCounter = new String[counter];
         matchUrl = new String[counter];
-        teamA=new String[counter];
-        teamB=new String[counter];
+        teamA = new String[counter];
+        teamB = new String[counter];
         cur.moveToFirst();
         while( cur.isAfterLast() == false )
         {
@@ -398,9 +400,10 @@ public class Schedule extends ListActivity implements AnimationListener
         }
         else if( !matchUrl[nPosition].equals( "" ) && winnerTeamCounter[nPosition].equals( "" ) )
         {
-            //Toast.makeText( Schedule.this, "open live score activity"+teamA[nPosition]+teamB[nPosition], Toast.LENGTH_SHORT ).show();
+            // Toast.makeText( Schedule.this, "open live score activity"+teamA[nPosition]+teamB[nPosition],
+            // Toast.LENGTH_SHORT ).show();
             Intent scoreIntent = new Intent( Schedule.this, LiveLayout.class );
-            scoreIntent.putExtra( "match", teamA[nPosition]+"||"+teamB[nPosition]+"||"+matchUrl[nPosition]);
+            scoreIntent.putExtra( "match", teamA[nPosition] + "||" + teamB[nPosition] + "||" + matchUrl[nPosition] );
             startActivity( scoreIntent );
         }
         else
