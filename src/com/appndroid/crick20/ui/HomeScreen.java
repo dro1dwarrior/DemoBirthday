@@ -55,9 +55,9 @@ public class HomeScreen extends Activity
     Gallery gallery;
     Cursor mCursor;
     BaseAdapter mAdapter;
-    List< String > teamA;
-    List< String > teamB;
-    List< String > matchDates;
+    List< String > teamA = new ArrayList< String >();;
+    List< String > teamB = new ArrayList< String >();;
+    List< String > matchDates = new ArrayList< String >();;
     getDrawable drawable;
 
     LinearLayout mDotsLayout;
@@ -91,8 +91,9 @@ public class HomeScreen extends Activity
             new fetchURLTask().execute();
         }
         gallery = (Gallery) findViewById( R.id.home_gallery );
+        mAdapter = new MyAdapter( this );
         mDotsLayout = (LinearLayout) findViewById( R.id.dotsLayout );
-        mDotsLayout.setVisibility( View.GONE );
+        mDotsLayout.setVisibility( View.INVISIBLE );
         counter1 = (TextView) findViewById( R.id.counter1 );
         counter2 = (TextView) findViewById( R.id.counter2 );
 
@@ -102,71 +103,9 @@ public class HomeScreen extends Activity
         // mCursor = Utils.db.query( "schedule", null, "MatchUrl != '' AND MatchResult == '' ", null, null, null, null
         // );
         mCursor.moveToFirst();
+        Log.d( "HomeScreen-onCreate", " Cursor Count for LIVE MATCHES " + mCursor.getCount() );
 
-        Log.d( "HomeScreen-onCreate", " Cursor Count for LIVE MATCHES" );
-
-        if( mCursor.getCount() > 0 )
-        {
-            teamA = new ArrayList< String >();
-            teamB = new ArrayList< String >();
-            matchDates = new ArrayList< String >();
-            do
-            {
-                teamA.add( mCursor.getString( mCursor.getColumnIndex( "TeamA" ) ) );
-                teamB.add( mCursor.getString( mCursor.getColumnIndex( "TeamB" ) ) );
-                matchDates.add( mCursor.getString( mCursor.getColumnIndex( "Date" ) ) );
-            }
-            while( mCursor.moveToNext() );
-
-            Log.d( "HomeScreen-onCreate", " Total items in A added : " + teamA.size() );
-            mAdapter = new MyAdapter( this );
-            gallery.setAdapter( mAdapter );
-
-            if( mCursor.getCount() > 1 )
-            {
-                mDotsLayout.setVisibility( View.VISIBLE );
-                counter1.setBackgroundResource( R.drawable.countershape_selected );
-                counter2.setBackgroundResource( R.drawable.countershape );
-            }
-            gallery.setOnItemClickListener( new OnItemClickListener()
-            {
-                public void onItemClick( AdapterView parent, View v, int position, long id )
-                {
-
-                    Log.d( "Gallery", "Position = " + position );
-                }
-            } );
-
-            gallery.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener()
-            {
-                @Override
-                public void onItemSelected( AdapterView adapterView, View view, int pos, long l )
-                {
-                    if( mDotsLayout.getVisibility() == View.VISIBLE )
-                    {
-                        if( pos == 0 )
-                        {
-                            Log.d( "", "FIRSTTTTT" );
-                            counter1.setBackgroundResource( R.drawable.countershape_selected );
-                            counter2.setBackgroundResource( R.drawable.countershape );
-                        }
-                        else
-                        {
-                            Log.d( "", "POSSSS" + pos );
-                            counter2.setBackgroundResource( R.drawable.countershape_selected );
-                            counter1.setBackgroundResource( R.drawable.countershape );
-                        }
-                    }
-                }
-
-                @Override
-                public void onNothingSelected( AdapterView adapterView )
-                {
-
-                }
-            } );
-
-        }
+        populateGallery();
         networkmanager = new NetworkManager( HomeScreen.this );
 
         if( !NetworkManager.isDataFetched )
@@ -321,6 +260,73 @@ public class HomeScreen extends Activity
         //
     }
 
+    private void populateGallery()
+    {
+        // TODO Auto-generated method stub
+        if( mCursor.getCount() > 0 )
+        {
+            teamA.clear();
+            teamB.clear();
+            matchDates.clear();
+            do
+            {
+                teamA.add( mCursor.getString( mCursor.getColumnIndex( "TeamA" ) ) );
+                teamB.add( mCursor.getString( mCursor.getColumnIndex( "TeamB" ) ) );
+                matchDates.add( mCursor.getString( mCursor.getColumnIndex( "Date" ) ) );
+            }
+            while( mCursor.moveToNext() );
+
+            Log.d( "HomeScreen-populateGallery", " Total items in A added : " + teamA.size() );
+            gallery.setAdapter( mAdapter );
+
+            if( mCursor.getCount() > 1 )
+            {
+                mDotsLayout.setVisibility( View.VISIBLE );
+                counter1.setBackgroundResource( R.drawable.countershape_selected );
+                counter2.setBackgroundResource( R.drawable.countershape );
+            }
+            gallery.setOnItemClickListener( new OnItemClickListener()
+            {
+                public void onItemClick( AdapterView parent, View v, int position, long id )
+                {
+
+                    Log.d( "Gallery", "Position = " + position );
+                }
+            } );
+
+            gallery.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener()
+            {
+                @Override
+                public void onItemSelected( AdapterView adapterView, View view, int pos, long l )
+                {
+                    if( mDotsLayout.getVisibility() == View.VISIBLE )
+                    {
+                        if( pos == 0 )
+                        {
+                            Log.d( "", "FIRSTTTTT" );
+                            counter1.setBackgroundResource( R.drawable.countershape_selected );
+                            counter2.setBackgroundResource( R.drawable.countershape );
+                        }
+                        else
+                        {
+                            Log.d( "", "POSSSS" + pos );
+                            counter2.setBackgroundResource( R.drawable.countershape_selected );
+                            counter1.setBackgroundResource( R.drawable.countershape );
+                        }
+                    }
+                }
+
+                @Override
+                public void onNothingSelected( AdapterView adapterView )
+                {
+
+                }
+            } );
+
+        }
+
+    }
+
     @Override
     protected void onPause()
     {
@@ -364,18 +370,19 @@ public class HomeScreen extends Activity
         {
             // TODO Auto-generated method stub
 
-            View rowView = LayoutInflater.from( parent.getContext() ).inflate( R.layout.galleryitem, null );
-            TextView textDate = (TextView) rowView.findViewById( R.id.galleryitem_text1 );
-            TextView text2 = (TextView) rowView.findViewById( R.id.galleryitem_text2 );
-            TextView text3 = (TextView) rowView.findViewById( R.id.galleryitem_text3 );
+            // View rowView = LayoutInflater.from( parent.getContext() ).inflate( R.layout.galleryitem, null );
+            View rowView = LayoutInflater.from( parent.getContext() ).inflate( R.layout.galleryitem_new, null );
+            // TextView textDate = (TextView) rowView.findViewById( R.id.galleryitem_text1 );
+            // TextView text2 = (TextView) rowView.findViewById( R.id.galleryitem_text2 );
+            // TextView text3 = (TextView) rowView.findViewById( R.id.galleryitem_text3 );
             ImageView flag1 = (ImageView) rowView.findViewById( R.id.galleryitem_flag1 );
             ImageView flag2 = (ImageView) rowView.findViewById( R.id.galleryitem_flag2 );
-            TextView textTeamA = (TextView) rowView.findViewById( R.id.galleryitem_team1 );
-            TextView textTeamB = (TextView) rowView.findViewById( R.id.galleryitem_team2 );
+            // TextView textTeamA = (TextView) rowView.findViewById( R.id.galleryitem_team1 );
+            // TextView textTeamB = (TextView) rowView.findViewById( R.id.galleryitem_team2 );
 
-            textDate.setText( matchDates.get( position ).toString() );
-            textTeamA.setText( drawable.getTeamShortCode( teamA.get( position ).toString() ) );
-            textTeamB.setText( drawable.getTeamShortCode( teamB.get( position ).toString() ) );
+            // textDate.setText( matchDates.get( position ).toString() );
+            // textTeamA.setText( drawable.getTeamShortCode( teamA.get( position ).toString() ) );
+            // textTeamB.setText( drawable.getTeamShortCode( teamB.get( position ).toString() ) );
             flag1.setImageResource( drawable.getIcon( teamA.get( position ).toString() ) );
             flag2.setImageResource( drawable.getIcon( teamB.get( position ).toString() ) );
             return rowView;
@@ -580,8 +587,20 @@ public class HomeScreen extends Activity
                             cvalues.put( "MatchUrl", scoreUrl );
 
                             Utils.getDB( this );
-                            int i = Utils.db.update( "schedule", cvalues, "TeamA=? AND TeamB = ? AND Date=?", new String[] { teamA.replaceAll( " ", "" ), teamB.replaceAll( " ", "" ), matchDate } );
+                            int i = Utils.db.update( "schedule", cvalues, "TeamA=? AND TeamB = ? AND Date=?",
+                                    new String[] { teamA.replaceAll( " ", "" ), teamB.replaceAll( " ", "" ), matchDate } );
                             Log.d( "HomeScreen", "DB UPDATED number of updated columns" + i );
+                            if( i > 0 )
+                            {
+                                Log.d( " DB UPDATEDDDD ", " UPDATEDDDDDDDDDDDDDDDDDDD" );
+                                gallery.clearAnimation();
+                                mAdapter.notifyDataSetChanged();
+                                mCursor = Utils.db.query( "schedule", null, "MatchUrl != '' AND MatchResult == '' ", null, null, null, null );
+                                mCursor.moveToFirst();
+                                Intent intent = new Intent( this, HomeScreen.class );
+                                startActivity( intent );
+                                this.finish();
+                            }
                             teamA = null;
                             teamB = null;
                             scoreUrl = null;

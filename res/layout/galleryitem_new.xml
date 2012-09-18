@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/schedule" >
+
+    <TextView
+        android:id="@+id/textview_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:singleLine="true"
+        android:text="TIME"
+        android:textColor="#602a2a"
+        android:textSize="14sp" />
+
+    <RelativeLayout
+        android:id="@+id/relative1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview_time"
+        android:layout_marginTop="16dp" >
+
+        <ImageView
+            android:id="@+id/galleryitem_flag1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/afghanistan" />
+
+        <TextView
+            android:id="@+id/textview_group"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textview_match"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_toLeftOf="@+id/galleryitem_flag2"
+            android:layout_toRightOf="@+id/galleryitem_flag1"
+            android:gravity="center_horizontal"
+            android:text=" group info"
+            android:textColor="#102a2a"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textview_match"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_toLeftOf="@+id/galleryitem_flag2"
+            android:layout_toRightOf="@+id/galleryitem_flag1"
+            android:gravity="center_horizontal"
+            android:text=" MAtch Info"
+            android:textColor="#752a2a"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textview_stadium"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textview_match"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="15dp"
+            android:layout_toLeftOf="@+id/galleryitem_flag2"
+            android:layout_toRightOf="@+id/galleryitem_flag1"
+            android:gravity="center_horizontal"
+            android:text="Stadium"
+            android:textColor="#102a2a"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/galleryitem_flag2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/afghanistan" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textview_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relative1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="10dp"
+        android:textColor="#602a2a" 
+        android:text="Date"/>
+
+</RelativeLayout>
