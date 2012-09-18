@@ -474,19 +474,6 @@ public class HomeScreen extends Activity {
 	}
 
 	@Override
-	protected void onRestart() {
-		// TODO Auto-generated method stub
-		super.onRestart();
-		mCursor = Utils.db
-				.query("schedule", null,
-						"MatchUrl != '' AND MatchResult == '' ", null, null,
-						null, null);
-		mCursor.moveToFirst();
-
-		populateGallery();
-	}
-
-	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
