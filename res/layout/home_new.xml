@@ -141,13 +141,41 @@
             android:background="@drawable/icon_v" />
     </LinearLayout>
 
-    <com.appndroid.crick20.ui.CLGNMatchGallery
+    <com.appndroid.crick20.ui.MatchGallery
         android:id="@+id/home_gallery"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ll_about"
+        android:layout_above="@+id/dotsLayout"
+        android:layout_marginBottom="5dp"
         android:fadingEdge="none"
         android:paddingTop="5.0dip"
         android:spacing="10.0dip" />
+
+    <LinearLayout
+        android:id="@+id/dotsLayout"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/transparent_background"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true" >
+
+        <TextView
+            android:id="@+id/counter1"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:background="@drawable/countershape" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/counter2"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/countershape" >
+        </TextView>
+    </LinearLayout>
 
 </RelativeLayout>
