@@ -55,9 +55,14 @@ public class HomeScreen extends Activity
     Gallery gallery;
     Cursor mCursor;
     BaseAdapter mAdapter;
-    List< String > teamA = new ArrayList< String >();;
-    List< String > teamB = new ArrayList< String >();;
-    List< String > matchDates = new ArrayList< String >();;
+    List< String > teamA = new ArrayList< String >();
+    List< String > teamB = new ArrayList< String >();
+    List< String > match = new ArrayList< String >();
+    List< String > stadium = new ArrayList< String >();
+    List< String > time = new ArrayList< String >();
+    List< String > date = new ArrayList< String >();
+    List< String > group = new ArrayList< String >();
+
     getDrawable drawable;
 
     LinearLayout mDotsLayout;
@@ -267,12 +272,50 @@ public class HomeScreen extends Activity
         {
             teamA.clear();
             teamB.clear();
-            matchDates.clear();
+            match.clear();
+            stadium.clear();
+            date.clear();
+            time.clear();
+            group.clear();
             do
             {
-                teamA.add( mCursor.getString( mCursor.getColumnIndex( "TeamA" ) ) );
-                teamB.add( mCursor.getString( mCursor.getColumnIndex( "TeamB" ) ) );
-                matchDates.add( mCursor.getString( mCursor.getColumnIndex( "Date" ) ) );
+                String szTeamA = mCursor.getString( mCursor.getColumnIndex( "TeamA" ) );
+                String szTeamB = mCursor.getString( mCursor.getColumnIndex( "TeamB" ) );
+                teamA.add( szTeamA );
+                teamB.add( szTeamB );
+                stadium.add( mCursor.getString( mCursor.getColumnIndex( "Stadium" ) ) );
+                group.add( mCursor.getString( mCursor.getColumnIndex( "gang" ) ) );
+                match.add( drawable.getTeamShortCode( szTeamA ) + " vs " + drawable.getTeamShortCode( szTeamB ) );
+
+                String time = mCursor.getString( mCursor.getColumnIndex( "GMT" ) );
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences( HomeScreen.this );
+                int milli_offset = sp.getInt( "offset", 0 );
+                SimpleDateFormat df1 = new SimpleDateFormat( "HH:mm:ss" );
+                Date d = null;
+                try
+                {
+                    d = df1.parse( time + ":00" );
+                }
+                catch( Exception e )
+                {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                Long lngTime = d.getTime();
+                lngTime += ( milli_offset );
+                Date d2 = new Date( lngTime );
+                int minutes = d2.getMinutes();
+                String min;
+                if( minutes == 0 )
+                    min = "00";
+                else
+                    min = String.valueOf( minutes );
+                this.time.add( time + " GMT / " + d2.getHours() + ":" + min + " Local" );
+
+                String date = mCursor.getString( mCursor.getColumnIndex( "Date" ) );
+                String[] strarr = date.split( " " );
+                this.date.add( strarr[0] + " " + drawable.getMonthName( strarr[1] ) + " (" + mCursor.getString( mCursor.getColumnIndex( "Other1" ) ) + ")" );
+
             }
             while( mCursor.moveToNext() );
 
@@ -372,17 +415,20 @@ public class HomeScreen extends Activity
 
             // View rowView = LayoutInflater.from( parent.getContext() ).inflate( R.layout.galleryitem, null );
             View rowView = LayoutInflater.from( parent.getContext() ).inflate( R.layout.galleryitem_new, null );
-            // TextView textDate = (TextView) rowView.findViewById( R.id.galleryitem_text1 );
-            // TextView text2 = (TextView) rowView.findViewById( R.id.galleryitem_text2 );
-            // TextView text3 = (TextView) rowView.findViewById( R.id.galleryitem_text3 );
             ImageView flag1 = (ImageView) rowView.findViewById( R.id.galleryitem_flag1 );
             ImageView flag2 = (ImageView) rowView.findViewById( R.id.galleryitem_flag2 );
-            // TextView textTeamA = (TextView) rowView.findViewById( R.id.galleryitem_team1 );
-            // TextView textTeamB = (TextView) rowView.findViewById( R.id.galleryitem_team2 );
 
-            // textDate.setText( matchDates.get( position ).toString() );
-            // textTeamA.setText( drawable.getTeamShortCode( teamA.get( position ).toString() ) );
-            // textTeamB.setText( drawable.getTeamShortCode( teamB.get( position ).toString() ) );
+            TextView txtstadium = (TextView) rowView.findViewById( R.id.textview_stadium );
+            TextView txtmatch = (TextView) rowView.findViewById( R.id.textview_match );
+            TextView txtdate = (TextView) rowView.findViewById( R.id.textview_date );
+            TextView txttime = (TextView) rowView.findViewById( R.id.textview_time );
+            TextView txtgroup = (TextView) rowView.findViewById( R.id.textview_group );
+
+            txtstadium.setText( stadium.get( position ).toString() );
+            txtmatch.setText( match.get( position ).toString() );
+            txtdate.setText( date.get( position ).toString() );
+            txttime.setText( time.get( position ).toString() );
+            txtgroup.setText( group.get( position ).toString() );
             flag1.setImageResource( drawable.getIcon( teamA.get( position ).toString() ) );
             flag2.setImageResource( drawable.getIcon( teamB.get( position ).toString() ) );
             return rowView;
