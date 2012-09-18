@@ -88,179 +88,191 @@
         android:layout_below="@+id/matchheader"
         android:layout_marginBottom="30dp" >
 
-        <LinearLayout
-            android:layout_width="fill_parent"
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+             >
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/scoreLinear"
+                android:layout_width="fill_parent"
+                android:layout_marginTop="4dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp" >
+                android:background="@drawable/transparent_background" >
 
-                <RelativeLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
+                <LinearLayout
+                    android:id="@+id/ll_first"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="2dp"
-                    android:orientation="horizontal"
-                    android:paddingLeft="12dp"
-                    android:paddingRight="12dp"
-                    android:paddingTop="4dp" >
+                    android:layout_marginTop="15dp" >
+
+                    <RelativeLayout
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="2dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="4dp" >
+
+                        <kankan.wheel.widget.WheelView
+                            android:id="@+id/country"
+                            android:layout_width="100dp"
+                            android:layout_height="70dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/team1_ovrs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/country"
+                            android:layout_centerInParent="true"
+                            android:text="0 ovrs"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content" />
 
                     <kankan.wheel.widget.WheelView
-                        android:id="@+id/country"
+                        android:id="@+id/runs_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <kankan.wheel.widget.WheelView
+                        android:id="@+id/runs_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <kankan.wheel.widget.WheelView
+                        android:id="@+id/runs_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content" />
+
+                    <kankan.wheel.widget.WheelView
+                        android:id="@+id/wiks"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/prevInng"
+                    android:layout_below="@+id/ll_first"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:paddingLeft="15dp"
+                    android:visibility="gone" >
+
+                    <RelativeLayout
+                        android:id="@+id/relparent"
                         android:layout_width="100dp"
-                        android:layout_height="70dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1" />
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:id="@+id/image2"
+                            android:layout_width="36dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="5dp" />
+
+                        <TextView
+                            android:id="@+id/team2_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/image2"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/team2_ovrs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/image2"
+                            android:layout_centerInParent="true"
+                            android:text="0 ovrs"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
 
                     <TextView
-                        android:id="@+id/team1_ovrs"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/country"
-                        android:layout_centerInParent="true"
-                        android:text="0 ovrs"
-                        android:textColor="#FFFFFF"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content" />
+
+                    <EditText
+                        android:id="@+id/firsting1"
+                        android:layout_width="32dp"
+                        android:layout_height="52dp"
+                        android:background="@drawable/score_back"
+                        android:cursorVisible="false"
+                        android:editable="false"
+                        android:gravity="center"
+                        android:scaleType="center"
+                        android:text="0"
+                        android:textSize="25sp"
                         android:textStyle="bold" />
-                </RelativeLayout>
 
-                <TextView
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content" />
+                    <EditText
+                        android:id="@+id/firsting2"
+                        android:layout_width="32dp"
+                        android:layout_height="52dp"
+                        android:background="@drawable/score_back"
+                        android:cursorVisible="false"
+                        android:editable="false"
+                        android:gravity="center"
+                        android:scaleType="center"
+                        android:text="0"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
 
-                <kankan.wheel.widget.WheelView
-                    android:id="@+id/runs_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <kankan.wheel.widget.WheelView
-                    android:id="@+id/runs_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <kankan.wheel.widget.WheelView
-                    android:id="@+id/runs_3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:layout_width="20dp"
-                    android:layout_height="wrap_content" />
-
-                <kankan.wheel.widget.WheelView
-                    android:id="@+id/wiks"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/prevInng"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:paddingLeft="15dp"
-                android:visibility="gone" >
-
-                <RelativeLayout
-                    android:id="@+id/relparent"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content" >
-
-                    <ImageView
-                        android:id="@+id/image2"
-                        android:layout_width="36dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="5dp" />
-
-                    <TextView
-                        android:id="@+id/team2_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/image2"
-                        android:textColor="#FFFFFF"
+                    <EditText
+                        android:id="@+id/firsting3"
+                        android:layout_width="32dp"
+                        android:layout_height="52dp"
+                        android:background="@drawable/score_back"
+                        android:cursorVisible="false"
+                        android:editable="false"
+                        android:gravity="center"
+                        android:scaleType="center"
+                        android:text="0"
+                        android:textSize="25sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/team2_ovrs"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/image2"
-                        android:layout_centerInParent="true"
-                        android:text="0 ovrs"
-                        android:textColor="#FFFFFF"
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content" />
+
+                    <EditText
+                        android:id="@+id/firstingWiks"
+                        android:layout_width="50dp"
+                        android:layout_height="52dp"
+                        android:background="@drawable/score_back"
+                        android:cursorVisible="false"
+                        android:editable="false"
+                        android:gravity="center"
+                        android:scaleType="center"
+                        android:text="0"
+                        android:textSize="25sp"
                         android:textStyle="bold" />
-                </RelativeLayout>
-
-                <TextView
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content" />
-
-                <EditText
-                    android:id="@+id/firsting1"
-                    android:layout_width="32dp"
-                    android:layout_height="52dp"
-                    android:background="@drawable/score_back"
-                    android:cursorVisible="false"
-                    android:editable="false"
-                    android:gravity="center"
-                    android:scaleType="center"
-                    android:text="0"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/firsting2"
-                    android:layout_width="32dp"
-                    android:layout_height="52dp"
-                    android:background="@drawable/score_back"
-                    android:cursorVisible="false"
-                    android:editable="false"
-                    android:gravity="center"
-                    android:scaleType="center"
-                    android:text="0"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/firsting3"
-                    android:layout_width="32dp"
-                    android:layout_height="52dp"
-                    android:background="@drawable/score_back"
-                    android:cursorVisible="false"
-                    android:editable="false"
-                    android:gravity="center"
-                    android:scaleType="center"
-                    android:text="0"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="20dp"
-                    android:layout_height="wrap_content" />
-
-                <EditText
-                    android:id="@+id/firstingWiks"
-                    android:layout_width="50dp"
-                    android:layout_height="52dp"
-                    android:background="@drawable/score_back"
-                    android:cursorVisible="false"
-                    android:editable="false"
-                    android:gravity="center"
-                    android:scaleType="center"
-                    android:text="0"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
 
             <ImageButton
                 android:id="@+id/updatebtn"
                 android:layout_width="30dip"
                 android:layout_height="30dip"
+                android:layout_below="@+id/scoreLinear"
+                android:layout_centerHorizontal="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/refresh" />
@@ -269,6 +281,7 @@
                 android:id="@+id/matchDetails"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/updatebtn"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
@@ -387,7 +400,7 @@
                     android:visibility="gone" >
                 </TextView>
             </RelativeLayout>
-        </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
 
     <RelativeLayout
@@ -403,7 +416,8 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/facebook" />
+            android:background="@drawable/facebook"
+            android:visibility="invisible" />
 
         <ImageButton
             android:id="@+id/twitterbtn"
@@ -414,7 +428,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/twitter" />
+            android:background="@drawable/twitter"
+            android:visibility="invisible" />
     </RelativeLayout>
 
 </RelativeLayout>

@@ -22,6 +22,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.KeyEvent;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.AnticipateOvershootInterpolator;
@@ -47,6 +48,7 @@ public class LiveLayout extends Activity {
 	private String team2 = "India";
 	private String wheelTeam = "";
 	ImageButton update = null;
+	ImageView navigationImage;
 	ProgressBar progBar = null;
 	private boolean first = true;
 	// Scrolling flag
@@ -92,6 +94,18 @@ public class LiveLayout extends Activity {
 				setcountrywheel(tmp);
 			}
 		});
+		
+		navigationImage = (ImageView) findViewById( R.id.nav );
+        navigationImage.setOnClickListener( new OnClickListener()
+        {
+
+            @Override
+            public void onClick( View v )
+            {
+                callEvent();
+               
+            }
+        } );
 
 		update = (ImageButton) findViewById(R.id.updatebtn);
 
@@ -131,6 +145,28 @@ public class LiveLayout extends Activity {
 		runNextTask();
 
 	}
+	MenuDialog menuDialog;
+
+    public void callEvent()
+    {
+
+        // if (menuDialog == null) {
+
+        menuDialog = new MenuDialog( this, "LiveScore" );
+        // }
+        menuDialog.setCancelable( true );
+        menuDialog.setCanceledOnTouchOutside( true );
+        menuDialog.show();
+    }
+    
+	@Override
+    public boolean onKeyUp( int keyCode, KeyEvent event )
+    {
+        if( keyCode == KeyEvent.KEYCODE_MENU )
+            callEvent();
+        return super.onKeyUp( keyCode, event );
+    }
+	
 
 	protected void runNextTask() {
 		if (isInternetOn()) {
