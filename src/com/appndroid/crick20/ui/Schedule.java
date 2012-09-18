@@ -71,6 +71,8 @@ public class Schedule extends ListActivity implements AnimationListener
 
     private String[] winnerTeamCounter = null;
     private String[] matchUrl = null;
+    private String[] teamA = null;
+    private String[] teamB = null;
 
     private boolean m_isIpl = false;
     private String currentTag;
@@ -368,6 +370,8 @@ public class Schedule extends ListActivity implements AnimationListener
         int counter = cur.getCount();
         winnerTeamCounter = new String[counter];
         matchUrl = new String[counter];
+        teamA=new String[counter];
+        teamB=new String[counter];
         cur.moveToFirst();
         while( cur.isAfterLast() == false )
         {
@@ -379,6 +383,8 @@ public class Schedule extends ListActivity implements AnimationListener
             // cur.getString(cur.getColumnIndex("MatchUrl")).trim());
             winnerTeamCounter[currentposotion] = winnerTeam;
             matchUrl[currentposotion] = cur.getString( cur.getColumnIndex( "MatchUrl" ) ).trim();
+            teamA[currentposotion] = cur.getString( cur.getColumnIndex( "TeamA" ) ).trim();
+            teamB[currentposotion] = cur.getString( cur.getColumnIndex( "TeamB" ) ).trim();
             cur.moveToNext();
 
         }
@@ -392,7 +398,10 @@ public class Schedule extends ListActivity implements AnimationListener
         }
         else if( !matchUrl[nPosition].equals( "" ) && winnerTeamCounter[nPosition].equals( "" ) )
         {
-            Toast.makeText( Schedule.this, "open live score activity", Toast.LENGTH_SHORT ).show();
+            //Toast.makeText( Schedule.this, "open live score activity"+teamA[nPosition]+teamB[nPosition], Toast.LENGTH_SHORT ).show();
+            Intent scoreIntent = new Intent( Schedule.this, LiveLayout.class );
+            scoreIntent.putExtra( "match", teamA[nPosition]+"||"+teamB[nPosition]+"||"+matchUrl[nPosition]);
+            startActivity( scoreIntent );
         }
         else
         {

@@ -65,6 +65,15 @@ public class LiveLayout extends Activity {
 
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.score);
+		String matchInfo="";
+		if (getIntent() != null)
+			if (getIntent().getExtras() != null)
+				if (getIntent().getExtras().getString("match") != null)
+					matchInfo=getIntent().getExtras().getString("match");
+		String[] mchInfoArray = matchInfo.split("\\|\\|");
+		team1=mchInfoArray[0];
+		team2=mchInfoArray[1];
+		matchUrl = mchInfoArray[mchInfoArray.length - 1];
 		progBar = (ProgressBar) findViewById(R.id.progressBar1);
 		con = getApplicationContext();
 		initWheel(R.id.runs_1, 3);
