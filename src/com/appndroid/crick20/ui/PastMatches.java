@@ -17,6 +17,20 @@ import android.widget.TextView;
 public class PastMatches extends Activity {
 	
 	public static SQLiteDatabase db;
+	ImageView navigationImage;
+	MenuDialog menuDialog;
+
+    public void callEvent()
+    {
+
+        // if (menuDialog == null) {
+
+        menuDialog = new MenuDialog( this, "past_matches" );
+        // }
+        menuDialog.setCancelable( true );
+        menuDialog.setCanceledOnTouchOutside( true );
+        menuDialog.show();
+    }
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +60,28 @@ public class PastMatches extends Activity {
 //				callEvent();
 //			}
 //		});
+		navigationImage = (ImageView) findViewById( R.id.nav );
+        navigationImage.setOnClickListener( new OnClickListener()
+        {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				callEvent();
+				
+			}
+        	
+        });
 
 	}
+	
+	@Override
+    public boolean onKeyUp( int keyCode, KeyEvent event )
+    {
+        if( keyCode == KeyEvent.KEYCODE_MENU )
+            callEvent();
+        return super.onKeyUp( keyCode, event );
+    }
 
 	public void fillData(Cursor cur) {
 
