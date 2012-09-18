@@ -170,7 +170,6 @@ public class LiveLayout extends Activity {
 				SharedPreferences sp= PreferenceManager.getDefaultSharedPreferences(LiveLayout.this);
 				autoupdate=sp.getBoolean("spAutoUpdate", false);
 				if (!isComplete && autoupdate) {
-					Log.d("aaaaaaa","post delayed");
 					int item= sp.getInt("spAutoDuration", 0);
 					int timer=0;
 					if(item ==0)
