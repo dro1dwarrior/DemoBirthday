@@ -62,6 +62,7 @@ public class HomeScreen extends Activity
     List< String > time = new ArrayList< String >();
     List< String > date = new ArrayList< String >();
     List< String > group = new ArrayList< String >();
+    List< String > matchURL = new ArrayList< String >();
 
     getDrawable drawable;
 
@@ -277,13 +278,14 @@ public class HomeScreen extends Activity
             date.clear();
             time.clear();
             group.clear();
+            matchURL.clear();
             do
             {
                 String szTeamA = mCursor.getString( mCursor.getColumnIndex( "TeamA" ) );
                 String szTeamB = mCursor.getString( mCursor.getColumnIndex( "TeamB" ) );
                 teamA.add( szTeamA );
                 teamB.add( szTeamB );
-                stadium.add( mCursor.getString( mCursor.getColumnIndex( "Venue" ) ) );
+                stadium.add( mCursor.getString( mCursor.getColumnIndex( "Stadium" ) ) );
                 group.add( mCursor.getString( mCursor.getColumnIndex( "gang" ) ) );
                 match.add( drawable.getTeamShortCode( szTeamA ) + " vs " + drawable.getTeamShortCode( szTeamB ) );
 
@@ -315,6 +317,7 @@ public class HomeScreen extends Activity
                 String date = mCursor.getString( mCursor.getColumnIndex( "Date" ) );
                 String[] strarr = date.split( " " );
                 this.date.add( strarr[0] + " " + drawable.getMonthName( strarr[1] ) + " (" + mCursor.getString( mCursor.getColumnIndex( "Other1" ) ) + ")" );
+                matchURL.add( mCursor.getString( mCursor.getColumnIndex( "MatchUrl" ) ) );
 
             }
             while( mCursor.moveToNext() );
@@ -332,8 +335,19 @@ public class HomeScreen extends Activity
             {
                 public void onItemClick( AdapterView parent, View v, int position, long id )
                 {
-
                     Log.d( "Gallery", "Position = " + position );
+                    TextView txtTeamA = (TextView) v.findViewById( R.id.textview_stadium );
+                    TextView txtTeamB = (TextView) v.findViewById( R.id.textview_match );
+                    TextView txtMatchURL = (TextView) v.findViewById( R.id.textview_date );
+
+                    String szTeamA = txtTeamA.getTag().toString();
+                    String szTeamB = txtTeamB.getTag().toString();
+                    String szMatchURL = txtMatchURL.getTag().toString();
+                    Log.d( "Gallery", "Team A is : " + szTeamA + " Team B is : " + szTeamB + " MatchURL is : " + szMatchURL );
+
+                    Intent scoreIntent = new Intent( HomeScreen.this, LiveLayout.class );
+                    scoreIntent.putExtra( "match", szTeamA + "||" + szTeamB + "||" + szMatchURL );
+                    startActivity( scoreIntent );
                 }
             } );
 
@@ -425,15 +439,17 @@ public class HomeScreen extends Activity
             TextView txtgroup = (TextView) rowView.findViewById( R.id.textview_group );
 
             txtstadium.setText( stadium.get( position ).toString() );
+            txtstadium.setTag( teamA.get( position ).toString() );
             txtmatch.setText( match.get( position ).toString() );
+            txtmatch.setTag( teamB.get( position ).toString() );
             txtdate.setText( date.get( position ).toString() );
+            txtdate.setTag( matchURL.get( position ).toString() );
             txttime.setText( time.get( position ).toString() );
             txtgroup.setText( group.get( position ).toString() );
             flag1.setImageResource( drawable.getIcon( teamA.get( position ).toString() ) );
             flag2.setImageResource( drawable.getIcon( teamB.get( position ).toString() ) );
             return rowView;
         }
-
     }
 
     private void fetchliveurls()
