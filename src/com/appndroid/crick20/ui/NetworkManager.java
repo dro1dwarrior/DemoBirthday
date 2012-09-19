@@ -36,7 +36,8 @@ public class NetworkManager {
 
 	public NetworkManager(Context context) {
 		mContext = context;
-		Utils.getDB(mContext);
+		if (Utils.db == null)
+			Utils.getDB(mContext);
 		db = Utils.db;
 	}
 
@@ -49,13 +50,13 @@ public class NetworkManager {
 			while ((cur = buffer.readLine()) != null) {
 				sb.append(cur + "\n");
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
 			stream.close();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

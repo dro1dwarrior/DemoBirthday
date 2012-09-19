@@ -11,7 +11,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 public class Utils {
-	public static SQLiteDatabase db;
+	public static SQLiteDatabase db = null;
 	public static Context currentContext = null;
 	public static boolean isDataMatchURLparsed = false;
 
