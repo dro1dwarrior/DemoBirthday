@@ -401,7 +401,8 @@ public class HomeScreen extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		Utils.getDB(this);
+		if (Utils.db == null)
+			Utils.getDB(this);
 		// mCursor = Utils.db.query( "schedule", null, null, null, null, null,
 		// null );
 		mCursor = Utils.db
