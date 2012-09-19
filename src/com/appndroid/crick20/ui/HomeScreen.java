@@ -639,18 +639,26 @@ public class HomeScreen extends Activity {
 							ContentValues cvalues = new ContentValues();
 							cvalues.put("MatchUrl", scoreUrl);
 
-							Utils.getDB(this);
-							int i = Utils.db.update("schedule", cvalues,
-									"TeamA=? AND TeamB = ? AND Date=?",
-									new String[] { teamA.replaceAll(" ", ""),
-											teamB.replaceAll(" ", ""),
-											matchDate });
-							if (i > 0
-									&& Utils.currentContext == HomeScreen.this) {
-								Intent intent = new Intent(this,
-										HomeScreen.class);
-								startActivity(intent);
-								this.finish();
+							if (Utils.db == null)
+								Utils.getDB(this);
+							try {
+								int i = Utils.db.update(
+										"schedule",
+										cvalues,
+										"TeamA=? AND TeamB = ? AND Date=?",
+										new String[] {
+												teamA.replaceAll(" ", ""),
+												teamB.replaceAll(" ", ""),
+												matchDate });
+								if (i > 0
+										&& Utils.currentContext == HomeScreen.this) {
+									Intent intent = new Intent(this,
+											HomeScreen.class);
+									startActivity(intent);
+									this.finish();
+								}
+							} catch (Exception e) {
+								e.printStackTrace();
 							}
 							teamA = null;
 							teamB = null;
