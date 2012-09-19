@@ -93,67 +93,7 @@ public class HomeScreen extends Activity {
 		mcontext = this;
 		Utils.setContext(this);
 
-		// GCM Start
-
-		ConnectivityManager connectivityManager = (ConnectivityManager) this
-				.getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo activeNetInfo = connectivityManager.getActiveNetworkInfo();
-		NetworkInfo mobNetInfo = connectivityManager
-				.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-		NetworkInfo wifiInfo = connectivityManager
-				.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-
-		// GCM Start
-		int build_version = Integer.parseInt(Build.VERSION.SDK);
-		String regId = "";
-		if (build_version >= 8) {
-			GCMRegistrar.checkDevice(HomeScreen.this);
-			GCMRegistrar.checkManifest(HomeScreen.this);
-			regId = GCMRegistrar.getRegistrationId(HomeScreen.this);
-			if (regId.equals("")) {
-				GCMRegistrar.register(HomeScreen.this, "899727754395");
-				// Log.d("HomeScreen-GCMRegister()",
-				// "GCM register call check passed");
-			} else {
-				if (!Utils.getIsPushStatusPostedOnServer(this)) {
-					String szServer = "http://buyholdsell.in/ipl/add-device-id.php?device_id=";
-					String szCompleteUrl = szServer + regId + "&salt=";
-					szCompleteUrl = szCompleteUrl
-							+ Utils.getMd5Hash("G6derTY" + regId);
-					try {
-
-						if ((mobNetInfo != null && mobNetInfo.isAvailable() && mobNetInfo
-								.isConnected())
-								|| (activeNetInfo != null
-										&& activeNetInfo.isAvailable() && activeNetInfo
-											.isConnected())
-								|| (wifiInfo != null && wifiInfo.isAvailable() && wifiInfo
-										.isConnected())) {
-							// Log.d("HomeScreen", "URL is: " + szCompleteUrl);
-							HttpClient httpclient = new DefaultHttpClient();
-							HttpPost httppost = new HttpPost(szCompleteUrl);
-							HttpResponse response = httpclient
-									.execute(httppost);
-							String szResponse = inputStreamToString(
-									response.getEntity().getContent())
-									.toString();
-							Log.d("HomeScreen", "Response is :" + szResponse);
-							if (szResponse.equalsIgnoreCase("1"))
-								Utils.setIsPushStatusPostedOnServer(this, true);
-						} else {
-							Log.d("HomeScreen", "NETWORK NOT AVAILABLE");
-							return;
-						}
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						Log.d("HomeScreen", "EXCEPTION");
-						e.printStackTrace();
-					}
-
-				}
-			}
-		}
-		// GCM End
+		new GCMTask().execute();
 
 		// WebView wv = (WebView) findViewById(R.id.browser_home);
 		// wv.getSettings().setJavaScriptEnabled(true);
@@ -469,7 +409,8 @@ public class HomeScreen extends Activity {
 						"MatchUrl != '' AND MatchResult == '' ", null, null,
 						null, null);
 		mCursor.moveToFirst();
-
+		mAdapter = null;
+		mAdapter = new MyAdapter(this);
 		populateGallery();
 	}
 
@@ -706,14 +647,6 @@ public class HomeScreen extends Activity {
 											matchDate });
 							if (i > 0
 									&& Utils.currentContext == HomeScreen.this) {
-								gallery.clearAnimation();
-								mAdapter.notifyDataSetChanged();
-								mCursor = Utils.db
-										.query("schedule",
-												null,
-												"MatchUrl != '' AND MatchResult == '' ",
-												null, null, null, null);
-								mCursor.moveToFirst();
 								Intent intent = new Intent(this,
 										HomeScreen.class);
 								startActivity(intent);
@@ -765,6 +698,79 @@ public class HomeScreen extends Activity {
 			e.printStackTrace();
 		}
 
+	}
+
+	private class GCMTask extends AsyncTask<Void, Void, Void> {
+		@Override
+		protected Void doInBackground(Void... arg0) {
+			// GCM Start
+
+			ConnectivityManager connectivityManager = (ConnectivityManager) HomeScreen.this
+					.getSystemService(Context.CONNECTIVITY_SERVICE);
+			NetworkInfo activeNetInfo = connectivityManager
+					.getActiveNetworkInfo();
+			NetworkInfo mobNetInfo = connectivityManager
+					.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+			NetworkInfo wifiInfo = connectivityManager
+					.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+			// GCM Start
+			int build_version = Integer.parseInt(Build.VERSION.SDK);
+			String regId = "";
+			if (build_version >= 8) {
+				GCMRegistrar.checkDevice(HomeScreen.this);
+				GCMRegistrar.checkManifest(HomeScreen.this);
+				regId = GCMRegistrar.getRegistrationId(HomeScreen.this);
+				if (regId.equals("")) {
+					GCMRegistrar.register(HomeScreen.this, "899727754395");
+					// Log.d("HomeScreen-GCMRegister()",
+					// "GCM register call check passed");
+				} else {
+					if (!Utils.getIsPushStatusPostedOnServer(HomeScreen.this)) {
+						String szServer = "http://buyholdsell.in/ipl/add-device-id.php?device_id=";
+						String szCompleteUrl = szServer + regId + "&salt=";
+						szCompleteUrl = szCompleteUrl
+								+ Utils.getMd5Hash("G6derTY" + regId);
+						try {
+
+							if ((mobNetInfo != null && mobNetInfo.isAvailable() && mobNetInfo
+									.isConnected())
+									|| (activeNetInfo != null
+											&& activeNetInfo.isAvailable() && activeNetInfo
+												.isConnected())
+									|| (wifiInfo != null
+											&& wifiInfo.isAvailable() && wifiInfo
+												.isConnected())) {
+								// Log.d("HomeScreen", "URL is: " +
+								// szCompleteUrl);
+								HttpClient httpclient = new DefaultHttpClient();
+								HttpPost httppost = new HttpPost(szCompleteUrl);
+								HttpResponse response = httpclient
+										.execute(httppost);
+								String szResponse = inputStreamToString(
+										response.getEntity().getContent())
+										.toString();
+								Log.d("HomeScreen", "Response is :"
+										+ szResponse);
+								if (szResponse.equalsIgnoreCase("1"))
+									Utils.setIsPushStatusPostedOnServer(
+											HomeScreen.this, true);
+							} else {
+								Log.d("HomeScreen", "NETWORK NOT AVAILABLE");
+								return null;
+							}
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							Log.d("HomeScreen", "EXCEPTION");
+							e.printStackTrace();
+						}
+
+					}
+				}
+			}
+			// GCM End
+			return null;
+		}
 	}
 
 	private class fetchURLTask extends AsyncTask<Void, Void, Void> {
