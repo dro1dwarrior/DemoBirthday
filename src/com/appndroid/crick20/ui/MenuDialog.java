@@ -1,17 +1,14 @@
 package com.appndroid.crick20.ui;
 
-import com.appndroid.crick20.R;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.appndroid.crick20.R;
 
 public class MenuDialog extends AlertDialog {
 
@@ -133,25 +130,4 @@ public class MenuDialog extends AlertDialog {
 		});
 
 	}
-
-	public final boolean isInternetOn() {
-		ConnectivityManager connec = (ConnectivityManager) mcontext
-				.getSystemService(Context.CONNECTIVITY_SERVICE);
-		// ARE WE CONNECTED TO THE NET
-		if (connec.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED
-				|| connec.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTING
-				|| connec.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTING
-				|| connec.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTED) {
-			// MESSAGE TO SCREEN FOR TESTING (IF REQ)
-			// Toast.makeText(this, connectionType + ” connected”,
-			// Toast.LENGTH_SHORT).show();
-			return true;
-		} else if (connec.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED
-				|| connec.getNetworkInfo(1).getState() == NetworkInfo.State.DISCONNECTED) {
-			// System.out.println(“Not Connected”);
-			return false;
-		}
-		return false;
-	}
-
 }
