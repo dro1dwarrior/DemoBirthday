@@ -293,7 +293,7 @@ public class LiveLayout extends Activity
                 country.scroll( -25 + (int) ( Math.random() * 50 ), 4000 );
             }
             else if( result != null && !result.equals( "" ) && !first )
-                displayInUI( xml );
+                displayInUI( result );
 
         }
     }

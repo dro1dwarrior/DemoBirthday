@@ -128,12 +128,7 @@ public class XMLfunctions
                 return sb.toString();
 
             }
-            catch( IllegalStateException e )
-            {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            catch( IOException e )
+            catch( Exception e )
             {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -152,9 +147,8 @@ public class XMLfunctions
             // TODO: handle exception
             e.printStackTrace();
             Toast.makeText( mContext, "Unable to fetch live score at this moment.", Toast.LENGTH_LONG ).show();
-
+            line = "";
         }
-
         return line;
     }
 
