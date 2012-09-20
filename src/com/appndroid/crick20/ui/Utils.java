@@ -16,6 +16,7 @@ public class Utils
     public static SQLiteDatabase db = null;
     public static Context currentContext = null;
     public static boolean isDataMatchURLparsed = false;
+    public static boolean rowUpdatedAfterLiveURLFetch = false;
 
     public static void getDB( Context context )
     {

@@ -88,7 +88,10 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/matchheader"
-        android:layout_marginBottom="30dp" >
+        android:layout_above="@+id/rel_bottom"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        >
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -100,6 +103,8 @@
                 android:layout_width="fill_parent"
                 android:layout_marginTop="4dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:background="@drawable/transparent_background" >
                 <ImageButton
                 android:id="@+id/updatebtn"
@@ -295,6 +300,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/transparent_background" >
 
                 <TextView
@@ -414,6 +420,7 @@
     </ScrollView>
 
     <RelativeLayout
+        android:id="@+id/rel_bottom"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"

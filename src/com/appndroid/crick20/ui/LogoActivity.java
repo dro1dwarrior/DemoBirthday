@@ -138,6 +138,7 @@ public class LogoActivity extends Activity
             int pid = android.os.Process.myPid();
             android.os.Process.killProcess( pid );
             System.exit( 0 );
+            Utils.setContext( null );
             return true;
 
         }

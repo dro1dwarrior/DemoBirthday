@@ -682,8 +682,28 @@ public class HomeScreen extends Activity
                                 Utils.getDB( this );
                             try
                             {
-                                rowsUpdated = Utils.db.update( "schedule", cvalues, "TeamA=? AND TeamB = ? AND Date=? AND MatchUrl = ''",
-                                        new String[] { teamA.replaceAll( " ", "" ), teamB.replaceAll( " ", "" ), matchDate } );
+								// rowsUpdated = Utils.db.update( "schedule",
+								// cvalues,
+								// "TeamA=? AND TeamB = ? AND Date=? AND MatchUrl = ''",
+								// new String[] { teamA.replaceAll( " ", "" ),
+								// teamB.replaceAll( " ", "" ), matchDate } );
+                            	
+								rowsUpdated = Utils.db
+										.update("schedule",
+												cvalues,
+												" ( TeamA = ? OR TeamA = ? ) AND ( TeamB = ? OR TeamB = ? ) AND Date = ? AND MatchUrl = '' ",
+												new String[] {
+														teamA.replaceAll(" ",
+																""),
+														teamB.replaceAll(" ",
+																""),
+														teamA.replaceAll(" ",
+																""),
+														teamB.replaceAll(" ",
+																""), matchDate });
+								if( rowsUpdated > 0 )
+									Utils.rowUpdatedAfterLiveURLFetch = true;
+									
                             }
                             catch( Exception e )
                             {
@@ -827,16 +847,14 @@ public class HomeScreen extends Activity
         {
             // TODO Auto-generated method stub
             super.onPostExecute( result );
-            if( rowsUpdated > 0 && Utils.currentContext == HomeScreen.this )
+            if( ( rowsUpdated > 0 || Utils.rowUpdatedAfterLiveURLFetch ) && Utils.currentContext == HomeScreen.this )
             {
-                // Intent intent = new Intent( HomeScreen.this, HomeScreen.class );
-                // startActivity( intent );
-                // finish();
                 mCursor = Utils.db.query( "schedule", null, "MatchUrl <> '' AND MatchResult == '' ", null, null, null, null );
                 mCursor.moveToFirst();
                 mAdapter = null;
                 mAdapter = new MyAdapter( HomeScreen.this );
                 populateGallery();
+                Utils.rowUpdatedAfterLiveURLFetch = false;
             }
 
         }
