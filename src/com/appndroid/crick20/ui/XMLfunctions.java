@@ -146,8 +146,7 @@ public class XMLfunctions
         {
             // TODO: handle exception
             e.printStackTrace();
-            Toast.makeText( mContext, "Unable to fetch live score at this moment.", Toast.LENGTH_LONG ).show();
-            line = "";
+			line = "";
         }
         return line;
     }
