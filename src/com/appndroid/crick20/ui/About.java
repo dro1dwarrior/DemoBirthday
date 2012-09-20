@@ -4,6 +4,7 @@ import com.appndroid.crick20.R;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 public class About extends Activity
 {
+	 private final static String APP_PNAME = "com.appndroid.crick20";
 
     @Override
     protected void onCreate( Bundle savedInstanceState )
@@ -40,6 +42,19 @@ public class About extends Activity
                 startActivity( intent );
             }
         } );
+        
+        TextView txtRateUs = (TextView) findViewById( R.id.txtRateUs );
+        txtRateUs.setOnClickListener( new OnClickListener()
+        {
+
+            @Override
+            public void onClick( View v )
+            {
+                // TODO Auto-generated method stub
+            	 About.this.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + APP_PNAME)));
+            }
+        } );
+        
 
     }
 }

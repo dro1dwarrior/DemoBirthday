@@ -10,7 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/hidden"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="18dp"
         android:gravity="center"
         android:text="Version : 1.1"
         android:textColor="#1393ad"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginBottom="1dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:gravity="center"
         android:textColor="#1393ad"
         android:textSize="18sp"
@@ -37,6 +37,17 @@
         android:layout_below="@+id/version"
         android:layout_centerHorizontal="true"
         android:text="FeedBack"
+        android:textColor="#1393ad"
+        android:textSize="18sp" />
+    
+    <TextView
+        android:id="@+id/txtRateUs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtFeedBack"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Rate Us"
         android:textColor="#1393ad"
         android:textSize="18sp" />
 
