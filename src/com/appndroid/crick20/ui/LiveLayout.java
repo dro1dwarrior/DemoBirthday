@@ -158,6 +158,8 @@ public class LiveLayout extends Activity
                         }
                         else if( xml != null && !xml.equals( "" ) && !first )
                             displayInUI( xml );
+                        else if(xml != null && xml.equals(""))
+                        	Toast.makeText( LiveLayout.this, "Unable to fetch live score at this moment.", Toast.LENGTH_LONG ).show();
                         progBar.setVisibility( View.INVISIBLE );
                     }
                 };
@@ -271,6 +273,8 @@ public class LiveLayout extends Activity
             }
             else if( result != null && !result.equals( "" ) && !first )
                 displayInUI( result );
+            else if(xml != null && xml.equals(""))
+            	Toast.makeText( LiveLayout.this, "Unable to fetch live score at this moment.", Toast.LENGTH_LONG ).show();
 
         }
     }
