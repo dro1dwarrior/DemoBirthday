@@ -21,8 +21,8 @@ public class FeedBack extends Activity
     {
         // TODO Auto-generated method stub
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.feedback );
         requestWindowFeature( Window.FEATURE_NO_TITLE );
+        setContentView( R.layout.feedback );
         
         Utils.setContext( this );
         final Button btnSubmit = (Button) findViewById( R.id.btnSubmit );

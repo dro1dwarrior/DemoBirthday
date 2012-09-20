@@ -57,7 +57,6 @@ public class HomeScreen extends Activity
     ImageView mainIcon;
     WebView webview;
     Context mcontext;
-    private NetworkManager networkmanager;
     Gallery gallery;
     Cursor mCursor;
     BaseAdapter mAdapter;
@@ -80,6 +79,8 @@ public class HomeScreen extends Activity
     private String currentTag;
     int m_xmlTagId = 0;
     private ArrayList< String > matchesArray = new ArrayList< String >();
+
+    private NetworkManager networkmanager;
 
     @Override
     protected void onCreate( Bundle savedInstanceState )
@@ -112,16 +113,6 @@ public class HomeScreen extends Activity
         counter1 = (TextView) findViewById( R.id.counter1 );
         counter2 = (TextView) findViewById( R.id.counter2 );
         drawable = new getDrawable();
-
-        networkmanager = new NetworkManager( HomeScreen.this );
-
-        if( !NetworkManager.isDataFetched )
-        {
-
-            HttpAsyncConnector httpConnect = networkmanager.new HttpAsyncConnector();
-            httpConnect.setTaskParams( ApplicationDefines.CommandType.COMMAND_SCHEDULE );
-            httpConnect.execute();
-        }
 
         scheduleClick = (LinearLayout) findViewById( R.id.ll_schedule );
         scheduleClick.setOnClickListener( new OnClickListener()
@@ -268,6 +259,7 @@ public class HomeScreen extends Activity
         //
 
         AppRater.app_launched( this );
+        fetchDocs();
     }
 
     private StringBuilder inputStreamToString( InputStream content ) throws IOException
@@ -418,7 +410,7 @@ public class HomeScreen extends Activity
             Utils.getDB( this );
         // mCursor = Utils.db.query( "schedule", null, null, null, null, null,
         // null );
-        mCursor = Utils.db.query( "schedule", null, "MatchUrl != '' AND MatchResult == '' ", null, null, null, null );
+        mCursor = Utils.db.query( "schedule", null, "MatchUrl <> '' AND MatchResult == '' ", null, null, null, null );
         mCursor.moveToFirst();
         mAdapter = null;
         mAdapter = new MyAdapter( this );
@@ -495,13 +487,14 @@ public class HomeScreen extends Activity
         }
     }
 
-    private void fetchliveurls()
+    private int fetchliveurls()
     {
         HttpClient hc;
         String szResponse = "";
         boolean bSuccess = false;
         HttpGet get = null;
         String str = null;
+        int rowsUpdated = 0;
         try
         {
             hc = new DefaultHttpClient();
@@ -522,7 +515,7 @@ public class HomeScreen extends Activity
             str = str.replace( "\n", "" );
             str = str.replace( "\t", "" );
             // str="<matches><match><seriesName>England in Sri Lanka 2012</seriesName><team1>Sri Lanka</team1><team2>England</team2><startdate>03 04 2012</startdate><enddate>07 04 2012</enddate><type>TEST</type><scores-url>http://sifyscores.cricbuzz.com/data/2012/2012_SL_ENG/SL_ENG_APR03_APR07/scores.xml</scores-url><full-commentary-url>http://sifyscores.cricbuzz.com/data/2012/2012_SL_ENG/SL_ENG_APR03_APR07/full-commentary.xml</full-commentary-url><squads-url>http://sifyscores.cricbuzz.com/data/2012/2012_SL_ENG/SL_ENG_APR03_APR07/squads.xml</squads-url><highlights-url>http://sifyscores.cricbuzz.com/data/2012/2012_SL_ENG/SL_ENG_APR03_APR07/highlights.xml</highlights-url><graphs-url>http://sifyscores.cricbuzz.com/data/2012/2012_SL_ENG/SL_ENG_APR03_APR07/graphs.xml</graphs-url><series-statistics-url>http://webclient.cricbuzz.com/statistics/series/xml/2083</series-statistics-url></match><match><seriesName>Indian Premier League 2012</seriesName><team1>Kolkata Knight Riders</team1><team2>Delhi Daredevils</team2><startdate>05 04 2012</startdate><enddate>05 04 2012</enddate><type>T20</type><scores-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/KOL_DEL_APR05/scores.xml</scores-url><full-commentary-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/KOL_DEL_APR05/full-commentary.xml</full-commentary-url><squads-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/KOL_DEL_APR05/squads.xml</squads-url><highlights-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/KOL_DEL_APR05/highlights.xml</highlights-url><graphs-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/KOL_DEL_APR05/graphs.xml</graphs-url><series-statistics-url>http://webclient.cricbuzz.com/statistics/series/xml/2115</series-statistics-url></match><match><seriesName>Indian Premier League 2012</seriesName><team1>Chennai Super Kings</team1><team2>Mumbai Indians</team2><startdate>05 04 2012</startdate><enddate>05 04 2012</enddate><type>T20</type><scores-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/CHN_MUM_APR04/scores.xml</scores-url><full-commentary-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/CHN_MUM_APR04/full-commentary.xml</full-commentary-url><squads-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/CHN_MUM_APR04/squads.xml</squads-url><highlights-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/CHN_MUM_APR04/highlights.xml</highlights-url><graphs-url>http://sifyscores.cricbuzz.com/data/2012/2012_IPL/CHN_MUM_APR04/graphs.xml</graphs-url><series-statistics-url>http://webclient.cricbuzz.com/statistics/series/xml/2115</series-statistics-url></match></matches>";
-            xmlParseMatch( str );
+            rowsUpdated = xmlParseMatch( str );
         }
         catch( SocketException e )
         {
@@ -536,12 +529,14 @@ public class HomeScreen extends Activity
         {
 
         }
+        return rowsUpdated;
     }
 
-    private void xmlParseMatch( String xmlData )
+    private int xmlParseMatch( String xmlData )
     {
 
         matchesArray.clear();
+        int rowsUpdated = 0;
         try
         {
             Calendar c = Calendar.getInstance();
@@ -687,14 +682,8 @@ public class HomeScreen extends Activity
                                 Utils.getDB( this );
                             try
                             {
-                                int i = Utils.db.update( "schedule", cvalues, "TeamA=? AND TeamB = ? AND Date=?",
+                                rowsUpdated = Utils.db.update( "schedule", cvalues, "TeamA=? AND TeamB = ? AND Date=? AND MatchUrl = ''",
                                         new String[] { teamA.replaceAll( " ", "" ), teamB.replaceAll( " ", "" ), matchDate } );
-                                if( i > 0 && Utils.currentContext == HomeScreen.this )
-                                {
-                                    Intent intent = new Intent( this, HomeScreen.class );
-                                    startActivity( intent );
-                                    this.finish();
-                                }
                             }
                             catch( Exception e )
                             {
@@ -747,6 +736,7 @@ public class HomeScreen extends Activity
 
             e.printStackTrace();
         }
+        return rowsUpdated;
 
     }
 
@@ -812,14 +802,16 @@ public class HomeScreen extends Activity
         }
     }
 
-    private class fetchURLTask extends AsyncTask< Void, Void, Void >
+    private class fetchURLTask extends AsyncTask< Void, Void, String >
     {
+        int rowsUpdated = 0;
+
         @Override
-        protected Void doInBackground( Void... arg0 )
+        protected String doInBackground( Void... arg0 )
         {
             try
             {
-                fetchliveurls();
+                rowsUpdated = fetchliveurls();
                 Utils.isDataMatchURLparsed = true;
             }
             catch( Exception e )
@@ -827,7 +819,38 @@ public class HomeScreen extends Activity
                 e.printStackTrace();
                 Utils.isDataMatchURLparsed = false;
             }
-            return null;
+            return "success";
+        }
+
+        @Override
+        protected void onPostExecute( String result )
+        {
+            // TODO Auto-generated method stub
+            super.onPostExecute( result );
+            if( rowsUpdated > 0 && Utils.currentContext == HomeScreen.this )
+            {
+                // Intent intent = new Intent( HomeScreen.this, HomeScreen.class );
+                // startActivity( intent );
+                // finish();
+                mCursor = Utils.db.query( "schedule", null, "MatchUrl <> '' AND MatchResult == '' ", null, null, null, null );
+                mCursor.moveToFirst();
+                mAdapter = null;
+                mAdapter = new MyAdapter( HomeScreen.this );
+                populateGallery();
+            }
+
+        }
+    }
+
+    private void fetchDocs()
+    {
+        networkmanager = new NetworkManager( HomeScreen.this );
+        if( !NetworkManager.isDataFetched )
+        {
+
+            HttpAsyncConnector httpConnect = networkmanager.new HttpAsyncConnector();
+            httpConnect.setTaskParams( ApplicationDefines.CommandType.COMMAND_SCHEDULE );
+            httpConnect.execute();
         }
     }
 }

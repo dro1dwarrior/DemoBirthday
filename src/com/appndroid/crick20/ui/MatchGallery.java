@@ -55,7 +55,8 @@ public class MatchGallery extends Gallery
     {
         if( isScrollingLeft( paramMotionEvent1, paramMotionEvent2 ) )
             ;
-        for( float f = 500.0F;; f = -500.0F )
+        for( float f = 350.0F;; f = -350.0F )
+            // 500
             return super.onFling( paramMotionEvent1, paramMotionEvent2, f, paramFloat2 );
     }
 }

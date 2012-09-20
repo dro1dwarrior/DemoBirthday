@@ -3,6 +3,7 @@ package com.appndroid.crick20.ui;
 import java.io.IOException;
 
 import com.appndroid.crick20.R;
+import com.appndroid.crick20.ui.NetworkManager.HttpAsyncConnector;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -23,13 +24,14 @@ public class FlagsActivity extends Activity
     protected int _splashTime = 5800;
     protected boolean _display = true;
     Thread splashTread;
+    private NetworkManager networkmanager;
 
     /** Called when the activity is first created. */
     @Override
     public void onCreate( Bundle savedInstanceState )
     {
         super.onCreate( savedInstanceState );
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.requestWindowFeature( Window.FEATURE_NO_TITLE );
         setContentView( R.layout.groupsplash );
 
         new CopyDBTask().execute();
@@ -137,6 +139,7 @@ public class FlagsActivity extends Activity
         protected void onPostExecute( Void result )
         {
             super.onPostExecute( result );
+            fetchDocs();
         }
     }
 
@@ -174,9 +177,11 @@ public class FlagsActivity extends Activity
         }
 
     }
+
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-    	if( _display && keyCode== KeyEvent.KEYCODE_BACK)
+    public boolean onKeyDown( int keyCode, KeyEvent event )
+    {
+        if( _display && keyCode == KeyEvent.KEYCODE_BACK )
         {
             finish();
             Intent intent = new Intent( getApplicationContext(), HomeScreen.class );
@@ -184,8 +189,19 @@ public class FlagsActivity extends Activity
             intent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
             startActivity( intent );
         }
-    	return true;
-    	
+        return true;
+
     }
 
+    private void fetchDocs()
+    {
+        networkmanager = new NetworkManager( FlagsActivity.this );
+        if( !NetworkManager.isDataFetched )
+        {
+
+            HttpAsyncConnector httpConnect = networkmanager.new HttpAsyncConnector();
+            httpConnect.setTaskParams( ApplicationDefines.CommandType.COMMAND_SCHEDULE );
+            httpConnect.execute();
+        }
+    }
 }
