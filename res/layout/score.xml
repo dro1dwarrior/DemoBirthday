@@ -335,7 +335,7 @@
                     android:layout_below="@+id/scorematchDetails"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="3dp"
-                    android:text="Batsmans :"
+                    android:text="Batsmen :"
                     android:textColor="#69D2E7"
                     android:textStyle="bold"
                     android:visibility="gone" >
