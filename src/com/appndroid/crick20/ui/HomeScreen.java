@@ -109,7 +109,7 @@ public class HomeScreen extends Activity
         gallery = (Gallery) findViewById( R.id.home_gallery );
         mAdapter = new MyAdapter( this );
         mDotsLayout = (LinearLayout) findViewById( R.id.dotsLayout );
-        mDotsLayout.setVisibility( View.INVISIBLE );
+        mDotsLayout.setVisibility( View.GONE );
         counter1 = (TextView) findViewById( R.id.counter1 );
         counter2 = (TextView) findViewById( R.id.counter2 );
         drawable = new getDrawable();
