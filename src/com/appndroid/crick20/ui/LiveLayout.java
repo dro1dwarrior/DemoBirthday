@@ -264,7 +264,11 @@ public class LiveLayout extends Activity
         @Override
         protected void onPostExecute( String result )
         {
-            dialog.dismiss();
+			if (dialog != null)
+			{
+				dialog.dismiss();
+				dialog = null;
+			}
             // if (!result.equals(null) && !result.equals(""))
             // displayInUI(result);
             if( result != null && !result.equals( "" ) && first )
