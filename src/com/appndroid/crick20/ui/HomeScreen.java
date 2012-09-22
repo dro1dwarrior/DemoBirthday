@@ -344,6 +344,9 @@ public class HomeScreen extends Activity
                 counter1.setBackgroundResource( R.drawable.countershape_selected );
                 counter2.setBackgroundResource( R.drawable.countershape );
             }
+            else
+            	mDotsLayout.setVisibility( View.GONE );
+            
             gallery.setOnItemClickListener( new OnItemClickListener()
             {
                 public void onItemClick( AdapterView parent, View v, int position, long id )
