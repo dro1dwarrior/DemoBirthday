@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/app_background"
+    android:orientation="vertical" >
+
+    <!-- android:background="@android:color/white" -->
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="45dp" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/nav" >
+
+            <TableLayout
+                style="@style/layout_f_w"
+                android:stretchColumns="*" >
+
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    style="@style/layout_wrap"
+                    android:background="@drawable/titleback" >
+
+                    <!-- First Tab -->
+
+                    <LinearLayout
+                        android:id="@+id/first_text"
+                        style="@style/layout_f_w"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center" >
+
+                        <TextView
+                            android:id="@+id/textView1"
+                            style="@style/text_title"
+                            android:gravity="center_vertical"
+                            android:text="Group 1"
+                            android:textColor="#69D2E7"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Second Tab -->
+
+                    <LinearLayout
+                        android:id="@+id/second_text"
+                        style="@style/layout_f_w"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center" >
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            style="@style/text_title"
+                            android:gravity="center_vertical"
+                            android:text="Group 2"
+                            android:textColor="#69D2E7"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </TableRow>
+            </TableLayout>
+            <!-- Include Tab Indicator -->
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/nav"
+            android:layout_width="40dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/navigationunselected" />
+    </RelativeLayout>
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40dp"
+        layout="@layout/indicator" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+</LinearLayout>

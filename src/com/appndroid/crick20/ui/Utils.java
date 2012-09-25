@@ -17,6 +17,7 @@ public class Utils
     public static Context currentContext = null;
     public static boolean isDataMatchURLparsed = false;
     public static boolean rowUpdatedAfterLiveURLFetch = false;
+    public static boolean isDocsFetched = false;
 
     public static void getDB( Context context )
     {
@@ -92,6 +93,21 @@ public class Utils
             Log.d( "SplashScreen-onCreate()", "NETWORK NOT AVAILABLE" );
             return false;
         }
+    }
+
+    public static boolean getDBDeleted( Context context )
+    {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences( context );
+        return sharedPreferences.getBoolean( "db_deleted", false );
+    }
+
+    public static void setDBDeleted( Context context, boolean bValue )
+    {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences( context );
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putBoolean( "db_deleted", bValue );
+        editor.commit();
     }
 
 }

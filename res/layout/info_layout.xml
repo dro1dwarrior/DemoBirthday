@@ -8,7 +8,9 @@
     <RelativeLayout
         android:id="@+id/currentStastlayout1"
         android:layout_width="fill_parent"
-        android:layout_height="175dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/transparent_background" >
 
@@ -16,7 +18,8 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/main"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="150dp"
             android:clickable="false"
             android:orientation="vertical" >
 
@@ -31,7 +34,7 @@
                 <TextView
                     android:id="@+id/header_group1"
                     android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Points Table"
                     android:textColor="#69D2E7"
@@ -50,13 +53,13 @@
             <LinearLayout
                 android:id="@+id/layout"
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="5dp" >
 
                 <ListView
                     android:id="@+id/pointsTable_group1"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_height="wrap_content"
                     android:cacheColorHint="@android:color/transparent"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
@@ -72,6 +75,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/currentStastlayout1"
         android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/transparent_background" >
 
@@ -79,7 +84,7 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/mainupcoming"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:clickable="false"
             android:orientation="vertical" >
 
@@ -94,7 +99,7 @@
                 <TextView
                     android:id="@+id/recordupcoming1"
                     android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Upcoming Matches"
                     android:textColor="#69D2E7"
@@ -113,21 +118,21 @@
             <LinearLayout
                 android:id="@+id/layoutupcoming"
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="5dp"
-                android:isScrollContainer="false" >
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp" >
 
                 <ListView
                     android:id="@+id/upcomignlv_group1"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:cacheColorHint="@android:color/transparent"
                     android:divider="@layout/data_seperator"
                     android:dividerHeight="2px"
-                    android:scrollbars="vertical"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:listSelector="@android:color/transparent" >
+                    android:listSelector="@android:color/transparent"
+                    android:scrollbars="vertical" >
                 </ListView>
             </LinearLayout>
         </LinearLayout>

@@ -143,7 +143,8 @@ public class HomeScreen extends Activity
                 if( isGroupStage )
                     schIntent = new Intent( mcontext, GroupTab.class );
                 else
-                    schIntent = new Intent( mcontext, tabtest.class );
+                    // schIntent = new Intent( mcontext, tabtest.class );
+                    schIntent = new Intent( mcontext, ViewPagerStyle1Activity.class );
                 schIntent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
                 schIntent.addFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
                 mcontext.startActivity( schIntent );
@@ -259,7 +260,9 @@ public class HomeScreen extends Activity
         //
 
         AppRater.app_launched( this );
-        fetchDocs();
+        
+        if( !Utils.isDocsFetched )
+            fetchDocs();
     }
 
     private StringBuilder inputStreamToString( InputStream content ) throws IOException
@@ -345,8 +348,8 @@ public class HomeScreen extends Activity
                 counter2.setBackgroundResource( R.drawable.countershape );
             }
             else
-            	mDotsLayout.setVisibility( View.GONE );
-            
+                mDotsLayout.setVisibility( View.GONE );
+
             gallery.setOnItemClickListener( new OnItemClickListener()
             {
                 public void onItemClick( AdapterView parent, View v, int position, long id )
@@ -685,28 +688,19 @@ public class HomeScreen extends Activity
                                 Utils.getDB( this );
                             try
                             {
-								// rowsUpdated = Utils.db.update( "schedule",
-								// cvalues,
-								// "TeamA=? AND TeamB = ? AND Date=? AND MatchUrl = ''",
-								// new String[] { teamA.replaceAll( " ", "" ),
-								// teamB.replaceAll( " ", "" ), matchDate } );
-                            	
-								rowsUpdated = Utils.db
-										.update("schedule",
-												cvalues,
-												" ( TeamA = ? OR TeamA = ? ) AND ( TeamB = ? OR TeamB = ? ) AND Date = ? AND MatchUrl = '' ",
-												new String[] {
-														teamA.replaceAll(" ",
-																""),
-														teamB.replaceAll(" ",
-																""),
-														teamA.replaceAll(" ",
-																""),
-														teamB.replaceAll(" ",
-																""), matchDate });
-								if( rowsUpdated > 0 )
-									Utils.rowUpdatedAfterLiveURLFetch = true;
-									
+                                // rowsUpdated = Utils.db.update( "schedule",
+                                // cvalues,
+                                // "TeamA=? AND TeamB = ? AND Date=? AND MatchUrl = ''",
+                                // new String[] { teamA.replaceAll( " ", "" ),
+                                // teamB.replaceAll( " ", "" ), matchDate } );
+
+                                rowsUpdated = Utils.db.update( "schedule", cvalues,
+                                        " ( TeamA = ? OR TeamA = ? ) AND ( TeamB = ? OR TeamB = ? ) AND Date = ? AND MatchUrl = '' ",
+                                        new String[] { teamA.replaceAll( " ", "" ), teamB.replaceAll( " ", "" ), teamA.replaceAll( " ", "" ),
+                                                teamB.replaceAll( " ", "" ), matchDate } );
+                                if( rowsUpdated > 0 )
+                                    Utils.rowUpdatedAfterLiveURLFetch = true;
+
                             }
                             catch( Exception e )
                             {

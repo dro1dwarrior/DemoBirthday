@@ -45,6 +45,19 @@ public class LogoActivity extends Activity
 
         new GCMTask().execute();
 
+        if( !Utils.getDBDeleted( this ) )
+        {
+            try
+            {
+                this.deleteDatabase( "worldcupt20.db" );
+                Utils.setDBDeleted( this, true );
+            }
+            catch( Exception e )
+            {
+                e.printStackTrace();
+            }
+        }
+        
         Calendar c = Calendar.getInstance();
         int milli = c.getTimeZone().getOffset( TimeZone.LONG );
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences( this );

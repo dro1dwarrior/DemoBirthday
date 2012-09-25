@@ -101,7 +101,7 @@ public class XMLfunctions
         	HttpParams httpParameters = new BasicHttpParams();
         	// Set the timeout in milliseconds until a connection is established.
         	// The default value is zero, that means the timeout is not used. 
-        	int timeoutConnection = 3000;
+        	int timeoutConnection = 4000;
         	HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
         	// Set the default socket timeout
         	// in milliseconds which is the timeout for waiting for data.
@@ -121,6 +121,7 @@ public class XMLfunctions
             {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
+                Toast.makeText( mContext, "Error in connection! Please try again", Toast.LENGTH_LONG ).show();
             }
 
             HttpEntity entity = null;

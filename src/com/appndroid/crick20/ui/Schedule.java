@@ -313,7 +313,7 @@ public class Schedule extends ListActivity implements AnimationListener
             TextView txttime = (TextView) view.findViewById( R.id.textview_time );
             TextView txtgroup = (TextView) view.findViewById( R.id.textview_group );
 
-            if( cursor.getString( cursor.getColumnIndex( "gang" ) ).contains( "1" ) || cursor.getString( cursor.getColumnIndex( "gang" ) ).contains( "2" ) )
+            if( cursor.getString( cursor.getColumnIndex( "gang" ) ).contains( "Group1" ) || cursor.getString( cursor.getColumnIndex( "gang" ) ).contains( "Group2" ) )
                 txtgroup.setText( "Super Eight's" );
             else
                 txtgroup.setText( cursor.getString( cursor.getColumnIndex( "gang" ) ).replace( "Group", "Group " ) );

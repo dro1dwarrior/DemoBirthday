@@ -15,8 +15,8 @@ public class AppRater {
     private final static String APP_TITLE = "T20 World Cup";
     private final static String APP_PNAME = "com.appndroid.crick20";
     
-    private final static int DAYS_UNTIL_PROMPT = 2;
-    private final static int LAUNCHES_UNTIL_PROMPT = 5;
+    private final static int DAYS_UNTIL_PROMPT = 1;
+    private final static int LAUNCHES_UNTIL_PROMPT = 3;
     
     public static void app_launched(Context mContext) {
         SharedPreferences prefs = mContext.getSharedPreferences("apprater", 0);

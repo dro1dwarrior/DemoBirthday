@@ -12,7 +12,7 @@
         android:layout_above="@+id/hidden"
         android:layout_marginTop="18dp"
         android:gravity="center"
-        android:text="Version : 1.1"
+        android:text="Version : 1.2"
         android:textColor="#1393ad"
         android:textSize="18sp"
         android:textStyle="bold" />
