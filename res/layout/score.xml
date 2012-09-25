@@ -119,18 +119,17 @@
                     android:id="@+id/ll_first"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp" >
+                    android:layout_marginTop="35dp" >
 
                     <RelativeLayout
                         xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="2dp"
                         android:orientation="horizontal"
                         android:paddingLeft="12dp"
                         android:paddingRight="12dp"
-                        android:paddingTop="4dp" >
+                        >
 
                         <kankan.wheel.widget.WheelView
                             android:id="@+id/country"
@@ -157,26 +156,26 @@
                     <kankan.wheel.widget.WheelView
                         android:id="@+id/runs_1"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="70dp" />
 
                     <kankan.wheel.widget.WheelView
                         android:id="@+id/runs_2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="70dp" />
 
                     <kankan.wheel.widget.WheelView
                         android:id="@+id/runs_3"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="70dp" />
 
                     <TextView
-                        android:layout_width="20dp"
+                        android:layout_width="15dp"
                         android:layout_height="wrap_content" />
 
                     <kankan.wheel.widget.WheelView
                         android:id="@+id/wiks"
                         android:layout_width="50dp"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="70dp" />
                 </LinearLayout>
 
                 <LinearLayout
