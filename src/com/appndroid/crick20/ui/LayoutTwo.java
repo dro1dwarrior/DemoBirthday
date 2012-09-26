@@ -68,7 +68,7 @@ public class LayoutTwo extends Fragment
     {
         // TODO Auto-generated method stub
         super.onResume();
-        int recordCount = getDataFromDB( "Group1" );
+        int recordCount = getDataFromDB( "Group2" );
         fillData( lv1 );
 
         super.onResume();
